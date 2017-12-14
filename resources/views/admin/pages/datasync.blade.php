@@ -84,15 +84,15 @@
               </div>
               <div class="btn">
                 <button class="btn btn-app regular">
-                  <i class="fa fa-calendar"></i> Regular
+                  <i class="fa fa-calendar"></i> Schedule
                 </button>
                 <p class="result7">
                   <img class="probar title7 hidden" id="title" src="images/xpProgressBar.gif" alt="Loading..." />
                 </p>
               </div>
               <div class="btn">
-                <button class="btn btn-app holiday">
-                  <i class="fa fa-calendar-minus-o"></i> Holiday
+                <button class="btn btn-app regular">
+                  <i class="fa fa-calendar"></i> Schedule
                 </button>
                 <p class="result8">
                   <img class="probar title8 hidden" id="title" src="images/xpProgressBar.gif" alt="Loading..." />
@@ -223,7 +223,7 @@
                 $('.title7').removeClass('hidden');
                 $.ajax({
                     type: "GET",
-                    url : 'regular.php',
+                    url : 'schedule.php',
                     success: function(result){
                     $(".title7").addClass('hidden');
                     $(".result7").html("Updated");

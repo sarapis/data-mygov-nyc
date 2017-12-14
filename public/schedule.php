@@ -37,7 +37,7 @@
 						} 
 						echo "Connected successfully. ";
 
-						$sql = "TRUNCATE TABLE area;";
+						$sql = "TRUNCATE TABLE schedule;";
 
 						if ($conn->query($sql) === TRUE) {
 						    echo "New record created successfully";
@@ -89,7 +89,7 @@
 
 						$airtable_url = AIRTABLE_API_URL . AIRTABLE_APP_ID;
 							// We're also specifying a table.
-							$airtable_url .= '/service_area';
+							$airtable_url .= '/Schedule';
 							// And we're specifying a view. The API will honor any filters 
 							// that have been applied to the view, as well as any sort
 							// order that has been applied to it.
@@ -103,7 +103,7 @@
 							// We're also specifying a sort order for the request,
 							// which will override any sort order that has been 
 							// applied on the view.
-							$airtable_url .= '&sortField=service_area&sortDirection=asc';
+							$airtable_url .= '&sortField=id&sortDirection=asc';
 
 							curl_setopt( $ch, CURLOPT_URL, $airtable_url );		
 									
@@ -144,14 +144,15 @@
 								// Note that we're passing the Airtable-assigned record ID.
 								echo '<li>';
 								echo '<a href="artist.php?id=' . $record['id'] . '">';
-								echo $record['fields']['service_area'] . '</a>';
+								echo $record['fields']['id'] . '</a>';
 								echo '</li>';
 
-								$services = implode(",", $record['fields']['services']);
-								$description = str_replace("'","\'",$record['fields']['description']);
+								$services = str_replace("'","\'",$record['fields']['services']);
+								$locations = implode(",", $record['fields']['locations']);
 
-								$sql = "INSERT INTO area (area_id, service_area, services, description)
-								VALUES ( '{$record['id']}', '{$record['fields']['service_area']}', '{$services}', '{$description}');";
+
+								$sql = "INSERT INTO schedule (schedule_id, services, locations, days, opens_at, closes_at, holiday, start_date, end_date, closed)
+								VALUES ( '{$record['id']}', '{$services}', '{$locations}', '{$record['fields']['days']}', '{$record['fields']['opens_at']}', '{$record['fields']['closes_at']}', '{$record['fields']['holiday']}', '{$record['fields']['start_date']}', '{$record['fields']['end_date']}', '{$record['fields']['closed']}');";
 
 								if ($conn->query($sql) === TRUE) {
 								    echo "New record created successfully";

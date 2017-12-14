@@ -25,7 +25,7 @@
 						$servername = "localhost";
 						$username = "root";
 						$password = "root";
-						$dbname = "nycservices";
+						$dbname = "nycbudgets";
 						$sql = '';
 
 						// Create connection
@@ -53,7 +53,7 @@
 						// To get this value, look at the Authentication notes in the API docs.
 						// Example: $ curl https://api.airtable.com/v0/appZZ12rVdg6qzyC/foo...
 						// .. where "appZZ12rVdg6qzyC" is the App ID.
-						define ( 'AIRTABLE_APP_ID', 'appqjWvTygtaX9eil' );
+						define ( 'AIRTABLE_APP_ID', 'appd1eQuF0gFcOMsV' );
 						
 						// Airtable API URL.
 						// Default: https://api.airtable.com/v0/
@@ -148,12 +148,15 @@
 								echo '</li>';
 
 								$address_1 = str_replace("'","\'",$record['fields']['address_1']);
-								$address_type = implode(",", $record['fields']['address_type']);
+								$contact = implode(",", $record['fields']['Contact']);
+								$attention = str_replace("'","\'",$record['fields']['attention']);
 								$locations = implode(",", $record['fields']['locations']);
+								$address_type = implode(",", $record['fields']['address_type']);
+								$sources = implode(",", $record['fields']['Sources']);
 
 
-								$sql = "INSERT INTO address (address_id, address_1, city, state_province, postal_code, region, country, attention, address_type, locations)
-								VALUES ( '{$record['id']}', '{$address_1}', '{$record['fields']['city']}', '{$record['fields']['state_province']}', '{$record['fields']['postal_code']}', '{$record['fields']['region']}', '{$record['fields']['country']}', '{$record['fields']['attention']}', '{$address_type}', '{$locations}');";
+								$sql = "INSERT INTO address (address_id, address_1, city, state_province, postal_code, contact, attention, locations, region, country, address_type, sources)
+								VALUES ( '{$record['id']}', '{$address_1}', '{$record['fields']['city']}', '{$record['fields']['state_province']}', '{$record['fields']['postal_code']}', '{$contact}', '{$attention}', '{$locations}', '{$record['fields']['region']}', '{$record['fields']['country']}', '{$address_type}', '{$sources}');";
 
 								if ($conn->query($sql) === TRUE) {
 								    echo "New record created successfully";

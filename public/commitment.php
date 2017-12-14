@@ -13,7 +13,6 @@
 	
 			<div class="header-wrapper">	
 				<h1>Airtable->MySQL</h1>
-				<a href="/datasync" style="font-size: 25px; color: #00B9E6;     text-decoration: underline;">Back</a>
 			</div>
 		
 			<div class="content-wrapper">
@@ -25,7 +24,7 @@
 						$servername = "localhost";
 						$username = "root";
 						$password = "root";
-						$dbname = "nycbudgets";
+						$dbname = "airtable1";
 						$sql = '';
 
 						// Create connection
@@ -35,9 +34,9 @@
 						if ($conn->connect_error) {
 						    die("Connection failed: " . $conn->connect_error);
 						} 
-						echo "Connected successfully. ";
+						echo "Connected successfully ". "<br>";
 
-						$sql = "TRUNCATE TABLE area;";
+						$sql = "TRUNCATE TABLE commitments;";
 
 						if ($conn->query($sql) === TRUE) {
 						    echo "New record created successfully";
@@ -53,7 +52,7 @@
 						// To get this value, look at the Authentication notes in the API docs.
 						// Example: $ curl https://api.airtable.com/v0/appZZ12rVdg6qzyC/foo...
 						// .. where "appZZ12rVdg6qzyC" is the App ID.
-						define ( 'AIRTABLE_APP_ID', 'appd1eQuF0gFcOMsV' );
+						define ( 'AIRTABLE_APP_ID', 'app2luH9QZWxA1bhz' );
 						
 						// Airtable API URL.
 						// Default: https://api.airtable.com/v0/
@@ -84,12 +83,11 @@
 						curl_setopt( $ch, CURLOPT_HTTPHEADER, $http_headers );	
 						// Initialize the offset.
 						$offset = '';
-
 						while ( ! is_null ( $offset ) ) {
 
 						$airtable_url = AIRTABLE_API_URL . AIRTABLE_APP_ID;
 							// We're also specifying a table.
-							$airtable_url .= '/service_area';
+							$airtable_url .= '/commitments';
 							// And we're specifying a view. The API will honor any filters 
 							// that have been applied to the view, as well as any sort
 							// order that has been applied to it.
@@ -103,7 +101,7 @@
 							// We're also specifying a sort order for the request,
 							// which will override any sort order that has been 
 							// applied on the view.
-							$airtable_url .= '&sortField=service_area&sortDirection=asc';
+							$airtable_url .= '&sortField=description&sortDirection=asc';
 
 							curl_setopt( $ch, CURLOPT_URL, $airtable_url );		
 									
@@ -137,6 +135,9 @@
 							}
 
 							$sql = '';
+							$projects = '';
+							$commitments ='';
+							$description ='';
 
 							foreach ( $airtable_response['records'] as $record ) {
 					
@@ -144,20 +145,26 @@
 								// Note that we're passing the Airtable-assigned record ID.
 								echo '<li>';
 								echo '<a href="artist.php?id=' . $record['id'] . '">';
-								echo $record['fields']['service_area'] . '</a>';
+								echo $record['fields']['budgetline'] . '</a>';
 								echo '</li>';
 
-								$services = implode(",", $record['fields']['services']);
+								$managingagency = implode(",", $record['fields']['managingagency']);
+								$projectid = implode(",", $record['fields']['projectid']);
 								$description = str_replace("'","\'",$record['fields']['description']);
+								$commitmentdescription = $record['fields']['commitmentdescription'];
 
-								$sql = "INSERT INTO area (area_id, service_area, services, description)
-								VALUES ( '{$record['id']}', '{$record['fields']['service_area']}', '{$services}', '{$description}');";
+								if(empty($commitmentdescription)) {
+									$commitmentdescription = ' ';
+								}
 
+								$sql = "INSERT INTO commitments (commitment_recordid, budgetline, fmsnumber, managingagency, projectid, description, commitmentcode, commitmentdescription, citycost, noncitycost, plancommdate)
+								VALUES ( '{$record['id']}', '{$record['fields']['budgetline']}', '{$record['fields']['fmsnumber']}', '{$managingagency}', '{$projectid}', '{$description}', '{$record['fields']['commitmentcode']}', '{$commitmentdescription}', '{$record['fields']['citycost']}', '{$record['fields']['noncitycost']}','{$record['fields']['plancommdate']}');";
 								if ($conn->query($sql) === TRUE) {
 								    echo "New record created successfully";
 								} else {
 								    echo "Error: " . $sql . "<br>" . $conn->error;
 								}
+								
 							}
 							$offset = $airtable_response['offset'];
 						}

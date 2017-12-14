@@ -25,7 +25,7 @@
 						$servername = "localhost";
 						$username = "root";
 						$password = "root";
-						$dbname = "nycservices";
+						$dbname = "nycbudgets";
 						$sql = '';
 
 						// Create connection
@@ -53,7 +53,7 @@
 						// To get this value, look at the Authentication notes in the API docs.
 						// Example: $ curl https://api.airtable.com/v0/appZZ12rVdg6qzyC/foo...
 						// .. where "appZZ12rVdg6qzyC" is the App ID.
-						define ( 'AIRTABLE_APP_ID', 'appqjWvTygtaX9eil' );
+						define ( 'AIRTABLE_APP_ID', 'appd1eQuF0gFcOMsV' );
 						
 						// Airtable API URL.
 						// Default: https://api.airtable.com/v0/
