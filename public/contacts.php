@@ -149,12 +149,20 @@
 
 								$name = str_replace("'","\'",$record['fields']['Name']);
 								$name_suffix = str_replace("'","\'",$record['fields']['Name Suffix']);
-								$organization = implode(",", $record['fields']['Organization']);		
-								$services = implode(",", $record['fields']['services']);
-								$phones = implode(",", $record['fields']['phones']);
+								$organization = implode(",", $record['fields']['Organization']);
+								$office_title = str_replace("'","\'",$record['fields']['Office Title']);
+								$division_name = str_replace("'","\'",$record['fields']['Division Name']);
+								$parent_division = str_replace("'","\'",$record['fields']['Parent Division']);
+								$grand_parent_division = str_replace("'","\'",$record['fields']['Grand Parent Division']);
+								$great_grand_parent_division = str_replace("'","\'",$record['fields']['Great Grand Parent Division']);
+								$full_address = str_replace("'","\'",$record['fields']['full address']);
+								$address = implode(",", $record['fields']['Address']);					
+								$phone = implode(",", $record['fields']['phone']);
+								$services = implode(",", $record['fields']['Services']);
+								$sources = implode(",", $record['fields']['Sources']);
 
-								$sql = "INSERT INTO contacts (contact_id, name, organization, services, title, department, email, phones)
-								VALUES ( '{$record['id']}', '{$name}', '{$name_suffix}', '{$organization}', '{$services}', '{$record['fields']['title']}', '{$record['fields']['department']}', '{$record['fields']['email']}', '{$phones}');";
+								$sql = "INSERT INTO contacts (contact_id, name, name_suffix, organization, office_title, division_name, parent_division, grand_parent_division, great_grand_parent_division, full_address, address, email, phone, section, services, sources)
+								VALUES ( '{$record['id']}', '{$name}', '{$name_suffix}', '{$organization}', '{$office_title}', '{$division_name}', '{$parent_division}', '{$grand_parent_division}', '{$great_grand_parent_division}', '{$full_address}', '{$address}',  '{$record['fields']['Email']}', '{$phone}', '{$record['fields']['Section']}', '{$services}', '{$sources}');";
 
 								if ($conn->query($sql) === TRUE) {
 								    echo "New record created successfully";
