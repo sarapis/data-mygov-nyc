@@ -41,7 +41,7 @@
                 @endforeach
             </ul>
         </div> -->
-
+        
         <div class="btn-group" style="margin-top: 40px; width: 100%;padding: 3px;">
             <label class="col-md-12 control-label" style="padding-left: 0;">Project Category</label>
             <button type="button" class="btn btn-default" style="width: 88%;overflow: hidden;">{{$filter[1]}}</button>

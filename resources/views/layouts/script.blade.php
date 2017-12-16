@@ -23,7 +23,6 @@
     <script src="script/jquery.flot.stack.js"></script>
     <script src="script/jquery.flot.spline.js"></script>
     <script src="script/zabuto_calendar.min.js"></script>
-    <script src="script/index.js"></script>
     <script src="script/highcharts.js"></script>
     <script src="script/data.js"></script>
     <script src="script/drilldown.js"></script>

@@ -37,7 +37,7 @@ Route::get('/twitter', function()
 
 
 Route::get('/service', [
-    'uses' 		=> 'ServiceController@all'
+    'uses' 		=> 'ServiceController@index'
 ]);
 
 Route::get('/organization', [

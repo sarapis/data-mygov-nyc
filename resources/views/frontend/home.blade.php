@@ -62,6 +62,60 @@
                                     </div>
                                     <div class="panel">
                                         <div class="panel-body">
+                                            <div id="sum_box" class="row mbl">
+                                                <div class="col-sm-6 col-md-3 block-space">
+                                                    <div class="panel profit db mbm">
+                                                        <div class="panel-body">
+                                                            <p class="icon">
+                                                                <i class="icon icon-users"></i>
+                                                            </p>
+                                                            <p class="description">
+                                                                Agencies</p>
+                                                            <h4 class="value">
+                                                                500</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-3 block-space">
+                                                    <div class="panel income db mbm">
+                                                        <div class="panel-body">
+                                                            <p class="icon">
+                                                                <i class="icon icon-wallet"></i>
+                                                            </p>
+                                                            <p class="description">
+                                                                Budgets</p>
+                                                            <h4 class="value">
+                                                                $888</h4> 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-3 block-space">
+                                                    <div class="panel task db mbm">
+                                                        <div class="panel-body">
+                                                            <p class="icon">
+                                                                <i class="icon icon-check"></i>
+                                                            </p>
+                                                            <p class="description">
+                                                                Services</p>
+                                                            <h4 class="value">
+                                                                215</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-3">
+                                                    <div class="panel visit db mbm">
+                                                        <div class="panel-body">
+                                                            <p class="icon">
+                                                                <i class="icon icon-basket"></i>
+                                                            </p>
+                                                            <p class="description">
+                                                                Projects</p>
+                                                            <h4 class="value">
+                                                                128</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="row">
                                                 <div class="col-md-8 plxl">
                                                     <div class="row">

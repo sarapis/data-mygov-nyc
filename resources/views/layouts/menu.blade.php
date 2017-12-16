@@ -24,12 +24,7 @@
                     </li>
                     <li><a href="/category"><i class="fa fa-edit">
                         <div class="icon-bg bg-violet"></div>
-                    </i>Categories</a>
-                    </li>
-                    <li><a href="/location"><i class="fa fa-map-marker">
-                        
-                    </i>Locations</a>
-                       
+                    </i>People</a>
                     </li>
                     <li><a href="/about"><i class="fa  fa-info-circle">
                         
