@@ -83,19 +83,11 @@
                 </p>
               </div>
               <div class="btn">
-                <button class="btn btn-app regular">
+                <button class="btn btn-app schedule">
                   <i class="fa fa-calendar"></i> Schedule
                 </button>
                 <p class="result7">
                   <img class="probar title7 hidden" id="title" src="images/xpProgressBar.gif" alt="Loading..." />
-                </p>
-              </div>
-              <div class="btn">
-                <button class="btn btn-app regular">
-                  <i class="fa fa-calendar"></i> Schedule
-                </button>
-                <p class="result8">
-                  <img class="probar title8 hidden" id="title" src="images/xpProgressBar.gif" alt="Loading..." />
                 </p>
               </div>
               <div class="btn">
@@ -136,6 +128,38 @@
                 </button>
                 <p class="result13">
                   <img class="probar title13 hidden" id="title" src="images/xpProgressBar.gif" alt="Loading..." />
+                </p>
+              </div>
+              <div class="btn">
+                <button class="btn btn-app agency">
+                  <i class="fa fa-calendar"></i> Agency
+                </button>
+                <p class="result8">
+                  <img class="probar title8 hidden" id="title" src="images/xpProgressBar.gif" alt="Loading..." />
+                </p>
+              </div>
+              <div class="btn">
+                <button class="btn btn-app project">
+                  <i class="fa fa-calendar"></i> Projects
+                </button>
+                <p class="result14">
+                  <img class="probar title14 hidden" id="title" src="images/xpProgressBar.gif" alt="Loading..." />
+                </p>
+              </div>
+              <div class="btn">
+                <button class="btn btn-app commitment">
+                  <i class="fa fa-calendar"></i> Commitments
+                </button>
+                <p class="result15">
+                  <img class="probar title15 hidden" id="title" src="images/xpProgressBar.gif" alt="Loading..." />
+                </p>
+              </div>
+              <div class="btn">
+                <button class="btn btn-app expenses">
+                  <i class="fa fa-calendar"></i> Expenses
+                </button>
+                <p class="result16">
+                  <img class="probar title16 hidden" id="title" src="images/xpProgressBar.gif" alt="Loading..." />
                 </p>
               </div>
             </div>
@@ -219,7 +243,7 @@
                     }
                 });
             });
-            $('.regular').click(function() {
+            $('.schedule').click(function() {
                 $('.title7').removeClass('hidden');
                 $.ajax({
                     type: "GET",
@@ -230,11 +254,11 @@
                     }
                 });
             });
-            $('.holiday').click(function() {
+            $('.agency').click(function() {
                 $('.title8').removeClass('hidden');
                 $.ajax({
                     type: "GET",
-                    url : 'holiday.php',
+                    url : 'agency.php',
                     success: function(result){
                     $(".title8").addClass('hidden');
                     $(".result8").html("Updated");
@@ -293,6 +317,39 @@
                     success: function(result){
                     $(".title13").addClass('hidden');
                     $(".result13").html("Updated");
+                    }
+                });
+            });
+            $('.project').click(function() {
+                $('.title14').removeClass('hidden');
+                $.ajax({
+                    type: "GET",
+                    url : 'project.php',
+                    success: function(result){
+                    $(".title14").addClass('hidden');
+                    $(".result14").html("Updated");
+                    }
+                });
+            });
+            $('.commitment').click(function() {
+                $('.title15').removeClass('hidden');
+                $.ajax({
+                    type: "GET",
+                    url : 'commitment.php',
+                    success: function(result){
+                    $(".title15").addClass('hidden');
+                    $(".result15").html("Updated");
+                    }
+                });
+            });
+            $('.expenses').click(function() {
+                $('.title16').removeClass('hidden');
+                $.ajax({
+                    type: "GET",
+                    url : 'commitment.php',
+                    success: function(result){
+                    $(".title16").addClass('hidden');
+                    $(".result16").html("Updated");
                     }
                 });
             });

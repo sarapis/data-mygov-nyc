@@ -36,7 +36,7 @@
 						} 
 						echo "Connected successfully ". "<br>";
 
-						$sql = "TRUNCATE TABLE commitments;";
+						$sql = "TRUNCATE TABLE expenses;";
 
 						if ($conn->query($sql) === TRUE) {
 						    echo "New record created successfully";
@@ -87,7 +87,7 @@
 
 						$airtable_url = AIRTABLE_API_URL . AIRTABLE_APP_ID;
 							// We're also specifying a table.
-							$airtable_url .= '/commitments';
+							$airtable_url .= '/expenses';
 							// And we're specifying a view. The API will honor any filters 
 							// that have been applied to the view, as well as any sort
 							// order that has been applied to it.
@@ -101,7 +101,7 @@
 							// We're also specifying a sort order for the request,
 							// which will override any sort order that has been 
 							// applied on the view.
-							$airtable_url .= '&sortField=description&sortDirection=asc';
+							$airtable_url .= '&sortField=Report_Sort&sortDirection=asc';
 
 							curl_setopt( $ch, CURLOPT_URL, $airtable_url );		
 									
@@ -134,31 +134,21 @@
 		
 							}
 
-							$sql = '';
-							$projects = '';
-							$commitments ='';
-							$description ='';
-
 							foreach ( $airtable_response['records'] as $record ) {
 					
 								// Add each artist to the list, wrapped with a URL to the details page.
 								// Note that we're passing the Airtable-assigned record ID.
 								echo '<li>';
 								echo '<a href="artist.php?id=' . $record['id'] . '">';
-								echo $record['fields']['budgetline'] . '</a>';
+								echo $record['fields']['Report Sort'] . '</a>';
 								echo '</li>';
 
-								$managingagency = implode(",", $record['fields']['managingagency']);
-								$projectid = implode(",", $record['fields']['projectid']);
-								$description = str_replace("'","\'",$record['fields']['description']);
-								$commitmentdescription = $record['fields']['commitmentdescription'];
+								$agency_number = implode(",", $record['fields']['Agency Number']);
+								$agency_name = str_replace("'","\'",$record['fields']['Agency Name']);
 
-								if(empty($commitmentdescription)) {
-									$commitmentdescription = ' ';
-								}
 
-								$sql = "INSERT INTO commitments (commitment_id, budgetline, fmsnumber, managingagency, projectid, description, commitmentcode, commitmentdescription, citycost, noncitycost, plancommdate)
-								VALUES ( '{$record['id']}', '{$record['fields']['budgetline']}', '{$record['fields']['fmsnumber']}', '{$managingagency}', '{$projectid}', '{$description}', '{$record['fields']['commitmentcode']}', '{$commitmentdescription}', '{$record['fields']['citycost']}', '{$record['fields']['noncitycost']}','{$record['fields']['plancommdate']}');";
+								$sql = "INSERT INTO expenses (expenses_id, report_sort, agency_number, publication_date,  agency_name, line_number, line_number_description, fiscal_year1, year1_forecast, year2_estimate, year3_estimate, year4_estimate)
+								VALUES ( '{$record['id']}', '{$record['fields']['Report Sort']}', '{$agency_number}', '{$record['fields']['Publication Date']}', '{$agency_name}', '{$record['fields']['Line Number']}', '{$record['fields']['Line Number Description']}', '{$record['fields']['Fiscal Year 1']}', '{$record['fields']['Year 1 Forecast']}', '{$record['fields']['Year 2 Estimate']}', '{$record['fields']['Year 3 Estimate']}', '{$record['fields']['Year 4 Estimate']}');";
 								if ($conn->query($sql) === TRUE) {
 								    echo "New record created successfully";
 								} else {

@@ -24,7 +24,7 @@
 						$servername = "localhost";
 						$username = "root";
 						$password = "root";
-						$dbname = "airtable1";
+						$dbname = "nycbudgets";
 						$sql = '';
 
 						// Create connection
@@ -52,7 +52,7 @@
 						// To get this value, look at the Authentication notes in the API docs.
 						// Example: $ curl https://api.airtable.com/v0/appZZ12rVdg6qzyC/foo...
 						// .. where "appZZ12rVdg6qzyC" is the App ID.
-						define ( 'AIRTABLE_APP_ID', 'app2luH9QZWxA1bhz' );
+						define ( 'AIRTABLE_APP_ID', 'appytlCBlVIzYxE1o' );
 						
 						// Airtable API URL.
 						// Default: https://api.airtable.com/v0/
@@ -160,9 +160,10 @@
 								$project_type = $record['fields']['project type'];
 								$project_lat = floatval($str[0]);
 								$project_long = floatval($str[1]);
+								$related_additions = implode(",", $record['fields']['related additions']);
 
-								$sql = "INSERT INTO projects (project_recordid, project_projectid, project_description, project_citycost, project_noncitycost, project_totalcost, project_managingagency, project_commitments, project_type, project_lat, project_long)
-								VALUES ( '{$record['id']}', '{$record['fields']['projectid']}', '{$description}', '{$record['fields']['citycost']}', '{$record['fields']['noncitycost']}', '{$record['fields']['totalcost']}', '{$managingagency}', '{$commitments}', '{$project_type}', '{$project_lat}', '{$project_long}');";
+								$sql = "INSERT INTO projects (project_recordid, project_projectid, project_managingagency, project_description, project_citycost, project_noncitycost, project_totalcost,  project_commitments, project_type, project_lat, project_long, related_additions)
+								VALUES ( '{$record['id']}', '{$record['fields']['projectid']}', '{$managingagency}', '{$description}', '{$record['fields']['citycost']}', '{$record['fields']['noncitycost']}', '{$record['fields']['totalcost']}', '{$commitments}', '{$project_type}', '{$project_lat}', '{$project_long}', '{$related_additions}');";
 								if ($conn->query($sql) === TRUE) {
 								    echo "New record created successfully";
 								} else {

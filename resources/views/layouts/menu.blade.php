@@ -7,14 +7,19 @@
                     <li><a href="/home"><i class="fa fa-home">
                        
                     </i>Home</a></li>
+                    <li><a href="/organization"><i class="fa fa-desktop">
+                        
+                    </i>Organizations</a>
+                       
+                    </li>
                     <li><a href="/service"><i class="fa fa-gift">
                         
                     </i>Services</a>
                        
                     </li>
-                    <li><a href="/organization"><i class="fa fa-desktop">
+                    <li><a href="/project"><i class="fa fa-gift">
                         
-                    </i>Organizations</a>
+                    </i>Projects</a>
                        
                     </li>
                     <li><a href="/category"><i class="fa fa-edit">
@@ -29,6 +34,11 @@
                     <li><a href="/about"><i class="fa  fa-info-circle">
                         
                     </i>About</a>
+                       
+                    </li>
+                    <li><a href="/get_involved"><i class="fa  fa-info-circle">
+                        
+                    </i>Get Invoted</a>
                        
                     </li>
                 </ul>
