@@ -49,9 +49,14 @@ class IndexController extends Controller
         $location_name = '&nbsp;';
         $organization_name = '&nbsp;';
         $service_type_name = '&nbsp;';
+        $quantity_organizations = DB::table('organizations')->count();
+        $budget = DB::table('expenses')->sum('year1_forecast');
+        $quantity_services = DB::table('services')->count();
+        $quantity_projects = DB::table('projects')->count();
+
         $filter = collect([$service_type_name, $location_name, $organization_name, $service_name]);
         $location_map = DB::table('locations')->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->get();
-        return view('frontend.home', compact('posts','taxonomies','allTaxonomies','services','locations','organizations', 'taxonomys','filter', 'location_map'));
+        return view('frontend.home', compact('posts','taxonomies','allTaxonomies','services','locations','organizations', 'taxonomys','filter', 'location_map', 'quantity_organizations', 'budget', 'quantity_services', 'quantity_projects'));
     }
  
 

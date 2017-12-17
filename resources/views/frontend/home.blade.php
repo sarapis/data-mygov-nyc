@@ -72,7 +72,7 @@
                                                             <p class="description">
                                                                 Agencies</p>
                                                             <h4 class="value">
-                                                                500</h4>
+                                                                {{number_format($quantity_organizations)}}</h4>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -85,7 +85,7 @@
                                                             <p class="description">
                                                                 Budgets</p>
                                                             <h4 class="value">
-                                                                $888</h4> 
+                                                                ${{number_format($budget)}}</h4> 
                                                         </div>
                                                     </div>
                                                 </div>
@@ -98,7 +98,7 @@
                                                             <p class="description">
                                                                 Services</p>
                                                             <h4 class="value">
-                                                                215</h4>
+                                                                {{number_format($quantity_services)}}</h4>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -111,7 +111,7 @@
                                                             <p class="description">
                                                                 Projects</p>
                                                             <h4 class="value">
-                                                                128</h4>
+                                                                {{number_format($quantity_projects)}}</h4>
                                                         </div>
                                                     </div>
                                                 </div>
