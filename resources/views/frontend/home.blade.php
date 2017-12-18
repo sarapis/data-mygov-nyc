@@ -85,7 +85,7 @@
                                                             <p class="description">
                                                                 Budgets</p>
                                                             <h4 class="value">
-                                                                ${{number_format($budget)}}</h4> 
+                                                                ${{$budgets}}</h4> 
                                                         </div>
                                                     </div>
                                                 </div>
@@ -111,7 +111,7 @@
                                                             <p class="description">
                                                                 Projects</p>
                                                             <h4 class="value">
-                                                                {{number_format($quantity_projects)}}</h4>
+                                                                {{$quantity_projects}}</h4>
                                                         </div>
                                                     </div>
                                                 </div>

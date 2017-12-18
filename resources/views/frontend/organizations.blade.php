@@ -1,4 +1,9 @@
 @include('layouts.style')
+<style>
+  .thumbnail{
+    min-height: 340px;
+  }
+</style>
 <title>All Oragnization</title>
 
 <div>
@@ -42,116 +47,57 @@
 
                     <div>
                     <button class="cornsilk btn-blue" style="position: absolute;top: 7px;left: auto;" id="menu-toggle">
-                        <a href="" class="btn btn-secondary" style="padding: 0px;font-size: 25px;"><i class="fa  fa-search" style="color: #333;font-size: 25px;"></i></a>
+                        <a href="" class="btn btn-secondary" style="padding: 0px;font-size: 25px;"><i class="fa  fa-search" style="color: #fff;font-size: 25px;"></i></a>
                     </button>
                         <div class="page-content">
-                            <div class="row">
-                                <div class="col-lg-8" style="padding: 0;">
-                                    <div class="panel">
-                                        <div class="panel-body">
-                                            <div id="grid-layout-table-1" class="box jplist">
-                                                <div class="jplist-ios-button"><i class="fa fa-sort"></i> Display Options</div>
-                                                <div class="jplist-panel box panel-top">
-                                                    <button type="button" data-control-type="reset" data-control-name="reset" data-control-action="reset" class="jplist-reset-btn btn btn-default">Reset<i class="fa fa-share mls"></i></button>
-                                                    <div data-control-type="drop-down" data-control-name="paging" data-control-action="paging" class="jplist-drop-down form-control">
-                                                        <ul class="dropdown-menu">
-                                                            <li><span data-number="3"> 3 per page</span></li>
-                                                            <li><span data-number="5"> 5 per page</span></li>
-                                                            <li><span data-number="10" data-default="true"> 10 per page</span></li>
-                                                            <li><span data-number="all"> view all</span></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div data-control-type="drop-down" data-control-name="sort" data-control-action="sort" data-datetime-format="{month}/{day}/{year}" class="jplist-drop-down form-control">
-                                                        <ul class="dropdown-menu">
-                                                            <li><span data-path="default">Sort by</span></li>
-                                                            <li><span data-path=".title" data-order="asc" data-type="text">Title A-Z</span></li>
-                                                            <li><span data-path=".title" data-order="desc" data-type="text">Title Z-A</span></li>
-                                                            <li><span data-path=".desc" data-order="asc" data-type="text">Description A-Z</span></li>
-                                                            <li><span data-path=".desc" data-order="desc" data-type="text">Description Z-A</span></li>
-                                                            <li><span data-path=".like" data-order="asc" data-type="number" data-default="true">Likes asc</span></li>
-                                                            <li><span data-path=".like" data-order="desc" data-type="number">Likes desc</span></li>
-                                                            <li><span data-path=".date" data-order="asc" data-type="datetime">Date asc</span></li>
-                                                            <li><span data-path=".date" data-order="desc" data-type="datetime">Date desc</span></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div data-type="Page {current} of {pages}" data-control-type="pagination-info" data-control-name="paging" data-control-action="paging" class="jplist-label btn btn-default"></div>
-                                                    <div data-control-type="pagination" data-control-name="paging" data-control-action="paging" class="jplist-pagination"></div>
-                                                </div>
-                                                
-                                                <div class="box text-shadow">
-                                                    <table class="demo-tbl">
-                                                        <!--<item>1</item>-->
-                                                        @foreach($organizations as $organization)
-                                                        <tr class="tbl-item">
-                                                            
-                                                            <!--<data></data>-->
-                                                            <td class="td-block">
+                            <div class="panel">
+                                <div class="panel-body">
+                                  <!-- search form -->
+                                  <div class="row">
+                                    
+                                      <div class="col-sm-4 col-md-4">
+                                        <div class="input-group col-md-12">
+                                          <form action="/pages/agencies/find" method="POST" class="form-group">  
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <input type="text" class="form-control" placeholder="Search (Agency Name)" name="find" style="    width: calc(100% - 40px);"> 
+                                            <span class="input-group-btn">
+                                              <button class="btn btn-secondary" id="mysearchbutton" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                                            </span>
+                                          </form>
 
-                                                                <p class="title" style="font-size: 25px;"><a href="/organization_{{$organization->organization_id}}" style="color: #357ca5;">{{$organization->name}}</a></p>
 
-                                                                <p class="desc" style="font-size: 16px;"><a href="#" style="color: #00aff0;">{{$organization->alternate_name}}</a></p>
+                                        </div>            
+                                      </div>
+                                      <div class="col-sm-8 col-md-8">
+                                      <h4><b style="margin-left:30px;"> Total Cost</b> <a href="/pages/agencies/totalcostdesc"> <i class="fa fa-sort-amount-desc" aria-hidden="true"></i> </a><a href="/pages/agencies/totalcostasc"> <i class="fa fa-sort-amount-asc" aria-hidden="true"></i> </a><b style="margin-left:65px; "> Projects </b> <a href="/pages/agencies/projectsdesc"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i></a><a href="/pages/agencies/projectsasc"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a><b style="margin-left:65px;"> Commitments </b><a href="/pages/agencies/commitmentsdesc"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i></a><a href="/pages/agencies/commitmentsasc"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a></h4>
 
-                                                                <div class="option" style="padding-left: 10px;padding-top: 5px;">
-
-                                                                    <p class="desc" style="font-size: 16px; color: #000;">{!! $organization->description !!}</p>
-
-                                                                    <p class="desc" style="font-size: 16px; color: #000;"><i class="fa fa-envelope fa-fw"></i> {{$organization->email}}</p>
-
-                                                                    <p class="desc" style="font-size: 16px; color: #000;"><i class="fa fa-link"></i> {{$organization->url}}</p>
-
-                                                                    <p class="desc" style="font-size: 16px;"></p>
-                                                                </div>
-                                                            </td>
-                                                            <!--<img/>-->
-                                                            <!--<td class="td-block"><img src="images/thumbs/arch-1.jpg" alt="" title="" /></td>-->
-                                                        </tr>
-                                                        @endforeach
-                                                    </table>
-                                                </div>
-                                                
-                                                <div class="box jplist-no-results text-shadow align-center">
-                                                    <p>No results found</p>
-                                                </div>
-                                                <div class="jplist-ios-button"><i class="fa fa-sort"></i>jPList Actions</div>
-                                                <div class="jplist-panel box panel-bottom">
-                                                    <div data-control-type="drop-down" data-control-name="paging" data-control-action="paging" data-control-animate-to-top="true" class="jplist-drop-down form-control">
-                                                        <ul class="dropdown-menu">
-                                                            <li><span data-number="3"> 3 per page</span></li>
-                                                            <li><span data-number="5"> 5 per page</span></li>
-                                                            <li><span data-number="10" data-default="true"> 10 per page</span></li>
-                                                            <li><span data-number="all"> view all</span></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div data-control-type="drop-down" data-control-name="sort" data-control-action="sort" data-control-animate-to-top="true" data-datetime-format="{month}/{day}/{year}" class="jplist-drop-down form-control">
-                                                        <ul class="dropdown-menu">
-                                                            <li><span data-path="default">Sort by</span></li>
-                                                            <li><span data-path=".title" data-order="asc" data-type="text">Title A-Z</span></li>
-                                                            <li><span data-path=".title" data-order="desc" data-type="text">Title Z-A</span></li>
-                                                            <li><span data-path=".desc" data-order="asc" data-type="text">Description A-Z</span></li>
-                                                            <li><span data-path=".desc" data-order="desc" data-type="text">Description Z-A</span></li>
-                                                            <li><span data-path=".like" data-order="asc" data-type="number" data-default="true">Likes asc</span></li>
-                                                            <li><span data-path=".like" data-order="desc" data-type="number">Likes desc</span></li>
-                                                            <li><span data-path=".date" data-order="asc" data-type="datetime">Date asc</span></li>
-                                                            <li><span data-path=".date" data-order="desc" data-type="datetime">Date desc</span></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div data-type="{start} - {end} of {all}" data-control-type="pagination-info" data-control-name="paging" data-control-action="paging" class="jplist-label btn btn-default"></div>
-                                                    <div data-control-type="pagination" data-control-name="paging" data-control-action="paging" data-control-animate-to-top="true" class="jplist-pagination"></div>
-                                                </div>
+                                      </div>
+                                    
+                                  </div> 
+                                  <!-- /.search form -->
+                                  <!-- Your Page Content Here -->
+                                  <div class="row" id="row">
+                                      @foreach ($organizations as $organization)
+                                        <div class="col-md-6 col-md-4">
+                                          <div class="thumbnail">
+                                            <div class="caption pal" id="tblData">
+                                                <a href="/organization_{{$organization->organization_id}}" style="font-size: 20px;">{{$organization->name}}<p style="display: inline; font-size: 16px;"> ({{$organization->alternate_name}})</p></a>
+                                                <p style="font-size: 16px;padding-top: 10px;">{{str_limit($organization->description, 200)}}</p>
+                                                <p>Servies: @if($organization->services!=null)
+                                                  {{sizeof(explode(",", $organization->services))}}
+                                                    @else 0 @endif</p>
+                                                <p>Projects: </p>
+                                                <p>Expense Budget</p>
+                                                <p>Projects Budget</p>                
                                             </div>
+                                          </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4" style="padding: 0;">
-                                    <div class="panel">
-                                        <div class="panel-body">
-                                            <div id="mymap" style="width: 100%;"></div>
-                                        </div>
-                                    </div>
+                                      @endforeach
+                                  </div>
+                                        
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
                 </div>

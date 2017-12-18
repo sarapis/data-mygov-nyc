@@ -152,7 +152,7 @@
 								$commitment = implode(",", $record['fields']['commitments']);
 								$expense = implode(",", $record['fields']['expenses']);
 
-								$sql = "INSERT INTO agencies (agency_id, magency, magencyname, magencyacro, projects, commitments, commitments_cost, commitments_noncity_cost, total_project_cost, expenses, expenses_link)
+								$sql = "INSERT INTO agencies (agency_recordid, magency, magencyname, magencyacro, projects, commitments, commitments_cost, commitments_noncity_cost, total_project_cost, expenses, expenses_link)
 								VALUES ( '{$record['id']}', '{$record['fields']['magency']}', '{$record['fields']['magencyname']}', '{$record['fields']['magencyacro']}', '{$project}', '{$commitment}', '{$record['fields']['Total Project Cost']}', '{$record['fields']['Commitments Cost']}', '{$record['fields']['Commitments NonCity Cost']}', '$expense', '{$record['fields']['expenses_link']}');";
 
 								if ($conn->query($sql) === TRUE) {

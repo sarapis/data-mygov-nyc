@@ -35,21 +35,39 @@ Route::get('/twitter', function()
 
 });
 
+//Organizations
+Route::get('/organizations', 'OrganizationController@all');
+Route::get('/organization_all', 'OrganizationController@all');
+Route::get('/organization_{id}', 'OrganizationController@find');
 
-Route::get('/service', [
-    'uses' 		=> 'ServiceController@index'
-]);
+//Services
+Route::get('/services', 'ServiceController@index');
+Route::get('/service_all', 'ServiceController@all');
+Route::get('/service_{id}', 'ServiceController@find');
 
-Route::get('/organization', [
-    'uses' 		=> 'OrganizationController@all'
-]);
+//Projects
+Route::get('/projects', 'ProjectController@projectview');
+Route::get('/projects_{id}', 'ProjectController@projectfind');
+Route::get('/projecttype_{id}', 'ProjectController@projecttypefind');
+
 
 Route::get('/category', [
     'uses' 		=> 'TaxonomyController@all'
 ]);
+Route::get('/category_all', 'TaxonomyController@all');
+Route::get('/category_{id}', 'TaxonomyController@find');
+
 
 Route::get('/location', [
     'uses' 		=> 'LocationController@all'
+]);
+
+Route::get('/location_all', 'LocationController@all');
+Route::get('/location_{id}', 'LocationController@find');
+
+
+Route::match(['get', 'post'], '/services_find', [
+    'uses'          => 'ServiceController@search'
 ]);
 
 // ALL AUTHENTICATION ROUTES - HANDLED IN THE CONTROLLERS
@@ -67,23 +85,7 @@ Route::get('/activate/{code}', [
 	'uses'		=> 'Auth\AuthController@activateAccount'
 ]);
 
-Route::get('/service_all', 'ServiceController@all');
-Route::get('/service_{id}', 'ServiceController@find');
 
-Route::get('/organization_all', 'OrganizationController@all');
-Route::get('/organization_{id}', 'OrganizationController@find');
-
-Route::get('/location_all', 'LocationController@all');
-Route::get('/location_{id}', 'LocationController@find');
-
-Route::get('/category_all', 'TaxonomyController@all');
-Route::get('/category_{id}', 'TaxonomyController@find');
-
-
-
-Route::match(['get', 'post'], '/services_find', [
-    'uses'          => 'ServiceController@search'
-]);
 
 // CUSTOM REDIRECTS
 Route::get('restart', function () {

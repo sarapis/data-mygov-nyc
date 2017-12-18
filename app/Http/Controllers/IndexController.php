@@ -17,6 +17,7 @@ use App\Models\Taxonomy;
 use App\Models\Service;
 use App\Models\Location;
 use App\Models\Organization;
+use App\Services\Numberformat;
 
 class IndexController extends Controller
 {
@@ -51,12 +52,15 @@ class IndexController extends Controller
         $service_type_name = '&nbsp;';
         $quantity_organizations = DB::table('organizations')->count();
         $budget = DB::table('expenses')->sum('year1_forecast');
+        $budgetclass = new Numberformat();
+        $budgets = $budgetclass->custom_number_format($budget, 2);
         $quantity_services = DB::table('services')->count();
-        $quantity_projects = DB::table('projects')->count();
+        $quantity_project = DB::table('projects')->count();
+        $quantity_projects = $budgetclass->custom_number_format($quantity_project, 2);
 
         $filter = collect([$service_type_name, $location_name, $organization_name, $service_name]);
         $location_map = DB::table('locations')->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->get();
-        return view('frontend.home', compact('posts','taxonomies','allTaxonomies','services','locations','organizations', 'taxonomys','filter', 'location_map', 'quantity_organizations', 'budget', 'quantity_services', 'quantity_projects'));
+        return view('frontend.home', compact('posts','taxonomies','allTaxonomies','services','locations','organizations', 'taxonomys','filter', 'location_map', 'quantity_organizations', 'budgets', 'quantity_services', 'quantity_projects'));
     }
  
 
@@ -91,11 +95,7 @@ class IndexController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -129,5 +129,21 @@ class IndexController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    function bd_nice_number($n) {
+        // first strip any formatting;
+        $n = (0+str_replace(",","",$n));
+        
+        // is this a number?
+        if(!is_numeric($n)) return false;
+        
+        // now filter it;
+        if($n>1000000000000) return round(($n/1000000000000),1).' trillion';
+        else if($n>1000000000) return round(($n/1000000000),1).' billion';
+        else if($n>1000000) return round(($n/1000000),1).' million';
+        else if($n>1000) return round(($n/1000),1).' thousand';
+        
+        return number_format($n);
     }
 }
