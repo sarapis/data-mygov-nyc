@@ -30,6 +30,7 @@
                     <div class="page-title plxxl">
                         Project Profile</div>
                 </div>
+                <div class="sharethis-inline-share-buttons col-md-4"></div>
                 <ol class="breadcrumb page-breadcrumb pull-right">
                     <li><i class="fa fa-home"></i>&nbsp;<a href="/">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
                 </ol>
@@ -62,16 +63,15 @@
                                         </div>
                                         <div class="col-sm-2" style="padding-top: 3px;">
                                             <div class="dropdown">
-                                                <button class="btn btn-primary dropdown-toggle" type="button">Type @if($projects->project_type!='null'): {{$projects->project_type}}@endif
+                                                <button class="btn btn-primary dropdown-toggle" type="button">Type @if($projects->project_type!='')
+                                                    : {{$projects->project_type}} 
+                                                @else: None  @endif
                                                 </button>
                                             </div>
                                         </div>
-                                        <div class="col-sm-6" style="padding-top: 3px;">
-                                            <div class="collapse navbar-collapse pull-left" id="navbar-collapse" style="display: block;">
-                                                <ul class="nav navbar-nav">
-                                                    <li class="mrl" style="padding-top: 2px;"><div class="sharethis-inline-share-buttons"></div></li>
-                                                    <li class="prl"><a target="_blank" href="https://airtable.com/shrMbpSztHkjCXbHc" class="btn btn-primary dropdown-toggle" style="padding:7px;">Add Information</a></li>
-                                                </ul>
+                                        <div class="col-sm-8" style="padding-top: 3px;">
+                                            <div class="collapse navbar-collapse pull-left" id="navbar-collapse" style="display: block;float: right !important;">                                                 
+                                                <a target="_blank" href="https://airtable.com/shrMbpSztHkjCXbHc" class="btn btn-primary dropdown-toggle" style="padding:7px;">Add Information</a>
                                             </div>
                                         </div>
                                     </div>
@@ -81,13 +81,13 @@
                                     <div class="row" style="margin: 0;padding-bottom:30px;">
                                         <div class="col-md-6">
                                             <dl class="dl-horizontal">
-                                                <dt>Project Name: </dt><dd> {{$projects->project_projectid}}</dd>
-                                                <dt>Agency Name: </dt> <dd> {{$projects->magencyname}}</dd>
+                                                <dt>Project ID: </dt><dd> {{$projects->project_projectid}}</dd>
+                                                <dt>Organization: </dt> <dd> {{$projects->magencyname}}</dd>
                                                 <dt>Description: </dt> <dd> {{$projects->project_description}}</dd>
                                                 <dt>City Cost: </dt><dd> ${{number_format($projects->project_citycost)}}</dd>
                                                 <dt>Non-City Cost: </dt><dd> ${{number_format($projects->project_noncitycost)}}</dd>
                                                 <dt>Total Cost: </dt> <dd> ${{number_format($projects->project_totalcost)}}</dd>
-                                                <dt>#of Commitments:</dt> <dd>{{sizeof(explode(",", $projects->project_commitments))}}</dd>
+                                                <dt>#Commitments:</dt> <dd>{{sizeof(explode(",", $projects->project_commitments))}}</dd>
                                             </dl>
                                         </div>
                                         <div class="col-md-6">

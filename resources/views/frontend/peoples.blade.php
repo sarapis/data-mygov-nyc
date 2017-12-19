@@ -68,13 +68,7 @@
                                       </div>
                                       <div class="col-sm-4" style="padding-top: 3px;">
                                         <div class="dropdown">
-                                          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Type @if($projecttype!=''): {{$projecttype}}@endif
-                                          <span class="caret"></span></button>
-                                          <ul class="dropdown-menu">
-                                          @foreach ($projecttypes as $projecttype)
-                                            <li><a href="/projecttype_{{$projecttype->project_type}}">{{$projecttype->project_type}}</a></li>
-                                          @endforeach
-                                          </ul>
+                                        
                                         </div>
                                       </div>
                                     </div>
@@ -84,21 +78,21 @@
                                     <table id="example" class="table table-striped table-hover table-bordered" cellspacing="0" width="100%">
                                         <thead>
                                           <tr class="info">
-                                            <th>Project ID</th>
+                                            <th>Name</th>
                                             <th>Organization</th>
-                                            <th>Description</th>
-                                            <th>#Commitments</th>
-                                            <th>Total Cost &nbsp &nbsp&nbsp&nbsp&nbsp</th>
+                                            <th>Title</th>
+                                            <th>Division</th>
                                           </tr>
                                         </thead>
                                         <tbody>
-                                          @foreach ($projects as $project)
+                                          @foreach ($peoples as $people)
                                           <tr>
-                                            <td><a href="/projects_{{$project->project_recordid}}"> {{$project->project_projectid}}</a></td>
-                                            <td><a href="/organization_{{$project->magency}}">{{$project->magencyname}}</a></td>
-                                            <td>{{$project->project_description}}</td>
-                                            <td>{{sizeof(explode(",", $project->project_commitments))}}</td>
-                                            <td>${{number_format($project->project_totalcost)}}</td>
+                                            <td><a href="/people_{{$people->name}}"> {{$people->name}}</a></td>
+                                            <td><a href="/organization_{{$people->organization}}">{{$people->organization_name}}</a></td>
+                                            <td>{{$people->office_title}}</td>
+                                            <td>{{$people->division_name}}
+                                            @if($people->parent_division!=''), {{$people->parent_division}}@endif @if($people->grand_parent_division!=''), {{$people->grand_parent_division}}@endif
+                                            @if($people->great_grand_parent_division!=''), {{$people->great_grand_parent_division}}@endif</td>
                                           </tr> 
                                           @endforeach
                                         </tbody>

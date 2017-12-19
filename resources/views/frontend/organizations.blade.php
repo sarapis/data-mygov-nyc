@@ -81,7 +81,7 @@
                                         <div class="col-md-6 col-md-4">
                                           <div class="thumbnail">
                                             <div class="caption pal" id="tblData">
-                                                <a href="/organization_{{$organization->organization_id}}" style="font-size: 20px;">{{$organization->name}}<p style="display: inline; font-size: 16px;"> ({{$organization->alternate_name}})</p></a>
+                                                <a href="/organization_{{$organization->organizations_id}}" style="font-size: 20px;">{{$organization->name}}<p style="display: inline; font-size: 16px;"> ({{$organization->alternate_name}})</p></a>
                                                 <p style="font-size: 16px;padding-top: 10px;">{{str_limit($organization->description, 200)}}</p>
                                                 <p>Servies: @if($organization->services!=null)
                                                   {{sizeof(explode(",", $organization->services))}}

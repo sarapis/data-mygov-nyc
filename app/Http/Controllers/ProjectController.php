@@ -45,7 +45,7 @@ class ProjectController extends Controller
         $service_type_name = '&nbsp;';
         $service_name = '&nbsp;';
         $filter = collect([$service_type_name, $location_name, $organization_name, $service_name]);
-        $projects = DB::table('projects')->leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.id','projects.project_recordid','projects.project_projectid','agencies.magencyname','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_type')->orderBy('projects.project_projectid','desc')->get();
+        $projects = DB::table('projects')->leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.id','projects.project_recordid','projects.project_projectid','agencies.magency','agencies.magencyname','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_type')->orderBy('projects.project_projectid','desc')->get();
         $projecttypes = DB::table('projects')-> distinct()-> get(['project_type']);
         $projecttype = '';
         $mainmenu = DB::table('menu_main')->value('menu_main_label');
@@ -78,7 +78,7 @@ class ProjectController extends Controller
         $service_type_name = '&nbsp;';
         $service_name = '&nbsp;';
         $filter = collect([$service_type_name, $location_name, $organization_name, $service_name]);
-        $projects = DB::table('projects')->where('project_recordid', $id)->leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.project_projectid','agencies.magencyname','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_citycost','projects.project_noncitycost','projects.project_type','projects.project_lat','projects.project_long')->first();
+        $projects = DB::table('projects')->where('project_recordid', $id)->leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.project_projectid', 'agencies.magency', 'agencies.magencyname','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_citycost','projects.project_noncitycost','projects.project_type','projects.project_lat','projects.project_long')->first();
         $lat = DB::table('projects')->where('project_recordid', $id)-> value('project_lat');
         $long = DB::table('projects')->where('project_recordid', $id)-> value('project_long');
         Mapper::map($lat, $long, ['zoom' => 15]);
@@ -102,7 +102,7 @@ class ProjectController extends Controller
         $service_name = '&nbsp;';
         $filter = collect([$service_type_name, $location_name, $organization_name, $service_name]);
         $projecttype = DB::table('projects')->where('project_type', $id)->value('project_type');
-        $projects = DB::table('projects')->where('project_type', $id)->leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.id','projects.project_recordid','projects.project_projectid','agencies.magencyname','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_type')->orderBy('projects.project_projectid','desc')->get();
+        $projects = DB::table('projects')->where('project_type', $id)->leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.id','projects.project_recordid','projects.project_projectid', 'agencies.magency', 'agencies.magencyname','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_type')->orderBy('projects.project_projectid','desc')->get();
         $projecttypes = DB::table('projects')-> distinct()-> get(['project_type']);
         $mainmenu = DB::table('menu_main')->value('menu_main_label');
         return view('frontend.projects', compact('services','locations','organizations', 'taxonomys','filter', 'projects','menutops','menulefts','menumains','projecttypes','projecttype','mainmenu'));

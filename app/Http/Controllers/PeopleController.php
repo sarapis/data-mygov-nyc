@@ -17,14 +17,14 @@ use App\Models\Service;
 use App\Models\Location;
 use App\Models\Organization;
 
-class OrganizationController extends Controller
+class PeopleController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function all()
+    public function index()
     {
         $services = Service::all();
         $locations = Location::all();
@@ -36,8 +36,8 @@ class OrganizationController extends Controller
         $service_type_name = '&nbsp;';
         $service_name = '&nbsp;';
         $filter = collect([$service_type_name, $location_name, $organization_name, $service_name]);
-        $location_map = DB::table('locations')->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->get();
-        return view('frontend.organizations', compact('services','locations','organizations', 'taxonomys','filter', 'location_map'));
+        $peoples = DB::table('contacts')->leftjoin('organizations', 'contacts.organization', '=', 'organizations.organization_id')->select('contacts.*', 'organizations.name as organization_name')->get();
+        return view('frontend.peoples', compact('services','locations','organizations', 'taxonomys','filter', 'peoples'));
     }
 
     /**

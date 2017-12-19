@@ -26,6 +26,9 @@ ul.nav.nav-tabs li a {
     border: 0px;
     padding: 0px;
 }
+.cornsilk.btn-blue{
+    display: block !important;
+}
 </style>
 <title>{{$organization->name}} | Organization</title>
 
@@ -480,7 +483,6 @@ ul.nav.nav-tabs li a {
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5XHJ6oNL9-qh0XsL0G74y1xbcxNGkSxw&callback=initMap">
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
-<script src="//code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript">
