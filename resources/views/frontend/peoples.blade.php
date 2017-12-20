@@ -34,7 +34,7 @@
             <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
                 <div class="page-header pull-left">
                     <div class="page-title plxxl">
-                        Projects</div>
+                        People</div>
                 </div>
                 <ol class="breadcrumb page-breadcrumb pull-right">
                     <li><i class="fa fa-home"></i>&nbsp;<a href="/">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
@@ -64,7 +64,7 @@
                                 <div class="panel-heading">
                                     <div class="row">
                                       <div class="col-sm-2">
-                                        <h4 style="color: #fff;">Project</h4>
+                                        <h4 style="color: #fff;">People</h4>
                                       </div>
                                       <div class="col-sm-4" style="padding-top: 3px;">
                                         <div class="dropdown">
