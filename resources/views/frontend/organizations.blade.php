@@ -64,6 +64,12 @@
                                               <button class="btn btn-secondary" id="mysearchbutton" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                                             </span>
                                           </form>
+                                                                                              <div class="row">
+                                                        <form action="/services_find" method="POST" class="hidden-sm hidden-xs" style="display: block !important; padding-bottom: 30px;padding: 5px;width: 300px;">
+                                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                            <div class="input-icon right text-white"><a href=""><i class="fa fa-search"></i></a><input type="text" placeholder="Search here..." class="form-control text-black" name="find"/></div>
+                                                        </form>
+                                                    </div>
 
 
                                         </div>            

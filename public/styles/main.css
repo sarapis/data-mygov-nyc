@@ -7678,3 +7678,11 @@ iframe {
 #sidebar{
   min-height: inherit !important;
 }
+.pagination li.active span {
+  background: #4c92d7;
+  border-color: #428bca;
+}
+.pagination li.active span:hover, .pagination li.active span:focus{
+  background: #4c92d7;
+  border-color: #428bca;
+}

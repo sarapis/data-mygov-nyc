@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 
-class Contact extends Model
+class Project extends Model
 {
 	use Sortable;
 
-    protected $table = 'contacts';
+    protected $table = 'projects';
 
 }

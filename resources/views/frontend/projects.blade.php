@@ -4,17 +4,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link href="../css/treeview.css" rel="stylesheet">
-<body onload="myFunction()">
-<div id="mask" style="
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: white;
-    opacity: 0.8;
-    background-color: white;
-    z-index: 2000;
-"></div>
-<div id="loader"></div>
+<body>
     <!--BEGIN BACK TO TOP-->
     <a id="totop" href="#"><i class="fa fa-angle-up"></i></a>
     <!--END BACK TO TOP-->
@@ -35,6 +25,17 @@
                 <div class="page-header pull-left">
                     <div class="page-title plxxl">
                         Projects</div>
+                </div>
+                <div class="col-sm-4" style="padding-left: 200px;">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Type @if($projecttype!=''): {{$projecttype}}@endif
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            @foreach ($projecttypes as $projecttype)
+                            <li><a href="/projecttype_{{$projecttype->project_type}}">{{$projecttype->project_type}}</a></li>
+                        @endforeach
+                        </ul>
+                    </div>
                 </div>
                 <ol class="breadcrumb page-breadcrumb pull-right">
                     <li><i class="fa fa-home"></i>&nbsp;<a href="/">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
@@ -61,30 +62,12 @@
                    
                         <div class="page-content">
                             <div class="panel panel-blue">
-                                <div class="panel-heading">
-                                    <div class="row">
-                                      <div class="col-sm-2">
-                                        <h4 style="color: #fff;">Project</h4>
-                                      </div>
-                                      <div class="col-sm-4" style="padding-top: 3px;">
-                                        <div class="dropdown">
-                                          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Type @if($projecttype!=''): {{$projecttype}}@endif
-                                          <span class="caret"></span></button>
-                                          <ul class="dropdown-menu">
-                                          @foreach ($projecttypes as $projecttype)
-                                            <li><a href="/projecttype_{{$projecttype->project_type}}">{{$projecttype->project_type}}</a></li>
-                                          @endforeach
-                                          </ul>
-                                        </div>
-                                      </div>
-                                    </div>
-                                </div>
                                 <!-- /.box-header -->
                                 <div class="panel-body">
-                                    <table id="example" class="table table-striped table-hover table-bordered" cellspacing="0" width="100%">
+                                    <table class="table table-striped table-hover table-bordered" cellspacing="0" width="100%">
                                         <thead>
                                           <tr class="info">
-                                            <th>Project ID</th>
+                                            <th>@sortablelink('project_projectid', 'Project ID')</th>
                                             <th>Organization</th>
                                             <th>Description</th>
                                             <th>#Commitments</th>
@@ -125,22 +108,3 @@
     <!--END PAGE WRAPPER-->
 </body>
 @include('layouts.script')
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
-<script>
-$(document).ready(function() {
-    $('#example').DataTable();
-} );
-</script>
-<script>
-var myVar;
-
-function myFunction() {
-    myVar = setTimeout(showPage, 0);
-}
-
-function showPage() {
-  document.getElementById("loader").style.display = "none";
-  document.getElementById("mask").style.display = "none";
-}
-</script>

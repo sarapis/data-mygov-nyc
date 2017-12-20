@@ -30,9 +30,25 @@
                     <div class="page-title plxxl">
                         Project Profile</div>
                 </div>
-                <div class="sharethis-inline-share-buttons col-md-4"></div>
+                <div>
+                <div class="col-sm-3 text-center">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button">Type @if($projects->project_type!='')
+                            : {{$projects->project_type}} 
+                        @else: None  @endif
+                        </button>
+                    </div>
+                </div>
+                <div class="sharethis-inline-share-buttons col-sm-3"></div>
+                <div class="col-sm-3">
+                    <div class="collapse navbar-collapse text-center" id="navbar-collapse" style="display: block;">                                                 
+                        <a target="_blank" href="https://airtable.com/shrMbpSztHkjCXbHc" class="btn btn-primary dropdown-toggle" style="padding:7px;">Add Information</a>
+                    </div>
+                </div>
+                </div>
                 <ol class="breadcrumb page-breadcrumb pull-right">
                     <li><i class="fa fa-home"></i>&nbsp;<a href="/">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+                    <li><a href="/projects">Projects</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
                 </ol>
                 <div class="clearfix">
                 </div>
@@ -56,27 +72,7 @@
                    
                         <div class="page-content">
                             <div class="panel panel-blue">
-                                <div class="panel-heading">
-                                    <div class="row">
-                                        <div class="col-sm-2">
-                                            <h4 style="color: #fff;">Project Profile</h4>
-                                        </div>
-                                        <div class="col-sm-2" style="padding-top: 3px;">
-                                            <div class="dropdown">
-                                                <button class="btn btn-primary dropdown-toggle" type="button">Type @if($projects->project_type!='')
-                                                    : {{$projects->project_type}} 
-                                                @else: None  @endif
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-8" style="padding-top: 3px;">
-                                            <div class="collapse navbar-collapse pull-left" id="navbar-collapse" style="display: block;float: right !important;">                                                 
-                                                <a target="_blank" href="https://airtable.com/shrMbpSztHkjCXbHc" class="btn btn-primary dropdown-toggle" style="padding:7px;">Add Information</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.box-header -->
+
                                 <div class="panel-body">
                                     <div class="row" style="margin: 0;padding-bottom:30px;">
                                         <div class="col-md-6">

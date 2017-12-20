@@ -16,6 +16,7 @@ use App\Models\Taxonomy;
 use App\Models\Service;
 use App\Models\Location;
 use App\Models\Organization;
+use App\Models\Contact;
 
 class PeopleController extends Controller
 {
@@ -36,8 +37,10 @@ class PeopleController extends Controller
         $service_type_name = '&nbsp;';
         $service_name = '&nbsp;';
         $filter = collect([$service_type_name, $location_name, $organization_name, $service_name]);
-        $peoples = DB::table('contacts')->leftjoin('organizations', 'contacts.organization', '=', 'organizations.organization_id')->select('contacts.*', 'organizations.name as organization_name')->get();
-        return view('frontend.peoples', compact('services','locations','organizations', 'taxonomys','filter', 'peoples'));
+        $peoples = Contact::leftjoin('organizations', 'contacts.organization', '=', 'organizations.organization_id')->select('contacts.*', 'organizations.organizations_id as organizations_id', 'organizations.name as organization_name')->sortable()->paginate(25);
+        $organization = Contact::leftjoin('organizations', 'contacts.organization', '=', 'organizations.organization_id')->select('organizations.name as organization_name')->distinct()->get(['organization_name']);
+        $organization_type='';
+        return view('frontend.peoples', compact('services','locations','organizations', 'taxonomys','filter', 'peoples', 'organization', 'organization_type'));
     }
 
     /**
@@ -71,9 +74,22 @@ class PeopleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function organizationtypefind($id)
     {
-        //
+        $services = Service::all();
+        $locations = Location::all();
+        $taxonomys = Taxonomy::all();
+        $organizations = Organization::all();
+        $service_type_name = '&nbsp;';
+        $location_name = '&nbsp;';
+        $organization_name = 'All';
+        $service_type_name = '&nbsp;';
+        $service_name = '&nbsp;';
+        $filter = collect([$service_type_name, $location_name, $organization_name, $service_name]);
+        $peoples = Contact::leftjoin('organizations', 'contacts.organization', '=', 'organizations.organization_id')->where('organizations.name', '=', $id)->select('contacts.*', 'organizations.organizations_id as organizations_id', 'organizations.name as organization_name')->sortable()->paginate(25);
+        $organization = Contact::leftjoin('organizations', 'contacts.organization', '=', 'organizations.organization_id')->select('organizations.name as organization_name')->distinct()->get(['organization_name']);
+        $organization_type=$id;
+        return view('frontend.peoples', compact('services','locations','organizations', 'taxonomys','filter', 'peoples', 'organization', 'organization_type'));
     }
 
     /**

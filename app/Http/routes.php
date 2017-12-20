@@ -53,6 +53,7 @@ Route::get('/projecttype_{id}', 'ProjectController@projecttypefind');
 //Peoples
 Route::get('/people', 'PeopleController@index');
 Route::get('/people_{id}', 'PeopleController@find');
+Route::get('/organizationtype_{id}', 'PeopleController@organizationtypefind');
 
 Route::get('/category', [
     'uses' 		=> 'TaxonomyController@all'

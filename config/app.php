@@ -166,6 +166,8 @@ return [
         DaveJamesMiller\Breadcrumbs\ServiceProvider::class,             // http://laravel-breadcrumbs.davejamesmiller.com/en/latest/start.html
         Thujohn\Twitter\TwitterServiceProvider::class,					// https://github.com/thujohn/twitter - https://apps.twitter.com/
         Cornford\Googlmapper\MapperServiceProvider::class,
+
+        Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
 	],
 
 	/*
