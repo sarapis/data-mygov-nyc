@@ -31,7 +31,7 @@
                         Project Profile</div>
                 </div>
                 <div>
-                <div class="col-sm-3 text-center">
+                <div class="col-sm-2 text-center">
                     <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button">Type @if($projects->project_type!='')
                             : {{$projects->project_type}} 
@@ -39,7 +39,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="sharethis-inline-share-buttons col-sm-2"></div>
+                <div class="sharethis-inline-share-buttons col-sm-3"></div>
                 <div class="col-sm-3">
                     <div class="collapse navbar-collapse text-center" id="navbar-collapse" style="display: block;">                                                 
                         <a target="_blank" href="https://airtable.com/shrMbpSztHkjCXbHc" class="btn btn-primary dropdown-toggle" style="padding:7px;">Add Information</a>
