@@ -1,10 +1,10 @@
 @include('layouts.style')
 <style>
   .thumbnail{
-    min-height: 340px;
+    min-height: 360px;
   }
 </style>
-<title>All Oragnization</title>
+<title>All Oragnizations</title>
 
 <div>
     <!--BEGIN BACK TO TOP-->
@@ -59,10 +59,11 @@
                                         <div class="input-group col-md-12">
                                           <form action="/pages/agencies/find" method="POST" class="form-group">  
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                            <input type="text" class="form-control" placeholder="Search (Agency Name)" name="find" style="    width: calc(100% - 40px);"> 
+                                            <input type="text" class="form-control" placeholder="Search" name="find" style="margin-top: 0;width: calc(100% - 40px);"> 
                                             <span class="input-group-btn">
                                               <button class="btn btn-secondary" id="mysearchbutton" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                                             </span>
+                                          </form>
                                         </div>            
                                       </div>
                                       <div class="col-sm-8 col-md-8">
@@ -80,12 +81,14 @@
                                             <div class="caption pal" id="tblData">
                                                 <a href="/organization_{{$organization->organizations_id}}" style="font-size: 20px;">{{$organization->name}}<p style="display: inline; font-size: 16px;"> ({{$organization->alternate_name}})</p></a>
                                                 <p style="font-size: 16px;padding-top: 10px;">{{str_limit($organization->description, 200)}}</p>
-                                                <p>Servies: @if($organization->services!=null)
+                                                <p>Services: @if($organization->services!=null)
                                                   {{sizeof(explode(",", $organization->services))}}
                                                     @else 0 @endif</p>
-                                                <p>Projects: </p>
-                                                <p>Expense Budget</p>
-                                                <p>Projects Budget</p>                
+                                                <p>Projects: @if($organization->projects!=null)
+                                                  {{sizeof(explode(",", $organization->projects))}}
+                                                    @else 0 @endif</p>
+                                                <p>Expense Budget: @if($organization->expenses_budgets!=null)${{number_format($organization->expenses_budgets)}} @else $0 @endif</p>
+                                                <p>Projects Budget: @if($organization->total_project_cost!=null)${{number_format($organization->total_project_cost)}} @else $0 @endif</p>                
                                             </div>
                                           </div>
                                         </div>

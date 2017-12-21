@@ -77,8 +77,8 @@
                                     <div class="row" style="margin: 0;padding-bottom:30px;">
                                         <div class="col-md-6">
                                             <dl class="dl-horizontal">
-                                                <dt>Project ID: </dt><dd> {{$projects->project_projectid}}</dd>
-                                                <dt>Organization: </dt> <dd> {{$projects->magencyname}}</dd>
+                                                <dt>Project ID: </dt><dd>{{$projects->project_projectid}}</dd>
+                                                <dt>Organization: </dt><dd><a href="organization_{{$projects->magency}}">{{$projects->magencyname}}</a></dd>
                                                 <dt>Description: </dt> <dd> {{$projects->project_description}}</dd>
                                                 <dt>City Cost: </dt><dd> ${{number_format($projects->project_citycost)}}</dd>
                                                 <dt>Non-City Cost: </dt><dd> ${{number_format($projects->project_noncitycost)}}</dd>

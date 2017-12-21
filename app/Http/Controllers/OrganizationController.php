@@ -35,6 +35,8 @@ class OrganizationController extends Controller
         $organization_name = 'All';
         $service_type_name = '&nbsp;';
         $service_name = '&nbsp;';
+        $organizations = DB::table('organizations')->leftjoin('agencies', 'organizations.organizations_id', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->select('organizations.*', 'agencies.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets'))->groupBy('organizations.id')->get();
+
         $filter = collect([$service_type_name, $location_name, $organization_name, $service_name]);
         $location_map = DB::table('locations')->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->get();
         return view('frontend.organizations', compact('services','locations','organizations', 'taxonomys','filter', 'location_map'));

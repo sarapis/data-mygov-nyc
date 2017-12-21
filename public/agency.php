@@ -88,7 +88,7 @@
 
 						$airtable_url = AIRTABLE_API_URL . AIRTABLE_APP_ID;
 							// We're also specifying a table.
-							$airtable_url .= '/agency';
+							$airtable_url .= '/organization';
 							// And we're specifying a view. The API will honor any filters 
 							// that have been applied to the view, as well as any sort
 							// order that has been applied to it.
@@ -102,7 +102,7 @@
 							// We're also specifying a sort order for the request,
 							// which will override any sort order that has been 
 							// applied on the view.
-							$airtable_url .= '&sortField=magency&sortDirection=asc';
+							$airtable_url .= '&sortField=ID&sortDirection=asc';
 
 							curl_setopt( $ch, CURLOPT_URL, $airtable_url );		
 									
@@ -148,12 +148,12 @@
 								echo $record['fields']['magency'] . '</a>';
 								echo '</li>';
 
-								$project = implode(",", $record['fields']['projects']);
-								$commitment = implode(",", $record['fields']['commitments']);
+								$projects = implode(",", $record['fields']['projects']);
+								$commitments = implode(",", $record['fields']['commitments']);
 								$expense = implode(",", $record['fields']['expenses']);
 
-								$sql = "INSERT INTO agencies (agency_recordid, magency, magencyname, magencyacro, projects, commitments, commitments_cost, commitments_noncity_cost, total_project_cost, expenses, expenses_link)
-								VALUES ( '{$record['id']}', '{$record['fields']['magency']}', '{$record['fields']['magencyname']}', '{$record['fields']['magencyacro']}', '{$project}', '{$commitment}', '{$record['fields']['Total Project Cost']}', '{$record['fields']['Commitments Cost']}', '{$record['fields']['Commitments NonCity Cost']}', '$expense', '{$record['fields']['expenses_link']}');";
+								$sql = "INSERT INTO agencies (agency_recordid, magency, magencyname, magencyacro, publish, projects, commitments, commitments_cost, commitments_noncity_cost, total_project_cost, expenses, expenses_link)
+								VALUES ( '{$record['id']}', '{$record['fields']['ID']}', '{$record['fields']['alternate_name']}', '{$record['fields']['Name']}', '{$record['fields']['publish']}', '{$projects}', '{$commitments}', '{$record['fields']['Commitments Cost']}', '{$record['fields']['Commitments NonCity Cost']}', '{$record['fields']['Total Project Cost']}', '$expense', '{$record['fields']['expenses_link']}');";
 
 								if ($conn->query($sql) === TRUE) {
 								    echo "New record created successfully";
