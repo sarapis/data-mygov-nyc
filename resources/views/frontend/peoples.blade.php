@@ -77,7 +77,7 @@
                                         <tbody>
                                           @foreach ($peoples as $people)
                                           <tr>
-                                            <td><a href="/people_{{$people->name}}"> {{$people->name}}</a></td>
+                                            <td><a href="/people_{{$people->contact_id}}"> {{$people->name}}</a></td>
                                             <td><a href="/organization_{{$people->organizations_id}}">{{$people->organization_name}}</a></td>
                                             <td>{{$people->office_title}}</td>
                                             <td>{{$people->division_name}}

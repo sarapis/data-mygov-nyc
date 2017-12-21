@@ -45,7 +45,7 @@ class ProjectController extends Controller
         $service_type_name = '&nbsp;';
         $service_name = '&nbsp;';
         $filter = collect([$service_type_name, $location_name, $organization_name, $service_name]);
-        $projects = Project::leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.id','projects.project_recordid','projects.project_projectid','agencies.magency','agencies.magencyname','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_type')->sortable()->paginate(25);
+        $projects = Project::leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.id','projects.project_recordid','projects.project_projectid','agencies.magency','agencies.magencyname','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_type')->sortable(['project_projectid'])->paginate(25);
         $projecttypes = DB::table('projects')-> distinct()-> get(['project_type']);
         $projecttype = '';
         $mainmenu = DB::table('menu_main')->value('menu_main_label');

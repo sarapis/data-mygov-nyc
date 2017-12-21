@@ -29,6 +29,7 @@ ul.nav.nav-tabs li a {
 .cornsilk.btn-blue{
     display: block !important;
 }
+.dataTables_length, .dataTables_filter{display: none;}
 </style>
 <title>{{$organization->name}} | Organization</title>
 
