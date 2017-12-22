@@ -53,7 +53,7 @@ class OrganizationController extends Controller
         $locations = Location::all();
         $taxonomys = Taxonomy::all();
         $organizations = Organization::all();
-        $organization = Organization::where('organizations_id','=',$id)->leftjoin('contacts', 'organizations.contact', 'like', DB::raw("concat('%', contacts.contact_id, '%')"))->leftjoin('phones', 'organizations.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->select('organizations.*', DB::raw('group_concat(phones.phone_number) as phone_numbers'), DB::raw('group_concat(contacts.name) as contact_name'))->first();
+        $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->leftjoin('phones', 'organizations.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->select('organizations.*', 'agencies.*', 'phones.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets'))->groupBy('organizations.id')->first();
         $service_type_name = '&nbsp;';
         $location_name = '&nbsp;';
         $organization_name = Organization::where('organization_id','=', $id)->value('name');
@@ -64,7 +64,11 @@ class OrganizationController extends Controller
 
         $organization_services = Organization::where('organizations_id','=', $id)->leftjoin('services', 'organizations.services', 'like', DB::raw("concat('%', services.service_id, '%')"))->select('services.*')->leftjoin('phones', 'services.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->leftjoin('taxonomies', 'services.taxonomy', '=', 'taxonomies.taxonomy_id')->select('services.*', DB::raw('group_concat(phones.phone_number) as phone_numbers'), DB::raw('taxonomies.name as taxonomy_name'))->groupBy('services.id')->get();
 
-        return view('frontend.organization', compact('services','locations','organizations', 'taxonomys','service_name','service','organization','filter','organization_services', 'organization_map'));
+        $organization_projects = Organization::where('organizations_id','=', $id)->leftjoin('agencies', 'organizations.organizations_id', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('projects', 'agencies.projects', 'like', DB::raw("concat('%', projects.project_recordid, '%')"))->groupBy('projects.project_recordid')->get();
+
+        $organization_peoples = Organization::where('organizations_id','=', $id)->leftjoin('contacts', 'organizations.contacts', 'like', DB::raw("concat('%', contacts.contact_id, '%')"))->groupBy('contacts.contact_id')->get();
+
+        return view('frontend.organization', compact('services','locations','organizations', 'taxonomys','service_name','service','organization','filter', 'organization_services', 'organization_projects', 'organization_peoples', 'organization_map'));
     }
 
     /**

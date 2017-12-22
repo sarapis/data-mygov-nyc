@@ -30,6 +30,7 @@ ul.nav.nav-tabs li a {
     display: block !important;
 }
 .dataTables_length, .dataTables_filter{display: none;}
+
 </style>
 <title>{{$organization->name}} | Organization</title>
 
@@ -90,11 +91,14 @@ ul.nav.nav-tabs li a {
                                             <p><code> Alternate Name:</code> {{$organization->alternate_name}}</p>
                                             <p><code> Description:</code> {!! $organization->description !!}</p>
                                             <p><code> Email:</code> {{$organization->email}}</p>
-                                            <p><code> Url:</code> {{$organization->url}}</p>
-                                            <p><code> Year 1 Project Budget:</code> {{$organization->url}}</p>
-                                            <p><code> Year 1 Project Budget:</code> {{$organization->url}}</p>
+                                            <p><code> Year 1 Project Budget:</code> ${{number_format($organization->total_project_cost)}}</p>
+                                            <p><code> Year 1 Expense Budget:</code> ${{number_format($organization->expenses_budgets)}}</p>
+                                            <a class="btn-yellow btn-sm" href="{{$organization->website}}" target="_blank">Goto Website</a>
+                                            @if($organization->checkbook!='')
+                                            <a class="btn-orange btn-sm" href="{{$organization->checkbook}}" target="_blank">Goto Checkbook</a>
+                                            @endif
                                             </div>
-                                            <div class="timeline-centered timeline-entry timeline-entry-inner timeline-icon bg-violet"><i class="icon-bulb"></i></div>
+
                                             <div>
                                                 <!-- Nav tabs -->
                                                 <ul class="nav nav-tabs nav-justified">
@@ -105,7 +109,10 @@ ul.nav.nav-tabs li a {
                                                         <a class="nav-link" data-toggle="tab" href="#panel2" role="tab">Projects</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" data-toggle="tab" href="#panel3" role="tab" style="margin-right: 0;">People</a>
+                                                        <a class="nav-link" data-toggle="tab" href="#panel3" role="tab" >People</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" data-toggle="tab" href="#panel4" role="tab" style="margin-right: 0;">Expenses</a>
                                                     </li>
                                                 </ul>
                                                 <!-- Tab panels -->
@@ -115,6 +122,7 @@ ul.nav.nav-tabs li a {
                                                         <br>
                                                         <br>
                                                         <br>
+                                                        @if($organization->servers!='')
                                                         <div id="grid-layout-table-1" class="box jplist">
 
                                                             <div class="jplist-ios-button"><i class="fa fa-sort"></i> Display Options</div>
@@ -203,6 +211,9 @@ ul.nav.nav-tabs li a {
                                                                 <div data-control-type="pagination" data-control-name="paging" data-control-action="paging" data-control-animate-to-top="true" class="jplist-pagination"></div>
                                                             </div>
                                                         </div>
+                                                        @else
+                                                            <div class="alert alert-danger"><strong>No Services!</strong></div>
+                                                        @endif
                                                     </div>
                                                     <!--/.Panel 1-->
                                                     <!--Panel 2-->
@@ -210,9 +221,10 @@ ul.nav.nav-tabs li a {
                                                         <br>
                                                         <br>
                                                         <br>
+                                                        @if($organization->projects!='')
                                                         <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                                                             <thead>
-                                                                <tr>
+                                                                <tr class="info">
                                                                     <th>Project ID</th>
                                                                     <th>Description</th>
                                                                     <th>#Commitments</th>
@@ -220,20 +232,19 @@ ul.nav.nav-tabs li a {
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
+                                                                @foreach($organization_projects as $organization_project)
                                                                 <tr>
-                                                                    <td>Tiger Nixon</td>
-                                                                    <td>System Architect</td>
-                                                                    <td>Edinburgh</td>
-                                                                    <td>61</td>
+                                                                    <td><a href="projects_{{$organization_project->project_recordid}}">{{$organization_project->project_projectid}}</a></td>
+                                                                    <td>{{$organization_project->project_description}}</td>
+                                                                    <td>{{sizeof(explode(",", $organization_project->project_commitments))}}</td>
+                                                                    <td>${{number_format($organization_project->project_totalcost)}}</td>
                                                                 </tr>
-                                                                <tr>
-                                                                    <td>Garrett Winters</td>
-                                                                    <td>Accountant</td>
-                                                                    <td>Tokyo</td>
-                                                                    <td>63</td>
-                                                                </tr>
+                                                                @endforeach
                                                             </tbody>
                                                         </table>
+                                                        @else
+                                                         <div class="alert alert-danger"><strong>No Projects!</strong></div>
+                                                        @endif
                                                     </div>
                                                     <!--/.Panel 2-->
                                                     <!--Panel 3-->
@@ -241,96 +252,97 @@ ul.nav.nav-tabs li a {
                                                         <br>
                                                         <br>
                                                         <br>
-                                                        <div id="grid-layout-table-1" class="box jplist">
-
-                                                            <div class="jplist-ios-button"><i class="fa fa-sort"></i> Display Options</div>
-                                                            <div class="jplist-panel box panel-top">
-                                                                <button type="button" data-control-type="reset" data-control-name="reset" data-control-action="reset" class="jplist-reset-btn btn btn-default">Reset<i class="fa fa-share mls"></i></button>
-                                                                <div data-control-type="drop-down" data-control-name="paging" data-control-action="paging" class="jplist-drop-down form-control">
-                                                                    <ul class="dropdown-menu">
-                                                                        <li><span data-number="3"> 3 per page</span></li>
-                                                                        <li><span data-number="5"> 5 per page</span></li>
-                                                                        <li><span data-number="10" data-default="true"> 10 per page</span></li>
-                                                                        <li><span data-number="all"> view all</span></li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div data-control-type="drop-down" data-control-name="sort" data-control-action="sort" data-datetime-format="{month}/{day}/{year}" class="jplist-drop-down form-control">
-                                                                    <ul class="dropdown-menu">
-                                                                        <li><span data-path="default">Sort by</span></li>
-                                                                        <li><span data-path=".title" data-order="asc" data-type="text">Title A-Z</span></li>
-                                                                        <li><span data-path=".title" data-order="desc" data-type="text">Title Z-A</span></li>
-                                                                        <li><span data-path=".desc" data-order="asc" data-type="text">Description A-Z</span></li>
-                                                                        <li><span data-path=".desc" data-order="desc" data-type="text">Description Z-A</span></li>
-                                                                        <li><span data-path=".like" data-order="asc" data-type="number" data-default="true">Likes asc</span></li>
-                                                                        <li><span data-path=".like" data-order="desc" data-type="number">Likes desc</span></li>
-                                                                        <li><span data-path=".date" data-order="asc" data-type="datetime">Date asc</span></li>
-                                                                        <li><span data-path=".date" data-order="desc" data-type="datetime">Date desc</span></li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div data-type="Page {current} of {pages}" data-control-type="pagination-info" data-control-name="paging" data-control-action="paging" class="jplist-label btn btn-default"></div>
-                                                                <div data-control-type="pagination" data-control-name="paging" data-control-action="paging" class="jplist-pagination"></div>
-                                                            </div>
-                                                            
-                                                            <div class="box text-shadow">
-                                                                <table class="demo-tbl">
-                                                                    <!--<item>1</item>-->
-                                                                   @foreach($organization_services as $organization_service)
-                                                                    <tr class="tbl-item">
-                                                                        
-                                                                        <!--<data></data>-->
-                                                                        <td class="td-block">
-
-                                                                            <p class="title" style="font-size: 25px;"><a href="/service_{{$organization_service->service_id}}" style="color: #357ca5;">{{$organization_service->name}}</a></p>
-
-                                                                            <p class="desc" style="font-size: 16px;"><a href="#" style="color: #00aff0;"></a></p>
-
-                                                                            <div class="option" style="padding-left: 10px;padding-top: 5px;">
-
-                                                                                <p class="desc" style="font-size: 16px; color: #000;"><i class="fa fa-fw fa-sitemap"></i>{{$organization_service->taxonomy_name}}</p>
-
-                                                                                <p class="desc" style="font-size: 16px; color: #000;"><i class="fa fa-fw fa-phone-square"></i>{!! $organization_service->phone_numbers !!}</p>
-
-                                                                                <p class="desc" style="font-size: 16px;">{!! $organization_service->description !!}</p>
-                                                                            </div>
-                                                                        </td>
-                                                                        <!--<img/>-->
-                                                                    </tr>
-                                                                    @endforeach
-                                                                </table>
-                                                            </div>
-                                                            
-                                                            <div class="box jplist-no-results text-shadow align-center">
-                                                                <p>No results found</p>
-                                                            </div>
-                                                            <div class="jplist-ios-button"><i class="fa fa-sort"></i>jPList Actions</div>
-                                                            <div class="jplist-panel box panel-bottom">
-                                                                <div data-control-type="drop-down" data-control-name="paging" data-control-action="paging" data-control-animate-to-top="true" class="jplist-drop-down form-control">
-                                                                    <ul class="dropdown-menu">
-                                                                        <li><span data-number="3"> 3 per page</span></li>
-                                                                        <li><span data-number="5"> 5 per page</span></li>
-                                                                        <li><span data-number="10" data-default="true"> 10 per page</span></li>
-                                                                        <li><span data-number="all"> view all</span></li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div data-control-type="drop-down" data-control-name="sort" data-control-action="sort" data-control-animate-to-top="true" data-datetime-format="{month}/{day}/{year}" class="jplist-drop-down form-control">
-                                                                    <ul class="dropdown-menu">
-                                                                        <li><span data-path="default">Sort by</span></li>
-                                                                        <li><span data-path=".title" data-order="asc" data-type="text">Title A-Z</span></li>
-                                                                        <li><span data-path=".title" data-order="desc" data-type="text">Title Z-A</span></li>
-                                                                        <li><span data-path=".desc" data-order="asc" data-type="text">Description A-Z</span></li>
-                                                                        <li><span data-path=".desc" data-order="desc" data-type="text">Description Z-A</span></li>
-                                                                        <li><span data-path=".like" data-order="asc" data-type="number" data-default="true">Likes asc</span></li>
-                                                                        <li><span data-path=".like" data-order="desc" data-type="number">Likes desc</span></li>
-                                                                        <li><span data-path=".date" data-order="asc" data-type="datetime">Date asc</span></li>
-                                                                        <li><span data-path=".date" data-order="desc" data-type="datetime">Date desc</span></li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div data-type="{start} - {end} of {all}" data-control-type="pagination-info" data-control-name="paging" data-control-action="paging" class="jplist-label btn btn-default"></div>
-                                                                <div data-control-type="pagination" data-control-name="paging" data-control-action="paging" data-control-animate-to-top="true" class="jplist-pagination"></div>
-                                                            </div>
-                                                        </div>
+                                                        <table id="example1" class="table table-striped table-hover table-bordered" cellspacing="0" width="100%">
+                                                            <thead>
+                                                                <tr class="info">
+                                                                    <th>Name</th>
+                                                                    <th>Organization</th>
+                                                                    <th>Title</th>
+                                                                    <th>Division</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach($organization_peoples as $organization_people)
+                                                                <tr>
+                                                                    <td><a href="/people_{{$organization_people->contact_id}}"> {{$organization_people->name}}</a></td>
+                                                                    <td>{{$organization->name}}</td>
+                                                                    <td>{{$organization_people->office_title}}</td>
+                                                                    <td>{{$organization_people->division_name}}
+                                                                    @if($organization_people->parent_division!=''), {{$organization_people->parent_division}}@endif @if($organization_people->grand_parent_division!=''), {{$organization_people->grand_parent_division}}@endif
+                                                                    @if($organization_people->great_grand_parent_division!=''), {{$organization_people->great_grand_parent_division}}@endif</td>
+                                                                </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
                                                     </div>
                                                     <!--/.Panel 3-->
+                                                    <!--Panel 4-->
+                                                    <div class="tab-pane fade" id="panel4" role="tabpanel">
+                                                        <br>
+                                                        <br>
+                                                        <br>
+                                                        <table class="table table-hover table-bordered">
+                                                            <thead>
+                                                            <tr class="info">
+                                                                <th class="text-center">Expense Budget</th>
+                                                                <th class="text-center">Year 1</th>
+                                                                <th class="text-center">Year 2</th>
+                                                                <th class="text-center">Year 3</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td class="text-center">Total Dept.</td>
+                                                                <td class="text-center"></td>
+                                                                <td class="text-center"></td>
+                                                                <td class="text-center"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-center">City Funds</td>
+                                                                <td class="text-center"></td>
+                                                                <td class="text-center"></td>
+                                                                <td class="text-center"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-center">Other Categorical</td>
+                                                                <td class="text-center"></td>
+                                                                <td class="text-center"></td>
+                                                                <td class="text-center"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-center">Captical Funds-I.F.A</td>
+                                                                <td class="text-center"></td>
+                                                                <td class="text-center"></td>
+                                                                <td class="text-center"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-center">State</td>
+                                                                <td class="text-center"></td>
+                                                                <td class="text-center"></td>
+                                                                <td class="text-center"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-center">Federal - C.D.</td>
+                                                                <td class="text-center"></td>
+                                                                <td class="text-center"></td>
+                                                                <td class="text-center"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-center">Federal - Other</td>
+                                                                <td class="text-center"></td>
+                                                                <td class="text-center"></td>
+                                                                <td class="text-center"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-center">Intra - City Other</td>
+                                                                <td class="text-center"></td>
+                                                                <td class="text-center"></td>
+                                                                <td class="text-center"></td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <!--/.Panel 4-->
                                                 </div>
                                             </div>
 
@@ -352,8 +364,8 @@ ul.nav.nav-tabs li a {
                                                 @endif
                                                 @endforeach
                                           
-                                            <p><code>Contact:</code>{{$organization->contact_name}}</p>
-                                            <p><code>Phones:</code></p>
+                                            <p><code>Contact:</code>{{$organization->contact}}</p>
+                                            <p><code>Phones:</code>{{$organization->phone_number}}</p>
                                             
                                             <h2>Organization Details</h2>
                                             
@@ -364,74 +376,6 @@ ul.nav.nav-tabs li a {
                                             <p><code>Year Incorporated:</code></p>
                                             <p><code>Holiday schedule:</code></p>
                                             <p><span class="badge badge-yellow">detail type</span> </p>
-                                        </div>
-                                        <div class="portlet-body">
-                                            <table class="table table-hover table-bordered">
-                                                    <thead>
-                                                    <tr class="info">
-                                                        <th class="text-center">Expense Budget</th>
-                                                        <th class="text-center">Year 1</th>
-                                                        <th class="text-center">Year 2</th>
-                                                        <th class="text-center">Year 3</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr>
-                                                        <td class="text-center">Total Dept.</td>
-                                                        <td class="text-center"></td>
-                                                        <td class="text-center"></td>
-                                                        <td class="text-center"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">City Funds</td>
-                                                        <td class="text-center"></td>
-                                                        <td class="text-center"></td>
-                                                        <td class="text-center"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">Out Categorical</td>
-                                                        <td class="text-center"></td>
-                                                        <td class="text-center"></td>
-                                                        <td class="text-center"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">Captical Funds</td>
-                                                        <td class="text-center"></td>
-                                                        <td class="text-center"></td>
-                                                        <td class="text-center"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">IFA</td>
-                                                        <td class="text-center"></td>
-                                                        <td class="text-center"></td>
-                                                        <td class="text-center"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">State</td>
-                                                        <td class="text-center"></td>
-                                                        <td class="text-center"></td>
-                                                        <td class="text-center"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">Federal - C.D.</td>
-                                                        <td class="text-center"></td>
-                                                        <td class="text-center"></td>
-                                                        <td class="text-center"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">Federal - Other</td>
-                                                        <td class="text-center"></td>
-                                                        <td class="text-center"></td>
-                                                        <td class="text-center"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">Intra - City Other</td>
-                                                        <td class="text-center"></td>
-                                                        <td class="text-center"></td>
-                                                        <td class="text-center"></td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
                                         </div>
                                     </div>
                                 </div>
@@ -486,6 +430,11 @@ ul.nav.nav-tabs li a {
 </script>
 <script>
 $(document).ready(function() {
-    $('#example').DataTable();
+    $('#example').DataTable({
+        "pageLength": 25
+    });
+    $('#example1').DataTable({
+        "pageLength": 25
+    });
 } );
 </script>

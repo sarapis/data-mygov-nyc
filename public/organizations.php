@@ -156,7 +156,7 @@
 								$services = implode(",", $record['fields']['services']);
 								$phones = implode(",", $record['fields']['phones']);
 								$locations = implode(",", $record['fields']['locations']);
-								$contact = implode(",", $record['fields']['contact']);
+								$contact = str_replace("'","\'", $record['fields']['contact']);
 								$details = implode(",", $record['fields']['details']);
 								$program = implode(",", $record['fields']['program']);
 								$sources = implode(",", $record['fields']['Sources']);
