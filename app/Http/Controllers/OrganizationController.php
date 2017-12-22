@@ -62,13 +62,15 @@ class OrganizationController extends Controller
 
         $organization_map = DB::table('organizations')->where('organizations_id','=',$id)->leftjoin('locations', 'organizations.locations', 'like', DB::raw("concat('%', locations.location_id, '%')"))->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->select('organizations.*', 'locations.*', 'address.*')->groupBy('organizations.id')->groupBy('organizations.id')->get();
 
+        $project_map = DB::table('agencies')->where('magency','=',$id)->leftjoin('projects', 'agencies.projects', 'like', DB::raw("concat('%', projects.project_recordid, '%')"))->groupBy('projects.id')->get();
+
         $organization_services = Organization::where('organizations_id','=', $id)->leftjoin('services', 'organizations.services', 'like', DB::raw("concat('%', services.service_id, '%')"))->select('services.*')->leftjoin('phones', 'services.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->leftjoin('taxonomies', 'services.taxonomy', '=', 'taxonomies.taxonomy_id')->select('services.*', DB::raw('group_concat(phones.phone_number) as phone_numbers'), DB::raw('taxonomies.name as taxonomy_name'))->groupBy('services.id')->get();
 
         $organization_projects = Organization::where('organizations_id','=', $id)->leftjoin('agencies', 'organizations.organizations_id', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('projects', 'agencies.projects', 'like', DB::raw("concat('%', projects.project_recordid, '%')"))->groupBy('projects.project_recordid')->get();
 
         $organization_peoples = Organization::where('organizations_id','=', $id)->leftjoin('contacts', 'organizations.contacts', 'like', DB::raw("concat('%', contacts.contact_id, '%')"))->groupBy('contacts.contact_id')->get();
 
-        return view('frontend.organization', compact('services','locations','organizations', 'taxonomys','service_name','service','organization','filter', 'organization_services', 'organization_projects', 'organization_peoples', 'organization_map'));
+        return view('frontend.organization', compact('services','locations','organizations', 'taxonomys','service_name','service','organization','filter', 'organization_services', 'organization_projects', 'organization_peoples', 'organization_map', 'project_map'));
     }
 
     /**

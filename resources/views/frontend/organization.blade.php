@@ -222,7 +222,7 @@ ul.nav.nav-tabs li a {
                                                         <br>
                                                         <br>
                                                         @if($organization->projects!='')
-                                                        <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                                        <table id="example" class="table table-striped table-hover table-bordered" cellspacing="0" width="100%">
                                                             <thead>
                                                                 <tr class="info">
                                                                     <th>Project ID</th>
@@ -414,6 +414,29 @@ ul.nav.nav-tabs li a {
           title: value.name,
          infoWindow: {
             content: ('<a href="location_'+value.location_id+'">'+value.name+'</a></br>' +value.address_1+', ' +value.city+', '+value.state_province+', '+value.postal_code)
+        }
+   });
+});
+
+</script>
+<script type="text/javascript">
+
+    var project_locations = <?php print_r(json_encode($project_map)) ?>;
+
+    var mymap = new GMaps({
+      el: '#mymap',
+      lat: 40.712722,
+      lng: -74.006058,
+      zoom:10
+    });
+
+    $.each( project_locations, function( index, value ){
+        mymap.addMarker({
+          lat: value.project_lat,
+          lng: value.project_long,
+          title: value.project_projectid,
+         infoWindow: {
+            content: ('<a style="color:red;" href="projects_'+value.project_recordid+'">'+value.project_projectid+'</a></br>')
         }
    });
 });
