@@ -91,35 +91,10 @@ ul.nav.nav-tabs li a {
                                             <p><code> Description:</code> {!! $organization->description !!}</p>
                                             <p><code> Email:</code> {{$organization->email}}</p>
                                             <p><code> Url:</code> {{$organization->url}}</p>
-
+                                            <p><code> Year 1 Project Budget:</code> {{$organization->url}}</p>
+                                            <p><code> Year 1 Project Budget:</code> {{$organization->url}}</p>
                                             </div>
-                                            <div>
-                                                <table class="table table-hover table-bordered">
-                                                    <thead>
-                                                    <tr class="info">
-                                                        <th class="text-center">Budget</th>
-                                                        <th class="text-center">Capital</th>
-                                                        <th class="text-center">Expense</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr class="warning">
-                                                        <td class="text-center">Year 1</td>
-                                                        <td class="text-center"></td>
-                                                        <td class="text-center"></td>
-                                                    </tr>
-                                                    <tr class="warning">
-                                                        <td class="text-center">Year 2</td>
-                                                        <td class="text-center"></td>
-                                                        <td class="text-center"></td>
-                                                    </tr>
-                                                    <tr class="warning">
-                                                        <td class="text-center">Year 3</td>
-                                                        <td class="text-center"></td>
-                                                        <td class="text-center"></td>
-                                                    </tr>     
-                                                </table>
-                                            </div>
+                                            <div class="timeline-centered timeline-entry timeline-entry-inner timeline-icon bg-violet"><i class="icon-bulb"></i></div>
                                             <div>
                                                 <!-- Nav tabs -->
                                                 <ul class="nav nav-tabs nav-justified">
