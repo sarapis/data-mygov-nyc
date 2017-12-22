@@ -84,7 +84,7 @@ ul.nav.nav-tabs li a {
 
                                     <div class="panel">
                                         <div class="panel-body">
-                                            <div class="note note-info"><h4 class="box-heading" style="font-size: 25px;">{{$people->name}} {{$people->name_suffix}}</h4>
+                                            <div class="note note-info"><h4 class="box-heading" style="font-size: 25px;">{{$people->name}} @if($people->name_suffix!='') ({{$people->name_suffix}}) @endif</h4>
 
                                             <p><code> Organization:</code><a href="organization_{{$people->organizations_id}}">{{$people->organization_name}}</a></p>
                                             <p><code> Title:</code> {{$people->office_title}}</p>
@@ -94,7 +94,8 @@ ul.nav.nav-tabs li a {
                                             <p><code> Email:</code> {{$people->email}}</p>
                                             <p><code> Phone:</code> {{$people->phone_numbers}}</p>
                                             </div>
-                                                
+                                             
+                                            @if($people->services!='')   
                                             <div id="grid-layout-table-1" class="box jplist">
 
                                                 <div class="jplist-ios-button"><i class="fa fa-sort"></i> Display Options</div>
@@ -128,23 +129,23 @@ ul.nav.nav-tabs li a {
                                                 <div class="box text-shadow">
                                                     <table class="demo-tbl">
                                                         <!--<item>1</item>-->
-                                                       @foreach($organization_services as $organization_service)
+                                                       @foreach($people_services as $people_service)
                                                         <tr class="tbl-item">
                                                             
                                                             <!--<data></data>-->
                                                             <td class="td-block">
 
-                                                                <p class="title" style="font-size: 25px;"><a href="/service_{{$organization_service->service_id}}" style="color: #357ca5;">{{$organization_service->name}}</a></p>
+                                                                <p class="title" style="font-size: 25px;"><a href="/service_{{$people_service->service_id}}" style="color: #357ca5;">{{$people_service->name}}</a></p>
 
                                                                 <p class="desc" style="font-size: 16px;"><a href="#" style="color: #00aff0;"></a></p>
 
                                                                 <div class="option" style="padding-left: 10px;padding-top: 5px;">
 
-                                                                    <p class="desc" style="font-size: 16px; color: #000;"><i class="fa fa-fw fa-sitemap"></i>{{$organization_service->taxonomy_name}}</p>
+                                                                    <p class="desc" style="font-size: 16px; color: #000;"><i class="fa fa-fw fa-sitemap"></i>{{$people_service->taxonomy_name}}</p>
 
-                                                                    <p class="desc" style="font-size: 16px; color: #000;"><i class="fa fa-fw fa-phone-square"></i>{!! $organization_service->phone_numbers !!}</p>
+                                                                    <p class="desc" style="font-size: 16px; color: #000;"><i class="fa fa-fw fa-phone-square"></i>{!! $people_service->phone_numbers !!}</p>
 
-                                                                    <p class="desc" style="font-size: 16px;">{!! $organization_service->description !!}</p>
+                                                                    <p class="desc" style="font-size: 16px;">{!! $people_service->description !!}</p>
                                                                 </div>
                                                             </td>
                                                             <!--<img/>-->
@@ -184,6 +185,9 @@ ul.nav.nav-tabs li a {
                                                 </div>
                                             </div>
                                                     <!--/.Panel 1-->
+                                            @else
+                                            <div class="alert alert-danger"><strong>No Services!</strong></div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -194,13 +198,8 @@ ul.nav.nav-tabs li a {
                                             <div id="mymap" style="width: 100%;"></div>
                                         </div>
                                         <div class="portlet-body">
-                                            <p><code>Address:</code></p>
-                                          
-                                                @foreach($organization_map as $servicemap)
-                                                @if($servicemap->location_id!=null)
-                                                    <p><a href="location_{{$servicemap->location_id}}">{{$servicemap->name}}</a>: {{$servicemap->address_1}}, {{$servicemap->city}}, {{$servicemap->state_province}}, {{$servicemap->postal_code}}</p>
-                                                @endif
-                                                @endforeach
+                                            <p><code>Address:</code>{{$people->full_address}}</p>
+
                                         </div>
                                     </div>
                                 </div>

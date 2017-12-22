@@ -367,15 +367,6 @@ ul.nav.nav-tabs li a {
                                             <p><code>Contact:</code>{{$organization->contact}}</p>
                                             <p><code>Phones:</code>{{$organization->phone_number}}</p>
                                             
-                                            <h2>Organization Details</h2>
-                                            
-                                            <p><span class="badge badge-yellow"></span> </p>
-                                            <p><code>Legal Status:</code></p>
-                                            <p><code>Tax Status:</code></p>
-                                            <p><code>Tax ID:</code></p>
-                                            <p><code>Year Incorporated:</code></p>
-                                            <p><code>Holiday schedule:</code></p>
-                                            <p><span class="badge badge-yellow">detail type</span> </p>
                                         </div>
                                     </div>
                                 </div>
