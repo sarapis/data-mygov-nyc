@@ -396,7 +396,7 @@ ul.nav.nav-tabs li a {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
-<script type="text/javascript">
+<script>
 
     var locations = <?php print_r(json_encode($organization_map)) ?>;
 
@@ -409,17 +409,31 @@ ul.nav.nav-tabs li a {
 
     $.each( locations, function( index, value ){
         mymap.addMarker({
-          lat: value.latitude,
-          lng: value.longitude,
-          title: value.name,
-         infoWindow: {
+            lat: value.latitude,
+            lng: value.longitude,
+            title: value.name,
+            infoWindow: {
             content: ('<a href="location_'+value.location_id+'">'+value.name+'</a></br>' +value.address_1+', ' +value.city+', '+value.state_province+', '+value.postal_code)
-        }
-   });
-});
+            }
+        });
+    });
+
+
+
+    var project_locations = <?php print_r(json_encode($project_map)) ?>;
+
+    $.each( project_locations, function( index, value ){
+        mymap.addMarker({
+            lat: value.project_lat,
+            lng: value.project_long,
+            title: value.project_projectid,
+             infoWindow: {
+            content: ('<a style="color:red;" href="projects_'+value.project_recordid+'">'+value.project_projectid+'</a></br>')
+            }
+        });
+    });
 
 </script>
-
 <script>
 $(document).ready(function() {
     $('#example').DataTable({
