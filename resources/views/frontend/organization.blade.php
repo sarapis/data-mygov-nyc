@@ -419,7 +419,10 @@ ul.nav.nav-tabs li a {
             });
         }
     });
-    var project_locations = <?php print_r(json_encode($project_map)) ?>;
+
+
+    var project_locations = <?php print_r(json_encode($locations)) ?>;
+
 
     $.each( project_locations, function(index, value){
         if (value.project_lat && value.project_long) {
