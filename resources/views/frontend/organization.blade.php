@@ -407,7 +407,7 @@ ul.nav.nav-tabs li a {
       zoom:10
     });
 
-    $.each( locations, function( index, value ){
+    $.each( locations, function( index, value){
         mymap.addMarker({
             lat: value.latitude,
             lng: value.longitude,
@@ -417,7 +417,27 @@ ul.nav.nav-tabs li a {
             }
         });
     });
+</script>
+<script>
+    var project_locations = <?php print_r(json_encode($project_map)) ?>;
 
+    var mymap = new GMaps({
+      el: '#mymap',
+      lat: 40.712722,
+      lng: -74.006058,
+      zoom:10
+    });
+
+    $.each( project_locations, function(index, value){
+        mymap.addMarker({
+          lat: value.project_lat,
+          lng: value.project_long,
+          title: value.project_projectid,
+         infoWindow: {
+            content: ('<a style="color:red;" href="projects_'+value.project_recordid+'">'+value.project_projectid+'</a></br>')
+        }
+   });
+});
 
 </script>
 <script>
