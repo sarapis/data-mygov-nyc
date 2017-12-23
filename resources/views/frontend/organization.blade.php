@@ -421,7 +421,7 @@ ul.nav.nav-tabs li a {
     });
 
 
-    var project_locations = <?php print_r(json_encode($locations)) ?>;
+    var project_locations = <?php print_r(json_encode($project_map)) ?>;
 
 
     $.each( project_locations, function(index, value){
