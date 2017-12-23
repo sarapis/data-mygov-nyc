@@ -391,38 +391,17 @@ ul.nav.nav-tabs li a {
 </div>
 </div>
 @include('layouts.script')
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5XHJ6oNL9-qh0XsL0G74y1xbcxNGkSxw&callback=initMap">
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnPNTpPro4wqYBo2GWuytxziCt7OgE8js&callback=initMap">
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+
 <script>
-
-    var locations = <?php print_r(json_encode($organization_map)) ?>;
-
-    var mymap = new GMaps({
-      el: '#mymap',
-      lat: 40.712722,
-      lng: -74.006058,
-      zoom:10
-    });
-
-    $.each( locations, function( index, value ){
-        mymap.addMarker({
-            lat: value.latitude,
-            lng: value.longitude,
-            title: value.name,
-            infoWindow: {
-            content: ('<a href="location_'+value.location_id+'">'+value.name+'</a></br>' +value.address_1+', ' +value.city+', '+value.state_province+', '+value.postal_code)
-            }
-        });
-    });
-
-
-
     var project_locations = <?php print_r(json_encode($project_map)) ?>;
 
-    $.each( project_locations, function( index, value ){
+    $.each( project_locations, function( index, value){
         mymap.addMarker({
             lat: value.project_lat,
             lng: value.project_long,

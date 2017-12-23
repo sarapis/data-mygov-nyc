@@ -45,7 +45,7 @@
 
                     <div>
                     <button class="cornsilk btn-blue" style="position: absolute;top: 7px;left: auto;" id="menu-toggle">
-                        <a href="" class="btn btn-secondary" style="padding: 0px;font-size: 25px;"><i class="fa  fa-search" style="color: #333;font-size: 25px;"></i></a>
+                        <a href="" class="btn btn-secondary" style="padding: 0px;font-size: 25px;"><i class="fa  fa-search" style="color: #fff;font-size: 25px;"></i></a>
                     </button>
                         <div class="page-content">
                             <div class="row">
@@ -100,7 +100,7 @@
 
                                                                 <div class="option" style="padding-left: 10px;padding-top: 5px;">
 
-                                                                    <p class="desc" style="font-size: 16px; color: #000;"><a href="organization_{{$taxonomy_service->organization_id}}" style="color: #00aff0;">{{$taxonomy_service->organization_name}}</a></p>
+                                                                    <p class="desc" style="font-size: 16px; color: #000;"><a href="organization_{{$taxonomy_service->organizations_id}}" style="color: #00aff0;">{{$taxonomy_service->organization_name}}</a></p>
 
                                                                     <p class="desc" style="font-size: 16px; color: #000;"><i class="fa fa-fw fa-sitemap"></i>{{$taxonomy->name}}</p>
 
