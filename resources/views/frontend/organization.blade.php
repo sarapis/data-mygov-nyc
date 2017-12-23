@@ -391,8 +391,7 @@ ul.nav.nav-tabs li a {
 </div>
 </div>
 @include('layouts.script')
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5XHJ6oNL9-qh0XsL0G74y1xbcxNGkSxw&callback=initMap">
-</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
@@ -408,36 +407,32 @@ ul.nav.nav-tabs li a {
     });
 
     $.each( locations, function( index, value){
-        mymap.addMarker({
-            lat: value.latitude,
-            lng: value.longitude,
-            title: value.name,
-            infoWindow: {
-            content: ('<a href="location_'+value.location_id+'">'+value.name+'</a></br>' +value.address_1+', ' +value.city+', '+value.state_province+', '+value.postal_code)
-            }
-        });
+        if (value.latitude && value.longitude) {
+
+            mymap.addMarker({
+                lat: value.latitude,
+                lng: value.longitude,
+                title: value.name,
+                infoWindow: {
+                content: ('<a href="location_'+value.location_id+'">'+value.name+'</a></br>' +value.address_1+', ' +value.city+', '+value.state_province+', '+value.postal_code)
+                }
+            });
+        }
     });
-</script>
-<script type="text/javascript">
     var project_locations = <?php print_r(json_encode($project_map)) ?>;
 
-    var mymap1 = new GMaps({
-      el: '#mymap',
-      lat: 40.712722,
-      lng: -74.006058,
-      zoom:10
-    });
-
     $.each( project_locations, function(index, value){
-        mymap1.addMarker({
-          lat: value.project_lat,
-          lng: value.project_long,
-          title: value.project_projectid,
-         infoWindow: {
-            content: ('<a style="color:red;" href="projects_'+value.project_recordid+'">'+value.project_projectid+'</a></br>')
+        if (value.project_lat && value.project_long) {
+            mymap.addMarker({
+                lat: value.project_lat,
+                lng: value.project_long,
+                title: value.project_projectid,
+                infoWindow: {
+                    content: ('<a style="color:red;" href="projects_'+value.project_recordid+'">'+value.project_projectid+'</a></br>')
+                }
+            });
         }
-   });
-});
+    });
 
 </script>
 <script>
