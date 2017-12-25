@@ -163,7 +163,7 @@
 								$logo = '';
 								foreach ($record['fields']['Logo'] as $key => $image) {
 									try {
-										$logo .= $image["url"].',';
+										$logo .= $image["url"];
 									} catch (Exception $e) {
 										echo 'Caught exception: ',  $e->getMessage(), "\n";
 									}

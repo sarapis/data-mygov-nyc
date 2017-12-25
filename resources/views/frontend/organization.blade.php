@@ -334,6 +334,9 @@ ul.nav.nav-tabs li a {
                                             <p><code>Contact:</code>{{$organization->contact}}</p>
                                             <p><code>Phones:</code>{{$organization->phone_number}}</p>
                                             
+                                            @if($organization->logo!='')
+                                                <img src="{{$organization->logo}}" class="img-responsive">
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
