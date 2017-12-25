@@ -364,12 +364,27 @@ ul.nav.nav-tabs li a {
 <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript">
 
+    var locations = <?php print_r(json_encode($organization_map)) ?>;
 
     var mymap = new GMaps({
       el: '#mymap',
       lat: 40.712722,
       lng: -74.006058,
       zoom:10
+    });
+
+    $.each( locations, function( index, value){
+        if (value.latitude && value.longitude) {
+
+            mymap.addMarker({
+                lat: value.latitude,
+                lng: value.longitude,
+                title: value.name,
+                infoWindow: {
+                content: ('<a href="location_'+value.location_id+'">'+value.name+'</a></br>' +value.address_1+', ' +value.city+', '+value.state_province+', '+value.postal_code)
+                }
+            });
+        }
     });
 
 
