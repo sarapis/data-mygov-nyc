@@ -366,7 +366,6 @@ ul.nav.nav-tabs li a {
 
     var locations = <?php print_r(json_encode($organization_map)) ?>;
 
-    var project_locations = <?php print_r(json_encode($project_map)) ?>;
 
     var mymap = new GMaps({
       el: '#mymap',
