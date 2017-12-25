@@ -90,6 +90,27 @@ class IndexController extends Controller
         return view('frontend.about', compact('abouts','taxonomies','allTaxonomies','services','locations','organizations', 'taxonomys','filter'));
     }
 
+
+    public function get_involved()
+
+    {
+        $services = Service::all();
+        $locations = Location::all();
+        $taxonomys = Taxonomy::all();
+        $organizations = Organization::all();
+        $taxonomies = Taxonomy::where('parent_name', '=', '')->get();
+        $allTaxonomies = Taxonomy::pluck('name','taxonomy_id')->all();
+        // return $tree;
+        //return view('files.treeview',compact('tree'));
+        $involves = DB::table('involves')->first();
+        $service_name = '&nbsp;';
+        $location_name = '&nbsp;';
+        $organization_name = '&nbsp;';
+        $service_type_name = '&nbsp;';
+        $filter = collect([$service_type_name, $location_name, $organization_name, $service_name]);
+        return view('frontend.get', compact('involves','taxonomies','allTaxonomies','services','locations','organizations', 'taxonomys','filter'));
+    }
+
     /**
      * Display the specified resource.
      *

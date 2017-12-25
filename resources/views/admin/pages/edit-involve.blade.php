@@ -1,6 +1,6 @@
 @extends('admin.layouts.dashboardhome') 
 
-@section('template_title') Edit About Page
+@section('template_title') Edit Get Involve
 @endsection 
 
 @section('template_fastload_css') 
@@ -20,7 +20,7 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-				About Edit
+				Get Involve Edit
 				<small> {{ Lang::get('pages.dashboard-access-level',['access' => $access] ) }} </small>
 			</h1>
 
@@ -41,7 +41,7 @@
                         {{$message}}                
                     </div>
                 @endif
-                {{ Form::open(array('route' => 'abouts.store')) }}
+                {{ Form::open(array('route' => 'involves.store')) }}
                     {{ csrf_field() }}
                     <div class="box-body">
                      <!--   <div class="form-group">
@@ -50,19 +50,19 @@
 
                         <div class="form-group">
                             <label for="title">Title</label>
-                            <input class="form-control" placeholder="Title" name="title" type="text" id="title" value="{{$about->title}}">
+                            <input class="form-control" placeholder="Title" name="title" type="text" id="title" value="{{$involve->title}}">
                         </div>
 
                         <div class="form-group">
                             <label for="body">Content</label>
-                            <textarea class="form-control" placeholder="Content" id="summernote" name="body" cols="50" rows="10" style="display: none;">{!! $about->body !!}</textarea>
+                            <textarea class="form-control" placeholder="Content" id="summernote" name="body" cols="50" rows="10" style="display: none;">{!! $involve->body !!}</textarea>
                            <!-- {{Form::label('body', 'Content')}}{{Form::textarea('body',null,array('class' => 'form-control', 'placeholder'=>'Content', 'id' => 'summernote'))}}--> 
                         </div>
                         <div class="form-group">
-                            {{Form::submit('Publish About',array('class' => 'btn btn-primary btn-sm'))}} </div>
+                            {{Form::submit('Publish',array('class' => 'btn btn-primary btn-sm'))}} </div>
                         {{Form::close()}}
                         <script>
-                            var content = <?php print_r(json_encode($about->body)) ?>;
+                            var content = <?php print_r(json_encode($involve->body)) ?>;
                             $('#summernote').summernote({
                                 tabsize: 2,
                                 height: 300

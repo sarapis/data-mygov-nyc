@@ -31,7 +31,7 @@
                     </i>About</a>
                        
                     </li>
-                    <li><a href="/get_involved"><i class="fa  fa-info-circle">
+                    <li><a href="/get_involved"><i class="fa fa-hand-stop-o">
                         
                     </i>Get Invoted</a>
                        

@@ -128,6 +128,8 @@ Route::get('home',['uses'=>'IndexController@index']);
 
 Route::get('about',['uses'=>'IndexController@about']);
 
+Route::get('get_involved',['uses'=>'IndexController@get_involved']);
+
 // USER PAGE ROUTES - RUNNING THROUGH AUTH MIDDLEWARE
 Route::group(['middleware' => 'auth'], function () {
 
@@ -208,6 +210,8 @@ Route::group(['middleware' => 'administrator'], function () {
 	Route::resource('posts', 'PostsController');
 
 	Route::resource('abouts', 'AboutsController');
+
+	Route::resource('involves', 'InvolvesController');
 
 });
 

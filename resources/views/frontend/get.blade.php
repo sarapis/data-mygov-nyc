@@ -1,5 +1,5 @@
 @include('layouts.style')
-<title>About</title>
+<title>Get Involved</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link href="../css/treeview.css" rel="stylesheet">
@@ -24,10 +24,10 @@
             <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
                 <div class="page-header pull-left">
                     <div class="page-title plxxl">
-                        About</div>
+                        Get Involved</div>
                 </div>
                 <ol class="breadcrumb page-breadcrumb pull-right">
-                    <li><i class="fa  fa-info-circle"></i>&nbsp;<a href="/about">About</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+                    <li><i class="fa  fa-info-circle"></i>&nbsp;<a href="/get_involved">Get Involved</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
                 </ol>
                 <div class="clearfix">
                 </div>
@@ -54,8 +54,8 @@
                                     
                                     <div class="panel">
                                         <div class="panel-body">
-                                            <h4>{{$abouts->title}}</h4>
-                                            {!! $abouts->body !!}
+                                            <h4>{{$involves->title}}</h4>
+                                            {!! $involves->body !!}
                                         </div>                                                                  
                                     </div>
                                 </div>
@@ -79,3 +79,4 @@
 </div>
 @include('layouts.script')
 <script src="../js/treeview.js"></script>
+

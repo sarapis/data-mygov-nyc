@@ -44,6 +44,12 @@
             </li>
 
             <li>
+              <a href="/involves">
+                <i class="fa fa-handshake-o"></i> <span>Get Involved Edit</span>
+              </a>
+            </li>
+
+            <li>
               <a href="/datasync">
                 <i class="fa fa-database"></i> <span>Data Sync</span>
               </a>

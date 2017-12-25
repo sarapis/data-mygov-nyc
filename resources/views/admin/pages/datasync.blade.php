@@ -21,7 +21,7 @@
         <h1>
         Data Sync
         <small> {{ Lang::get('pages.dashboard-access-level',['access' => $access] ) }} </small>
-      </h1> {!! Breadcrumbs::render('profile_edit', $user) !!}
+      </h1>
 
     </section>
     <section class="content">
