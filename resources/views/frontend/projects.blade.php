@@ -87,7 +87,7 @@
                                         </tbody>
                                     </table>
                                     <dir class="text-right">
-                                   
+                                    {{$projects->links()}}
                                     </dir>
                                 </div>  
                             </div>

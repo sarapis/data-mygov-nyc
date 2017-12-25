@@ -168,9 +168,10 @@
 										echo 'Caught exception: ',  $e->getMessage(), "\n";
 									}
 								}
+								$services_count= sizeof(explode(",", $services));
 
-								$sql = "INSERT INTO organizations (organization_id, organizations_id, alternate_name, name, dedupe, type, child_of, contacts, website, description, logo, checkbook, internalnotes, contacts_link, services, phones, locations, contact, details, program, email, legal_status, tax_status, tax_id, year_incorporated, sources)
-								VALUES ('{$record['id']}', '{$organizations_id}', '{$alternate_name}', '{$name}', '{$record['fields']['dedupe']}', '{$record['fields']['Type']}', '{$record['fields']['Child of']}', '{$contacts}', '{$record['fields']['website']}',  '{$description}', '{$logo}', '{$record['fields']['checkbook']}', '{$record['fields']['internalnotes']}', '{$record['fields']['contacts link']}', '{$services}', '{$phones}', '{$locations}', '{$contact}', '{$details}', '{$program}', '{$record['fields']['email']}', '{$record['fields']['legal_status']}', '{$record['fields']['tax_status']}', '{$record['fields']['tax_id']}', '{$record['fields']['year_incorporated']}', '{$sources}');";
+								$sql = "INSERT INTO organizations (organization_id, organizations_id, alternate_name, name, dedupe, type, child_of, contacts, website, description, logo, checkbook, internalnotes, contacts_link, services, phones, locations, contact, details, program, email, legal_status, tax_status, tax_id, year_incorporated, sources, services_count)
+								VALUES ('{$record['id']}', '{$organizations_id}', '{$alternate_name}', '{$name}', '{$record['fields']['dedupe']}', '{$record['fields']['Type']}', '{$record['fields']['Child of']}', '{$contacts}', '{$record['fields']['website']}',  '{$description}', '{$logo}', '{$record['fields']['checkbook']}', '{$record['fields']['internalnotes']}', '{$record['fields']['contacts link']}', '{$services}', '{$phones}', '{$locations}', '{$contact}', '{$details}', '{$program}', '{$record['fields']['email']}', '{$record['fields']['legal_status']}', '{$record['fields']['tax_status']}', '{$record['fields']['tax_id']}', '{$record['fields']['year_incorporated']}', '{$sources}', '{$services_count}');";
 
 								if ($conn->query($sql) === TRUE) {
 								    echo "New record created successfully";

@@ -39,6 +39,15 @@ Route::get('/twitter', function()
 Route::get('/organizations', 'OrganizationController@all');
 Route::get('/organization_all', 'OrganizationController@all');
 Route::get('/organization_{id}', 'OrganizationController@find');
+Route::get('/organizations_expensedesc', 'OrganizationController@expensedesc');
+Route::get('/organizations_expenseasc', 'OrganizationController@expenseasc');
+Route::get('/organizations_projectsdesc', 'OrganizationController@projectsdesc');
+Route::get('/organizations_projectsasc', 'OrganizationController@projectsasc');
+Route::get('/organizations_servicesdesc', 'OrganizationController@servicesdesc');
+Route::get('/organizations_servicesasc', 'OrganizationController@servicesasc');
+Route::get('/organizations_projectdesc', 'OrganizationController@projectsdesc');
+Route::get('/organizations_projectasc', 'OrganizationController@projectsasc');
+
 
 //Services
 Route::get('/services', 'ServiceController@index');
@@ -72,6 +81,10 @@ Route::get('/location_{id}', 'LocationController@find');
 
 Route::match(['get', 'post'], '/services_find', [
     'uses'          => 'ServiceController@search'
+]);
+
+Route::match(['get', 'post'], '/organizations_find', [
+    'uses'          => 'OrganizationController@search'
 ]);
 
 // ALL AUTHENTICATION ROUTES - HANDLED IN THE CONTROLLERS

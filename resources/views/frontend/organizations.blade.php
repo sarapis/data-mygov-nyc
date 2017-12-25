@@ -57,7 +57,7 @@
                                     
                                       <div class="col-sm-4 col-md-4">
                                         <div class="input-group col-md-12">
-                                          <form action="/pages/agencies/find" method="POST" class="form-group">  
+                                          <form action="/organizations_find" method="POST" class="form-group">  
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             <input type="text" class="form-control" placeholder="Search" name="find" style="margin-top: 0;width: calc(100% - 40px);"> 
                                             <span class="input-group-btn">
@@ -67,7 +67,7 @@
                                         </div>            
                                       </div>
                                       <div class="col-sm-8 col-md-8">
-                                      <h4><b style="margin-left:30px;"> Total Cost</b> <a href="/pages/agencies/totalcostdesc"> <i class="fa fa-sort-amount-desc" aria-hidden="true"></i> </a><a href="/pages/agencies/totalcostasc"> <i class="fa fa-sort-amount-asc" aria-hidden="true"></i> </a><b style="margin-left:65px; "> Projects </b> <a href="/pages/agencies/projectsdesc"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i></a><a href="/pages/agencies/projectsasc"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a><b style="margin-left:65px;"> Commitments </b><a href="/pages/agencies/commitmentsdesc"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i></a><a href="/pages/agencies/commitmentsasc"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a></h4>
+                                      <h4><b style="margin-left:30px;"> Expense Budgets</b> <a href="/organizations_expensedesc"> <i class="fa fa-sort-amount-desc" aria-hidden="true"></i> </a><a href="/organizations_expenseasc"> <i class="fa fa-sort-amount-asc" aria-hidden="true"></i> </a><b style="margin-left:65px; "> Projects Budgets</b> <a href="/organizations_projectsdesc"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i></a><a href="/organizations_projectsasc"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a><b style="margin-left:65px;"> Services </b><a href="/organizations_servicesdesc"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i></a><a href="/organizations_servicesasc"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a><b style="margin-left:65px;"> Projects </b><a href="/organizations_projectdesc"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i></a><a href="/organizations_projectasc"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a></h4>
 
                                       </div>
                                     

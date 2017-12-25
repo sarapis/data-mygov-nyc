@@ -63,11 +63,11 @@
 
                                             <p><code> Status:</code><span class="badge badge-green">{{$service->status}}</span></p>
 
-                                            <p><code> Category:</code><a href="/category_{{$taxonomy->taxonomy_id}}" style="color: #428bca;">{{$taxonomy->name}}</a></p>
+                                            <p><code> Service Category:</code><a href="/category_{{$taxonomy->taxonomy_id}}" style="color: #428bca;">{{$taxonomy->name}}</a></p>
 
-                                            <p><code> Url:</code>{!! $service->url !!}</p>
+                                            <a class="btn-yellow btn-sm" href="{{$service->url}}" target="_blank">Goto Website</a>
 
-                                            <p><code> Email:</code>{{$service->email}}</p>
+                                            <p style="padding-top: 12px;"><code> Email:</code>{!! $service->email !!}</p>
 
                                             <p><code> Program:</code>{{$program}}</p>
 
@@ -91,9 +91,11 @@
                                         </div>
                                         <div class="portlet-body">
                                             <p><code>Address:</code></p>
-                                                @foreach($service_map as $servicemap)
-                                                    <p><a href="location_{{$servicemap->location_id}}">{{$servicemap->name}}</a>: {{$servicemap->address_1}}, {{$servicemap->city}}, {{$servicemap->state_province}}, {{$servicemap->postal_code}}</p>
-                                                @endforeach
+                                                @if($service->locations!='')
+                                                    @foreach($service_map as $servicemap)
+                                                        <p><a href="location_{{$servicemap->location_id}}">{{$servicemap->name}}</a>: {{$servicemap->address_1}}, {{$servicemap->city}}, {{$servicemap->state_province}}, {{$servicemap->postal_code}}</p>
+                                                    @endforeach
+                                                @endif
                                             <p><code>Contact:</code>{{$contacts}}</p>
                                             <p><code>Regular schedule:</code></p>
                                             <p><code>holiday schedule:</code></p>
