@@ -366,6 +366,8 @@ ul.nav.nav-tabs li a {
 
     var locations = <?php print_r(json_encode($organization_map)) ?>;
 
+    var project_locations = <?php print_r(json_encode($project_map)) ?>;
+
     var mymap = new GMaps({
       el: '#mymap',
       lat: 40.712722,
@@ -386,10 +388,6 @@ ul.nav.nav-tabs li a {
             });
         }
     });
-
-
-    var project_locations = <?php print_r(json_encode($project_map)) ?>;
-
 
     $.each( project_locations, function(index, value){
         if (value.project_lat && value.project_long) {
