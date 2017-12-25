@@ -293,52 +293,19 @@ ul.nav.nav-tabs li a {
                                                             <tbody>
                                                             <tr>
                                                                 <td class="text-center">Total Dept.</td>
-                                                                <td class="text-center"></td>
-                                                                <td class="text-center"></td>
-                                                                <td class="text-center"></td>
+                                                                <td class="text-center">${{number_format($expenses_sum->expenses_year1)}}</td>
+                                                                <td class="text-center">${{number_format($expenses_sum->expenses_year2)}}</td>
+                                                                <td class="text-center">${{number_format($expenses_sum->expenses_year3)}}</td>
                                                             </tr>
+                                                            @foreach($organization_expenses as $organizaiton_expense)
                                                             <tr>
-                                                                <td class="text-center">City Funds</td>
-                                                                <td class="text-center"></td>
-                                                                <td class="text-center"></td>
-                                                                <td class="text-center"></td>
+                                                                <td class="text-center">{{$organizaiton_expense->line_number_description}}</td>
+                                                                <td class="text-center">${{number_format($organizaiton_expense->year1_forecast)}}</td>
+                                                                <td class="text-center">${{number_format($organizaiton_expense->year2_estimate)}}</td>
+                                                                <td class="text-center">${{number_format($organizaiton_expense->year3_estimate)}}</td>
                                                             </tr>
-                                                            <tr>
-                                                                <td class="text-center">Other Categorical</td>
-                                                                <td class="text-center"></td>
-                                                                <td class="text-center"></td>
-                                                                <td class="text-center"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-center">Captical Funds-I.F.A</td>
-                                                                <td class="text-center"></td>
-                                                                <td class="text-center"></td>
-                                                                <td class="text-center"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-center">State</td>
-                                                                <td class="text-center"></td>
-                                                                <td class="text-center"></td>
-                                                                <td class="text-center"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-center">Federal - C.D.</td>
-                                                                <td class="text-center"></td>
-                                                                <td class="text-center"></td>
-                                                                <td class="text-center"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-center">Federal - Other</td>
-                                                                <td class="text-center"></td>
-                                                                <td class="text-center"></td>
-                                                                <td class="text-center"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-center">Intra - City Other</td>
-                                                                <td class="text-center"></td>
-                                                                <td class="text-center"></td>
-                                                                <td class="text-center"></td>
-                                                            </tr>
+                                                            @endforeach
+
                                                             </tbody>
                                                         </table>
                                                     </div>

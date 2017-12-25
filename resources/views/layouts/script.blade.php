@@ -29,7 +29,7 @@
     <script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5970165a0f81140011019a43&product=inline-share-buttons"></script>
     <!--CORE JAVASCRIPT-->
     <script src="script/main.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnPNTpPro4wqYBo2GWuytxziCt7OgE8js&callback=initMap">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5XHJ6oNL9-qh0XsL0G74y1xbcxNGkSxw&callback=initMap">
     </script>
     <script>
         (function (i, s, o, g, r, a, m) {

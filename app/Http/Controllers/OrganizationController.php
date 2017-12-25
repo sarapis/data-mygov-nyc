@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
+use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 
 use App\Logic\User\UserRepository;
 use App\Models\Post;
@@ -70,7 +71,12 @@ class OrganizationController extends Controller
 
         $organization_peoples = Organization::where('organizations_id','=', $id)->leftjoin('contacts', 'organizations.contacts', 'like', DB::raw("concat('%', contacts.contact_id, '%')"))->groupBy('contacts.contact_id')->get();
 
-        return view('frontend.organization', compact('services','locations','organizations', 'taxonomys','service_name','service','organization','filter', 'organization_services', 'organization_projects', 'organization_peoples', 'organization_map', 'project_map'));
+        $organization_expenses = Organization::where('organizations_id','=', $id)->leftjoin('agencies', 'organizations.organizations_id', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->groupBy('expenses.expenses_id')->orderBy('expenses.line_number')->get(); 
+
+        $expenses_sum = Organization::where('organizations_id','=', $id)->leftjoin('agencies', 'organizations.organizations_id', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->select(DB::raw('sum(expenses.year1_forecast) as expenses_year1'), DB::raw('sum(expenses.year2_estimate) as expenses_year2'), DB::raw('sum(expenses.year3_estimate) as expenses_year3'))->first();  
+
+
+        return view('frontend.organization', compact('services','locations','organizations', 'taxonomys','service_name','service','organization','filter', 'organization_services', 'organization_projects', 'organization_peoples', 'organization_map', 'organization_expenses', 'expenses_sum', 'project_map'));
     }
 
     /**

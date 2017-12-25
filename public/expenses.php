@@ -148,7 +148,7 @@
 
 
 								$sql = "INSERT INTO expenses (expenses_id, report_sort, agency_number, publication_date,  agency_name, line_number, line_number_description, fiscal_year1, year1_forecast, year2_estimate, year3_estimate, year4_estimate)
-								VALUES ( '{$record['id']}', '{$record['fields']['Report Sort']}', '{$agency_number}', '{$record['fields']['Publication Date']}', '{$agency_name}', '{$record['fields']['Line Number']}', '{$record['fields']['Line Number Description']}', '{$record['fields']['Fiscal Year 1']}', '{$record['fields']['Year 1 Forecast']}', '{$record['fields']['Year 2 Estimate']}', '{$record['fields']['Year 3 Estimate']}', '{$record['fields']['Year 4 Estimate']}');";
+								VALUES ( '{$record['id']}', '{$record['fields']['Report_Sort']}', '{$agency_number}', '{$record['fields']['Publication Date']}', '{$agency_name}', '{$record['fields']['Line Number']}', '{$record['fields']['Line Number Description']}', '{$record['fields']['Fiscal Year 1']}', '{$record['fields']['Year 1 Forecast']}', '{$record['fields']['Year 2 Estimate']}', '{$record['fields']['Year 3 Estimate']}', '{$record['fields']['Year 4 Estimate']}');";
 								if ($conn->query($sql) === TRUE) {
 								    echo "New record created successfully";
 								} else {
