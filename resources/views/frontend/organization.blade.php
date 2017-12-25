@@ -389,18 +389,6 @@ ul.nav.nav-tabs li a {
         }
     });
 
-    $.each( project_locations, function(index, value){
-        if (value.project_lat && value.project_long) {
-            mymap.addMarker({
-                lat: value.project_lat,
-                lng: value.project_long,
-                title: value.project_projectid,
-                infoWindow: {
-                    content: ('<a style="color:red;" href="projects_'+value.project_recordid+'">'+value.project_projectid+'</a></br>')
-                }
-            });
-        }
-    });
 
 </script>
 <script>
