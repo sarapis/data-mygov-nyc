@@ -136,8 +136,6 @@ class ServiceController extends Controller
         $find = $request->input('find');
         $services_all = DB::table('services')->leftjoin('phones', 'services.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->select('services.*', DB::raw('group_concat(phones.phone_number) as phone_numbers'))->groupBy('services.id')->leftjoin('organizations', 'services.organization', '=', 'organizations.organization_id')->leftjoin('taxonomies', 'services.taxonomy', '=', 'taxonomies.taxonomy_id')->select('services.*', DB::raw('group_concat(phones.phone_number) as phone_numbers'), DB::raw('organizations.name as organization_name'), DB::raw('taxonomies.name as taxonomy_name'))->where('services.name', 'like', '%'.$find.'%')
             ->orwhere('services.description', 'like', '%'.$find.'%')
-            ->orwhere('organizations.name', 'like', '%'.$find.'%')
-            ->orwhere('taxonomies.name', 'like', '%'.$find.'%')
             ->get();
         $location_map = DB::table('locations')->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->get();
         return view('frontend.search', compact('services','locations','organizations', 'taxonomys','service_name','filter','services_all', 'location_map'));
