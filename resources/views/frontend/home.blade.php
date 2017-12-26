@@ -117,7 +117,9 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-
+                                                <div class="col-sm-6">
+                                                    <iframe src="https://feed.mikle.com/widget/v2/58831/" height="402px" width="100%" class="fw-iframe" scrolling="no" frameborder="0"></iframe>
+                                                </div>
                                             </div>                            
                                         </div>
                                     </div>
