@@ -3,6 +3,9 @@
   .thumbnail{
     min-height: 360px;
   }
+  h4{
+    font-size: 16px;
+  }
 </style>
 <title>All Oragnizations</title>
 
