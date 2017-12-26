@@ -1,7 +1,7 @@
 @include('layouts.style')
 <style>
   .thumbnail{
-    min-height: 360px;
+    min-height: 380px;
   }
   h4{
     font-size: 16px;
