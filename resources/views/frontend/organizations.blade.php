@@ -67,7 +67,18 @@
                                         </div>            
                                       </div>
                                       <div class="col-sm-8 col-md-8">
-                                      <h4><b style="margin-left:30px;"> Expense Budgets</b> <a href="/organizations_expensedesc"> <i class="fa fa-sort-amount-desc" aria-hidden="true"></i> </a><a href="/organizations_expenseasc"> <i class="fa fa-sort-amount-asc" aria-hidden="true"></i> </a><b style="margin-left:65px; "> Projects Budgets</b> <a href="/organizations_projectsdesc"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i></a><a href="/organizations_projectsasc"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a><b style="margin-left:65px;"> Services </b><a href="/organizations_servicesdesc"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i></a><a href="/organizations_servicesasc"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a><b style="margin-left:65px;"> Projects </b><a href="/organizations_projectdesc"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i></a><a href="/organizations_projectasc"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a></h4>
+                                        <div class="col-sm-3 text-center">
+                                          <h4><b> Expense Budgets</b> <a href="/organizations_expensedesc"> <i class="fa fa-sort-amount-desc" aria-hidden="true"></i> </a><a href="/organizations_expenseasc"> <i class="fa fa-sort-amount-asc" aria-hidden="true"></i> </a></h4>
+                                        </div>
+                                        <div class="col-sm-3 text-center">
+                                          <h4><b> Projects Budgets</b> <a href="/organizations_projectsdesc"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i></a><a href="/organizations_projectsasc"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a></h4>
+                                        </div>
+                                        <div class="col-sm-3 text-center">
+                                          <h4><b> Quantity Services </b><a href="/organizations_servicesdesc"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i></a><a href="/organizations_servicesasc"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a></h4>
+                                        </div>
+                                        <div class="col-sm-3 text-center">
+                                          <h4><b> Quantity Projects </b><a href="/organizations_projectdesc"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i></a><a href="/organizations_projectasc"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a></h4>
+                                        </div>
 
                                       </div>
                                     
