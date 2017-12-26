@@ -15,6 +15,7 @@ use App\Models\Post;
 use App\Models\Taxonomy;
 use App\Models\Service;
 use App\Models\Location;
+use App\Models\Project;
 use App\Models\Organization;
 use App\Models\Detail;
 use App\Models\Program;
@@ -39,12 +40,18 @@ class ServiceController extends Controller
     
     public function index()
     {
-        $services = Service::all();
-        $locations = Location::all();
         $taxonomys = Taxonomy::all();
-        $organizations = Organization::all();
         $taxonomies = Taxonomy::where('parent_name', '=', '')->get();
         $allTaxonomies = Taxonomy::pluck('name','taxonomy_id')->all();
+
+        $services = Service::all();
+        $organizations = Organization::all();
+        $projects = Project::all();
+        $service_name = 'All';
+        $organization_name = '&nbsp;';
+        $project_name = '&nbsp;';
+        $filter = collect([$organization_name, $service_name, $project_name]);
+
         // return $tree;
         //return view('files.treeview',compact('tree'));
         $posts = $this->post->first();
@@ -52,16 +59,16 @@ class ServiceController extends Controller
         $location_name = '&nbsp;';
         $organization_name = '&nbsp;';
         $service_type_name = '&nbsp;';
-        $filter = collect([$service_type_name, $location_name, $organization_name, $service_name]);
+
         $location_map = DB::table('locations')->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->get();
-        return view('frontend.services', compact('posts','taxonomies','allTaxonomies','services','locations','organizations', 'taxonomys','filter', 'location_map'));
+        return view('frontend.services', compact('posts','taxonomies','allTaxonomies','services','projects','organizations', 'taxonomys','filter', 'location_map'));
     }
 
     public function all()
     {
         $services = Service::all();
         $locations = Location::all();
-        $taxonomys = Taxonomy::all();
+        $taxonomies = Taxonomy::all();
         $organizations = Organization::all();
         $service_name = 'All';
         $location_name = '&nbsp;';
@@ -71,7 +78,7 @@ class ServiceController extends Controller
 
         $services_all = DB::table('services')->leftjoin('phones', 'services.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->select('services.*', DB::raw('group_concat(phones.phone_number) as phone_numbers'))->groupBy('services.id')->leftjoin('organizations', 'services.organization', '=', 'organizations.organization_id')->leftjoin('taxonomies', 'services.taxonomy', '=', 'taxonomies.taxonomy_id')->select('services.*', DB::raw('group_concat(phones.phone_number) as phone_numbers'), DB::raw('organizations.name as organization_name'), DB::raw('taxonomies.name as taxonomy_name'))->get();
         $location_map = DB::table('locations')->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->get();
-        return view('frontend.services', compact('services','locations','organizations', 'taxonomys','service_name','filter','services_all', 'location_map'));
+        return view('frontend.search', compact('services','locations','organizations', 'taxonomies','service_name','filter','services_all', 'location_map'));
     }
 
     /**
@@ -82,10 +89,7 @@ class ServiceController extends Controller
      */
     public function find($id)
     {
-        $services = Service::all();
-        $locations = Location::all();
-        $taxonomys = Taxonomy::all();
-        $organizations = Organization::all();
+
         $service = Service::where('service_id','=',$id)->first();
         $service_organization = Service::where('service_id','=', $id)->value('organization');
         $service_program = Service::where('service_id','=', $id)->value('programs');
@@ -99,10 +103,14 @@ class ServiceController extends Controller
         $contacts = Contact::where('contact_id', '=', $service_contact)->value('name');
 
         //sidebar menu
+
+        $services = Service::all();
+        $organizations = Organization::all();
+        $projects = Project::all();
         $service_name = Service::where('service_id','=', $id)->value('name');
-        $location_name = '&nbsp;';
         $organization_name = '&nbsp;';
-        $service_type_name = '&nbsp;';
+        $project_name = '&nbsp;';
+        $filter = collect([$organization_name, $service_name, $project_name]);
 
         //$service_locations = DB::table('services')->where('service_id', '=', $id)->leftjoin('locations', 'services.locations', 'like', DB::raw("concat('%', locations.location_id, '%')"))->select('locations.name')->get();
         //$lat = DB::table('services')->where('service_id','=',$id)->leftjoin('locations', 'services.locations', '=', 'locations.location_id')-> value('latitude');
@@ -112,8 +120,7 @@ class ServiceController extends Controller
         
         $service_details = DB::table('services')->where('service_id', '=', $id)->leftjoin('details', 'services.details', 'like', DB::raw("concat('%', details.detail_id, '%')"))->select('details.value', 'details.detail_type')->get();
  
-        $filter = collect([$service_type_name, $location_name, $organization_name, $service_name]);
-        return view('frontend.service', compact('services','locations','organizations', 'taxonomys','service_name','service','organization','program','taxonomy', 'contacts', 'service_map','filter', 'service_details'));
+        return view('frontend.service', compact('services','projects','organizations', 'taxonomys','service_name','service','organization','program','taxonomy', 'contacts', 'service_map','filter', 'service_details'));
     }
 
     /**

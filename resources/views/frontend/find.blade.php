@@ -1,5 +1,5 @@
 @include('layouts.style')
-<title>All Services</title>
+<title>Find</title>
 
 <div>
     <!--BEGIN BACK TO TOP-->
@@ -20,7 +20,7 @@
             <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
                 <div class="page-header pull-left">
                     <div class="page-title plxxl">
-                        Find Services</div>
+                        Find ... "{{$find}}"</div>
                 </div>
                 <ol class="breadcrumb page-breadcrumb pull-right">
                     <li><i class="fa fa-gift"></i>&nbsp;<a href="/servive">Services</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
@@ -46,9 +46,15 @@
                     </button>
                         <div class="page-content">
                             <div class="row">
-                                <div class="col-lg-8" style="padding: 0;">
+                                <div class="col-lg-12" style="padding: 0;">
                                     <div class="panel">
                                         <div class="panel-body">
+                                            <ul class="nav nav-tabs">
+                                                <li><a href="/findorganization_{{$find}}">Organizations ({{$count_organizations}})</a></li>
+                                                <li><a href="/findservice_{{$find}}">Services ({{$count_services}})</a></li>
+                                                <li><a href="/findproject_{{$find}}">Projects ({{$count_projects}})</a></li>
+                                                <li><a href="/findpeople_{{$find}}">People ({{$count_peoples}})</a></li>
+                                            </ul>
                                             <div id="grid-layout-table-1" class="box jplist">
                                                 <div class="jplist-ios-button"><i class="fa fa-sort"></i> Display Options</div>
                                                 <div class="jplist-panel box panel-top">
@@ -79,30 +85,77 @@
                                                 </div>
                                                 
                                                 <div class="box text-shadow">
+
                                                     <table class="demo-tbl">
                                                         <!--<item>1</item>-->
-                                                        @foreach($services_all as $service)
-                                                        <tr class="tbl-item">
+                                                        @if($find_organizations!='')
+                                                            @foreach($find_organizations as $find_organization)
+                                                            <tr class="tbl-item">
+                                                                
+                                                                <!--<data></data>-->
+                                                                <td class="td-block">
+
+                                                                    <p class="title" style="font-size: 25px;"><a href="/organization_{{$find_organization->organizations_id}}" style="color: #357ca5;">{{$find_organization->name}}</a>  <code class="label-success"><a href="/organizations" style="font-size:20px; color: #fff;"> Organizations</a></code></p>
+
+                                                                    <p class="desc" style="font-size: 16px;">{{str_limit($find_organization->description, 300)}}</p>
+
+                                                                    </div>
+                                                                </td>
                                                             
-                                                            <!--<data></data>-->
-                                                            <td class="td-block">
+                                                            </tr>
+                                                            @endforeach
+                                                        @endif
+                                                        @if($find_services!='')
+                                                            @foreach($find_services as $find_service)
+                                                            <tr class="tbl-item">
+                                                                
+                                                                <!--<data></data>-->
+                                                                <td class="td-block">
 
-                                                                <p class="title" style="font-size: 25px;"><a href="/service_{{$service->service_id}}" style="color: #357ca5;">{{$service->name}}</a></p>
+                                                                    <p class="title" style="font-size: 25px;"><a href="/service_{{$find_service->service_id}}" style="color: #357ca5;">{{$find_service->name}}</a> <code class="label-info"><a href="/services" style="font-size:20px;color: #fff;"> Services</a></code></p>
 
-                                                                <p class="desc" style="font-size: 16px;"><a href="organization_" style="color: #00aff0;">{{$service->organization_name}}</a></p>
+                                                                    <p class="desc" style="font-size: 16px;">{{str_limit($find_service->description, 300)}}</p>
 
-                                                                <div class="option" style="padding-left: 10px;padding-top: 5px;">
+                                                                    </div>
+                                                                </td>
+                                                            
+                                                            </tr>
+                                                            @endforeach
+                                                        @endif
+                                                        @if($find_projects!='')
+                                                            @foreach($find_projects as $find_project)
+                                                            <tr class="tbl-item">
+                                                                
+                                                                <!--<data></data>-->
+                                                                <td class="td-block">
 
-                                                                    <p class="desc" style="font-size: 16px; color: #000;"><i class="fa fa-fw fa-sitemap"></i>{{$service->taxonomy_name}}</p>
+                                                                    <p class="title" style="font-size: 25px;"><a href="/projects_{{$find_project->project_recordid}}" style="color: #357ca5;">{{$find_project->project_projectid}}</a> <code class="label-warning"><a href="/projects" style="font-size:20px;color: #fff;"> Projects</a></code></p>
 
-                                                                    <p class="desc" style="font-size: 16px; color: #000;"><i class="fa fa-fw fa-phone-square"></i>{!! $service->phone_numbers !!}</p>
+                                                                    <p class="desc" style="font-size: 16px;">{{str_limit($find_project->project_description, 300)}}</p>
 
-                                                                    <p class="desc" style="font-size: 16px;">{!! $service->description !!}</p>
-                                                                </div>
-                                                            </td>
-                                                        
-                                                        </tr>
-                                                        @endforeach
+                                                                    </div>
+                                                                </td>
+                                                            
+                                                            </tr>
+                                                            @endforeach
+                                                        @endif
+                                                        @if($find_peoples!='')
+                                                            @foreach($find_peoples as $find_people)
+                                                            <tr class="tbl-item">
+                                                                
+                                                                <!--<data></data>-->
+                                                                <td class="td-block">
+
+                                                                    <p class="title" style="font-size: 25px;"><a href="/people_{{$find_people->contact_id}}" style="color: #357ca5;">{{$find_people->name}}</a> <code class="label-danger"><a href="/people" style="font-size:20px;color: #fff;"> People</a></code></p>
+
+                                                                    <p class="desc" style="font-size: 16px;">{{str_limit($find_people->office_title, 300)}}</p>
+
+                                                                    </div>
+                                                                </td>
+                                                            
+                                                            </tr>
+                                                            @endforeach
+                                                        @endif
                                                     </table>
                                                 </div>
                                                 
@@ -139,13 +192,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4" style="padding: 0;">
-                                    <div class="panel">
-                                        <div class="panel-body">
-                                            <div id="mymap" style="width: 100%;"></div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 
@@ -165,28 +211,3 @@
     <!--END PAGE WRAPPER-->
 </div>
 @include('layouts.script')
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5XHJ6oNL9-qh0XsL0G74y1xbcxNGkSxw&callback=initMap"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
- <script type="text/javascript">
-
-    var locations = <?php print_r(json_encode($location_map)) ?>;
-
-    var mymap = new GMaps({
-      el: '#mymap',
-      lat: 40.712722,
-      lng: -74.006058,
-      zoom:10
-    });
-
-    $.each( locations, function( index, value ){
-        mymap.addMarker({
-          lat: value.latitude,
-          lng: value.longitude,
-          title: value.name,
-          infoWindow: {
-            content: ('<a href="location_'+value.location_id+'">'+value.name+'</a></br>' +value.address_1+', ' +value.city+', '+value.state_province+', '+value.postal_code)
-        }
-        });
-   });
-
-  </script>

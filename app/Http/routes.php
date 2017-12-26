@@ -78,6 +78,10 @@ Route::get('/location', [
 Route::get('/location_all', 'LocationController@all');
 Route::get('/location_{id}', 'LocationController@find');
 
+//find
+Route::match(['get', 'post'], '/find', [
+    'uses'          => 'IndexController@find'
+]);
 
 Route::match(['get', 'post'], '/services_find', [
     'uses'          => 'ServiceController@search'
@@ -86,6 +90,11 @@ Route::match(['get', 'post'], '/services_find', [
 Route::match(['get', 'post'], '/organizations_find', [
     'uses'          => 'OrganizationController@search'
 ]);
+
+Route::get('/findorganization_{id}', 'IndexController@findorganization');
+Route::get('/findservice_{id}', 'IndexController@findservice');
+Route::get('/findproject_{id}', 'IndexController@findproject');
+Route::get('/findpeople_{id}', 'IndexController@findpeople');
 
 // ALL AUTHENTICATION ROUTES - HANDLED IN THE CONTROLLERS
 Route::controllers([

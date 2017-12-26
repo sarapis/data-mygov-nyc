@@ -75,7 +75,7 @@
                                           </tr>
                                         </thead>
                                         <tbody>
-                                          @foreach ($projects as $project)
+                                          @foreach ($allprojects as $project)
                                           <tr>
                                             <td><a href="/projects_{{$project->project_recordid}}"> {{$project->project_projectid}}</a></td>
                                             <td><a href="/organization_{{$project->magency}}">{{$project->magencyname}}</a></td>
@@ -87,7 +87,7 @@
                                         </tbody>
                                     </table>
                                     <dir class="text-right">
-                                    {{$projects->links()}}
+                                    {{$allprojects->links()}}
                                     </dir>
                                 </div>  
                             </div>

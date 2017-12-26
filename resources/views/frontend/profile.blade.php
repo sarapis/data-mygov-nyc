@@ -33,8 +33,8 @@
                 <div>
                 <div class="col-sm-2 text-center">
                     <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button">Type @if($projects->project_type!='')
-                            : {{$projects->project_type}} 
+                        <button class="btn btn-primary dropdown-toggle" type="button">Type @if($project->project_type!='')
+                            : {{$project->project_type}} 
                         @else: None  @endif
                         </button>
                     </div>
@@ -77,17 +77,17 @@
                                     <div class="row" style="margin: 0;padding-bottom:30px;">
                                         <div class="col-md-6">
                                             <dl class="dl-horizontal">
-                                                <dt>Project ID: </dt><dd>{{$projects->project_projectid}}</dd>
-                                                <dt>Organization: </dt><dd><a href="organization_{{$projects->magency}}">{{$projects->magencyname}}</a></dd>
-                                                <dt>Description: </dt> <dd> {{$projects->project_description}}</dd>
-                                                <dt>City Cost: </dt><dd> ${{number_format($projects->project_citycost)}}</dd>
-                                                <dt>Non-City Cost: </dt><dd> ${{number_format($projects->project_noncitycost)}}</dd>
-                                                <dt>Total Cost: </dt> <dd> ${{number_format($projects->project_totalcost)}}</dd>
-                                                <dt>#Commitments:</dt> <dd>{{sizeof(explode(",", $projects->project_commitments))}}</dd>
+                                                <dt>Project ID: </dt><dd>{{$project->project_projectid}}</dd>
+                                                <dt>Organization: </dt><dd><a href="organization_{{$project->magency}}">{{$project->magencyname}}</a></dd>
+                                                <dt>Description: </dt> <dd> {{$project->project_description}}</dd>
+                                                <dt>City Cost: </dt><dd> ${{number_format($project->project_citycost)}}</dd>
+                                                <dt>Non-City Cost: </dt><dd> ${{number_format($project->project_noncitycost)}}</dd>
+                                                <dt>Total Cost: </dt> <dd> ${{number_format($project->project_totalcost)}}</dd>
+                                                <dt>#Commitments:</dt> <dd>{{sizeof(explode(",", $project->project_commitments))}}</dd>
                                             </dl>
                                         </div>
                                         <div class="col-md-6">
-                                            @if ($projects->project_lat==0 && $projects->project_long==0)
+                                            @if ($project->project_lat==0 && $project->project_long==0)
                                               <p style="font-size: 16px; padding-right: 40px; padding-top: 60px;">There is no map data. Please add some by clicking "Add Information" and submitting an address for the project.</p>
                                             @else
                                             <div style="width: 100%; height: 300px;">

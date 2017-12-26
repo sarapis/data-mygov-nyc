@@ -36,74 +36,58 @@ class ProjectController extends Controller
     {
         //$pros = $this->pro->first();
         $services = Service::all();
-        $locations = Location::all();
-        $taxonomys = Taxonomy::all();
         $organizations = Organization::all();
-        $service_type_name = '&nbsp;';
-        $location_name = '&nbsp;';
-        $organization_name = '&nbsp;';
-        $service_type_name = '&nbsp;';
+        $projects = Project::all();
         $service_name = '&nbsp;';
-        $filter = collect([$service_type_name, $location_name, $organization_name, $service_name]);
-        $projects = Project::leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.id','projects.project_recordid','projects.project_projectid','agencies.magency','agencies.magencyname','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_type')->sortable(['project_projectid'])->paginate(25);
+        $organization_name = '&nbsp;';
+        $project_name = 'All';
+        $filter = collect([$service_name, $organization_name, $project_name]);
+
+        $allprojects = Project::leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.id','projects.project_recordid','projects.project_projectid','agencies.magency','agencies.magencyname','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_type')->sortable(['project_projectid'])->paginate(25);
         $projecttypes = DB::table('projects')-> distinct()-> get(['project_type']);
         $projecttype = '';
         $mainmenu = DB::table('menu_main')->value('menu_main_label');
-        return view('frontend.projects', compact('services','locations','organizations', 'taxonomys','filter', 'projects','menutops','menulefts','menumains','projecttypes','projecttype','mainmenu'));
+        return view('frontend.projects', compact('services','projects','organizations','filter', 'allprojects','menutops','projecttypes','projecttype'));
     }
 
-    //agencyname find
-    public function agencyfind($id)
-    {
-        //$pros = $this->pro->first();
-        $menutops = DB::table('menu_top')->get();
-        $menulefts = DB::table('menu_left')->get();
-        $menumains = DB::table('menu_main')->get();
-        $projects = DB::table('projects')->where('project_managingagency', $id)->leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.id','projects.project_recordid','projects.project_projectid','agencies.magencyname','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_type')->orderBy('projects.project_projectid','desc')->get();
-        $projecttypes = DB::table('projects')-> distinct()-> get(['project_type']);
-        $mainmenu = DB::table('menu_main')->value('menu_main_label');
-        return view('frontend.projects', compact('pros', 'projects','menutops','menulefts','menumains','projecttypes','mainmenu'));
-    }
 
     public function projectfind($id)
     {   
         //$pros = $this->pro->first();
+
         $services = Service::all();
-        $locations = Location::all();
-        $taxonomys = Taxonomy::all();
         $organizations = Organization::all();
-        $service_type_name = '&nbsp;';
-        $location_name = '&nbsp;';
-        $organization_name = '&nbsp;';
-        $service_type_name = '&nbsp;';
+        $projects = Project::all();
         $service_name = '&nbsp;';
-        $filter = collect([$service_type_name, $location_name, $organization_name, $service_name]);
-        $projects = DB::table('projects')->where('project_recordid', $id)->leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.project_projectid', 'agencies.magency', 'agencies.magency', 'agencies.magencyname','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_citycost','projects.project_noncitycost','projects.project_type','projects.project_lat','projects.project_long')->first();
+        $organization_name = '&nbsp;';
+        $project_name = Project::where('project_recordid','=', $id)->value('project_projectid');
+        $filter = collect([$service_name, $organization_name, $project_name]);
+
+        $project = DB::table('projects')->where('project_recordid', $id)->leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.project_projectid', 'agencies.magency', 'agencies.magency', 'agencies.magencyname','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_citycost','projects.project_noncitycost','projects.project_type','projects.project_lat','projects.project_long')->first();
         $lat = DB::table('projects')->where('project_recordid', $id)-> value('project_lat');
         $long = DB::table('projects')->where('project_recordid', $id)-> value('project_long');
         Mapper::map($lat, $long, ['zoom' => 15]);
         $commitments = DB::table('commitments')->where('projectid', $id)->get();
-        return view('frontend.profile', compact('services','locations','organizations', 'taxonomys','filter', 'commitments','projects'));
+        return view('frontend.profile', compact('services','projects','organizations', 'filter', 'commitments','project'));
     }
 
     //project type find
     public function projecttypefind($id)
     {
         //$pros = $this->pro->first();
+
         $services = Service::all();
-        $locations = Location::all();
-        $taxonomys = Taxonomy::all();
         $organizations = Organization::all();
-        $service_type_name = '&nbsp;';
-        $location_name = '&nbsp;';
-        $organization_name = '&nbsp;';
-        $service_type_name = '&nbsp;';
+        $projects = Project::all();
         $service_name = '&nbsp;';
-        $filter = collect([$service_type_name, $location_name, $organization_name, $service_name]);
+        $organization_name = '&nbsp;';
+        $project_name = '&nbsp;';
+        $filter = collect([$service_name, $organization_name, $project_name]);
+
         $projecttype = DB::table('projects')->where('project_type', $id)->value('project_type');
-        $projects = DB::table('projects')->where('project_type', $id)->leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.id','projects.project_recordid','projects.project_projectid', 'agencies.magency', 'agencies.magencyname','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_type')->orderBy('projects.project_projectid','desc')->get();
+        $allprojects = Project::where('project_type', $id)->leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.id','projects.project_recordid','projects.project_projectid', 'agencies.magency', 'agencies.magencyname','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_type')->orderBy('projects.project_projectid','desc')->sortable(['project_projectid'])->paginate(25);
         $projecttypes = DB::table('projects')-> distinct()-> get(['project_type']);
-        $mainmenu = DB::table('menu_main')->value('menu_main_label');
-        return view('frontend.projects', compact('services','locations','organizations', 'taxonomys','filter', 'projects','menutops','menulefts','menumains','projecttypes','projecttype','mainmenu'));
+
+        return view('frontend.projects', compact('services','projects','organizations', 'filter', 'allprojects','projecttypes','projecttype'));
     }
 }
