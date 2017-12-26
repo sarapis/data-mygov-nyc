@@ -105,145 +105,122 @@ class OrganizationController extends Controller
     public function expensedesc()
     {
         $services = Service::all();
-        $locations = Location::all();
-        $taxonomys = Taxonomy::all();
         $organizations = Organization::all();
-        $service_type_name = '&nbsp;';
-        $location_name = '&nbsp;';
-        $organization_name = 'All';
-        $service_type_name = '&nbsp;';
+        $projects = Project::all();
         $service_name = '&nbsp;';
+        $organization_name = '&nbsp;';
+        $project_name = '&nbsp;';
+        $filter = collect([$service_name, $organization_name, $project_name]);
         $organizations = Organization::leftjoin('agencies', 'organizations.organizations_id', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->select('organizations.*', 'agencies.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets'))->groupBy('organizations.id')->orderBy('expenses_budgets', 'desc')->get();
 
-        $filter = collect([$service_type_name, $location_name, $organization_name, $service_name]);
         $location_map = DB::table('locations')->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->get();
-        return view('frontend.organizations', compact('services','locations','organizations', 'taxonomys','filter', 'location_map'));
+        return view('frontend.organizations', compact('services','projects','organizations', 'filter', 'location_map'));
     }
 
     public function expenseasc()
     {
         $services = Service::all();
-        $locations = Location::all();
-        $taxonomys = Taxonomy::all();
         $organizations = Organization::all();
-        $service_type_name = '&nbsp;';
-        $location_name = '&nbsp;';
-        $organization_name = 'All';
-        $service_type_name = '&nbsp;';
+        $projects = Project::all();
         $service_name = '&nbsp;';
+        $organization_name = '&nbsp;';
+        $project_name = '&nbsp;';
+        $filter = collect([$service_name, $organization_name, $project_name]);
         $organizations = Organization::leftjoin('agencies', 'organizations.organizations_id', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->select('organizations.*', 'agencies.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets'))->groupBy('organizations.id')->orderBy('expenses_budgets', 'asc')->get();
 
-        $filter = collect([$service_type_name, $location_name, $organization_name, $service_name]);
         $location_map = DB::table('locations')->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->get();
-        return view('frontend.organizations', compact('services','locations','organizations', 'taxonomys','filter', 'location_map'));
+        return view('frontend.organizations', compact('services','projects','organizations', 'filter', 'location_map'));
     }
 
     public function projectsdesc()
     {
         $services = Service::all();
-        $locations = Location::all();
-        $taxonomys = Taxonomy::all();
         $organizations = Organization::all();
-        $service_type_name = '&nbsp;';
-        $location_name = '&nbsp;';
-        $organization_name = 'All';
-        $service_type_name = '&nbsp;';
+        $projects = Project::all();
         $service_name = '&nbsp;';
+        $organization_name = '&nbsp;';
+        $project_name = '&nbsp;';
+        $filter = collect([$service_name, $organization_name, $project_name]);
         $organizations = Organization::leftjoin('agencies', 'organizations.organizations_id', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->select('organizations.*', 'agencies.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets'))->groupBy('organizations.id')->orderBy('total_project_cost', 'desc')->get();
 
-        $filter = collect([$service_type_name, $location_name, $organization_name, $service_name]);
         $location_map = DB::table('locations')->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->get();
-        return view('frontend.organizations', compact('services','locations','organizations', 'taxonomys','filter', 'location_map'));
+        return view('frontend.organizations', compact('services','projects','organizations', 'filter', 'location_map'));
     }
 
     public function projectsasc()
     {
         $services = Service::all();
-        $locations = Location::all();
-        $taxonomys = Taxonomy::all();
         $organizations = Organization::all();
-        $service_type_name = '&nbsp;';
-        $location_name = '&nbsp;';
-        $organization_name = 'All';
-        $service_type_name = '&nbsp;';
+        $projects = Project::all();
         $service_name = '&nbsp;';
+        $organization_name = '&nbsp;';
+        $project_name = '&nbsp;';
+        $filter = collect([$service_name, $organization_name, $project_name]);
         $organizations = Organization::leftjoin('agencies', 'organizations.organizations_id', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->select('organizations.*', 'agencies.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets'))->groupBy('organizations.id')->orderBy('total_project_cost', 'asc')->get();
 
-        $filter = collect([$service_type_name, $location_name, $organization_name, $service_name]);
         $location_map = DB::table('locations')->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->get();
-        return view('frontend.organizations', compact('services','locations','organizations', 'taxonomys','filter', 'location_map'));
+        return view('frontend.organizations', compact('services','projects','organizations', 'filter', 'location_map'));
     }
 
     public function servicesdesc()
     {
         $services = Service::all();
-        $locations = Location::all();
-        $taxonomys = Taxonomy::all();
         $organizations = Organization::all();
-        $service_type_name = '&nbsp;';
-        $location_name = '&nbsp;';
-        $organization_name = 'All';
-        $service_type_name = '&nbsp;';
+        $projects = Project::all();
         $service_name = '&nbsp;';
+        $organization_name = '&nbsp;';
+        $project_name = '&nbsp;';
+        $filter = collect([$service_name, $organization_name, $project_name]);
         $organizations = Organization::leftjoin('agencies', 'organizations.organizations_id', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->select('organizations.*', 'agencies.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets'))->groupBy('organizations.id')->orderBy('services_count', 'desc')->get();
 
-        $filter = collect([$service_type_name, $location_name, $organization_name, $service_name]);
         $location_map = DB::table('locations')->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->get();
-        return view('frontend.organizations', compact('services','locations','organizations', 'taxonomys','filter', 'location_map'));
+        return view('frontend.organizations', compact('services','projects','organizations', 'filter', 'location_map'));
     }
 
     public function servicesasc()
     {
         $services = Service::all();
-        $locations = Location::all();
-        $taxonomys = Taxonomy::all();
         $organizations = Organization::all();
-        $service_type_name = '&nbsp;';
-        $location_name = '&nbsp;';
-        $organization_name = 'All';
-        $service_type_name = '&nbsp;';
+        $projects = Project::all();
         $service_name = '&nbsp;';
+        $organization_name = '&nbsp;';
+        $project_name = '&nbsp;';
+        $filter = collect([$service_name, $organization_name, $project_name]);
         $organizations = Organization::leftjoin('agencies', 'organizations.organizations_id', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->select('organizations.*', 'agencies.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets'))->groupBy('organizations.id')->orderBy('services_count', 'asc')->get();
 
-        $filter = collect([$service_type_name, $location_name, $organization_name, $service_name]);
         $location_map = DB::table('locations')->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->get();
-        return view('frontend.organizations', compact('services','locations','organizations', 'taxonomys','filter', 'location_map'));
+        return view('frontend.organizations', compact('services','projects','organizations', 'filter', 'location_map'));
     }
 
     public function projectdesc()
     {
         $services = Service::all();
-        $locations = Location::all();
-        $taxonomys = Taxonomy::all();
         $organizations = Organization::all();
-        $service_type_name = '&nbsp;';
-        $location_name = '&nbsp;';
-        $organization_name = 'All';
-        $service_type_name = '&nbsp;';
+        $projects = Project::all();
         $service_name = '&nbsp;';
+        $organization_name = '&nbsp;';
+        $project_name = '&nbsp;';
+        $filter = collect([$service_name, $organization_name, $project_name]);
+ 
         $organizations = Organization::leftjoin('agencies', 'organizations.organizations_id', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->select('organizations.*', 'agencies.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets'))->groupBy('organizations.id')->orderBy('projects_count', 'desc')->get();
 
-        $filter = collect([$service_type_name, $location_name, $organization_name, $service_name]);
         $location_map = DB::table('locations')->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->get();
-        return view('frontend.organizations', compact('services','locations','organizations', 'taxonomys','filter', 'location_map'));
+        return view('frontend.organizations', compact('services','projects','organizations', 'filter', 'location_map'));
     }
 
     public function projectasc()
     {
         $services = Service::all();
-        $locations = Location::all();
-        $taxonomys = Taxonomy::all();
         $organizations = Organization::all();
-        $service_type_name = '&nbsp;';
-        $location_name = '&nbsp;';
-        $organization_name = 'All';
-        $service_type_name = '&nbsp;';
+        $projects = Project::all();
         $service_name = '&nbsp;';
+        $organization_name = '&nbsp;';
+        $project_name = '&nbsp;';
+        $filter = collect([$service_name, $organization_name, $project_name]);
         $organizations = Organization::leftjoin('agencies', 'organizations.organizations_id', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->select('organizations.*', 'agencies.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets'))->groupBy('organizations.id')->orderBy('projects_count', 'asc')->get();
 
-        $filter = collect([$service_type_name, $location_name, $organization_name, $service_name]);
         $location_map = DB::table('locations')->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->get();
-        return view('frontend.organizations', compact('services','locations','organizations', 'taxonomys','filter', 'location_map'));
+        return view('frontend.organizations', compact('services','projects','organizations', 'filter', 'location_map'));
     }
 
 
