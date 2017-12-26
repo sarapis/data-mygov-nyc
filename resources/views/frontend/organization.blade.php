@@ -122,7 +122,8 @@ ul.nav.nav-tabs li a {
                                                         <br>
                                                         <br>
                                                         <br>
-                                                        @if($organization->servers!='')
+                                                        @if($organization_service!='')
+
                                                         <div id="grid-layout-table-1" class="box jplist">
 
                                                             <div class="jplist-ios-button"><i class="fa fa-sort"></i> Display Options</div>
@@ -212,7 +213,7 @@ ul.nav.nav-tabs li a {
                                                             </div>
                                                         </div>
                                                         @else
-                                                            <div class="alert alert-danger"><strong>No Services!</strong></div>
+                                                        <div class="alert alert-danger"><strong>No Services!</strong></div>
                                                         @endif
                                                     </div>
                                                     <!--/.Panel 1-->

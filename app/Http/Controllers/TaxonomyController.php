@@ -13,6 +13,7 @@ use App\Logic\User\UserRepository;
 use App\Models\Post;
 use App\Models\Taxonomy;
 use App\Models\Service;
+use App\Models\Project;
 use App\Models\Location;
 use App\Models\Organization;
 use App\Models\Program;
@@ -36,13 +37,16 @@ class TaxonomyController extends Controller
 
     public function index()
     {
-        $services = Service::all();
-        $locations = Location::all();
-        $taxonomys = Taxonomy::all();
-        $organizations = Organization::all();
         $taxonomies = Taxonomy::where('parent_name', '=', '')->get();
+
+        $services = Service::all();
+        $organizations = Organization::all();
+        $projects = Project::all();
         $service_name = '&nbsp;';
-        return view('frontend.taxonomy', compact('services','locations','organizations', 'taxonomys','service_name'));
+        $organization_name = '&nbsp;';
+        $project_name = '&nbsp;';
+        $filter = collect([$service_name, $organization_name, $project_name]);
+        return view('frontend.taxonomy', compact('services','projects','organizations', 'taxonomys'));
     }
 
     /**
@@ -61,13 +65,16 @@ class TaxonomyController extends Controller
         // return $tree;
         //return view('files.treeview',compact('tree'));
         $posts = $this->post->first();
+
+        $services = Service::all();
+        $organizations = Organization::all();
+        $projects = Project::all();
         $service_name = '&nbsp;';
-        $location_name = '&nbsp;';
         $organization_name = '&nbsp;';
-        $service_type_name = 'All';
-        $filter = collect([$service_type_name, $location_name, $organization_name, $service_name]);
+        $project_name = '&nbsp;';
+        $filter = collect([$service_name, $organization_name, $project_name]);
         $location_map = DB::table('locations')->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->get();
-        return view('frontend.taxonomies', compact('posts','taxonomies','allTaxonomies','services','locations','organizations', 'taxonomys','filter', 'location_map'));
+        return view('frontend.taxonomies', compact('posts','taxonomies','allTaxonomies','services','projects','organizations', 'taxonomys','filter', 'location_map'));
     }
 
     /**
@@ -78,23 +85,21 @@ class TaxonomyController extends Controller
      */
     public function find($id)
     {
-        $services = Service::all();
-        $locations = Location::all();
-        $taxonomys = Taxonomy::all();
-        $organizations = Organization::all();
         $taxonomy = Taxonomy::where('taxonomy_id','=',$id)->first();
 
-        $service_type_name = Taxonomy::where('taxonomy_id','=', $id)->value('name');
-        $location_name = '&nbsp;';
-        $organization_name = '&nbsp;';
+        $services = Service::all();
+        $organizations = Organization::all();
+        $projects = Project::all();
         $service_name = '&nbsp;';
-        $filter = collect([$service_type_name, $location_name, $organization_name, $service_name]);
+        $organization_name = '&nbsp;';
+        $project_name = '&nbsp;';
+        $filter = collect([$service_name, $organization_name, $project_name]);
 
         $taxonomy_map = DB::table('taxonomies')->where('taxonomy_id','=',$id)->leftjoin('services', 'taxonomies.services', 'like', DB::raw("concat('%', services.service_id, '%')"))->leftjoin('locations', 'services.locations', 'like', DB::raw("concat('%', locations.location_id, '%')"))->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->get();
 
         $taxonomy_services = Taxonomy::where('taxonomy_id','=', $id)->leftjoin('services', 'taxonomies.services', 'like', DB::raw("concat('%', services.service_id, '%')"))->select('services.*')->leftjoin('organizations', 'services.organization', 'like', DB::raw("concat('%', organizations.organization_id, '%')"))->leftjoin('phones', 'services.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->select('services.*', DB::raw('group_concat(phones.phone_number) as phone_numbers'), DB::raw('organizations.name as organization_name'), DB::raw('organizations.organizations_id as organizations_id'))->groupBy('services.id')->get();
 
-        return view('frontend.taxonomy', compact('services','locations','organizations', 'taxonomys','service_name','service','taxonomy','filter','taxonomy_services', 'taxonomy_map'));
+        return view('frontend.taxonomy', compact('services','projects','organizations', 'taxonomys','service_name','service','taxonomy','filter','taxonomy_services', 'taxonomy_map'));
     }
 
 }

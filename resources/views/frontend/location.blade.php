@@ -56,8 +56,8 @@
                                         <div class="panel-body">
                                             <div class="note note-info"><h4 class="box-heading" style="font-size: 25px;">{{$location->name}}</h4>
 
-                                            <p><code> Organization:</code> {{$location->organization_name}}</p>
-                                            <p><code> Service:</code> {{$location->service_name}}</p>
+                                            <p><code> Organization:</code><a href="organization_{{$location->organizations_id}}">{{$location->organization_name}}</a></p>
+                                            <p><code> Service:</code><a href="service_{{$location->service_id}}">{{$location->service_name}}</a></p>
                                             <p><code> Alternate Name:</code> {{$location->alternate_name}}</p>
                                             <p><code> Description:</code> {!! $location->description !!}</p>
                                             <p><code> Transportation:</code> {{$location->transportation}}</p>
