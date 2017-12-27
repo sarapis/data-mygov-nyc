@@ -92,9 +92,9 @@ ul.nav.nav-tabs li a {
                                             <p><code> Email:</code> {{$organization->email}}</p>
                                             <p><code> Year 1 Project Budget:</code> ${{number_format($organization->total_project_cost)}}</p>
                                             <p><code> Year 1 Expense Budget:</code> ${{number_format($organization->expenses_budgets)}}</p>
-                                            <a class="btn-yellow btn-sm" href="{{$organization->website}}" target="_blank">Goto Website</a>
+                                            <a class="btn-yellow btn-sm" href="{{$organization->website}}" target="_blank">Visit Website</a>
                                             @if($organization->checkbook!='')
-                                            <a class="btn-orange btn-sm" href="{{$organization->checkbook}}" target="_blank">Goto Checkbook</a>
+                                            <a class="btn-orange btn-sm" href="{{$organization->checkbook}}" target="_blank">Visit Checkbook</a>
                                             @endif
                                             </div>
 
@@ -102,16 +102,24 @@ ul.nav.nav-tabs li a {
                                                 <!-- Nav tabs -->
                                                 <ul class="nav nav-tabs nav-justified" style="padding-right: 0;">
                                                     <li class="nav-item">
-                                                        <a class="btn-blue nav-link active" data-toggle="tab" href="#panel1" role="tab">Services</a>
+                                                        <a class="nav-link violet active" data-toggle="tab" href="#panel1" role="tab">Services @if($original_organization->services!='')
+                                                        ({{sizeof(explode(",", $original_organization->services))}})
+                                                        @else (int)(0) @endif</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" data-toggle="tab" href="#panel2" role="tab">Projects</a>
+                                                        <a class="nav-link" data-toggle="tab" href="#panel2" role="tab">Projects @if($organization->projects!=null)
+                                                        ({{sizeof(explode(",", $organization->projects))}})
+                                                        @else (int)(0) @endif</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" data-toggle="tab" href="#panel3" role="tab">People</a>
+                                                        <a class="nav-link" data-toggle="tab" href="#panel3" role="tab">People @if($original_organization->contacts!='')
+                                                        ({{sizeof(explode(",", $original_organization->contacts))}})
+                                                        @else (int)(0) @endif</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" data-toggle="tab" href="#panel4" role="tab">Expenses</a>
+                                                        <a class="nav-link" data-toggle="tab" href="#panel4" role="tab">Expenses @if($organization->expenses!=null)
+                                                        ({{sizeof(explode(",", $organization->expenses))+1}})
+                                                        @else (int)(0) @endif</a>
                                                     </li>
                                                 </ul>
                                                 <!-- Tab panels -->

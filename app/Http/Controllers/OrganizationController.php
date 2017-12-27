@@ -58,6 +58,9 @@ class OrganizationController extends Controller
         $project_name = '&nbsp;';
         $filter = collect([$organization_name, $service_name, $project_name]);
 
+        $original_organization = Organization::where('organizations_id','=',$id)->first();
+        $original_agency = DB::table('agencies')->where('magency','=',$id)->first();
+
         $organization_service =Organization::where('organizations_id','=', $id)->value('services');
         $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->leftjoin('phones', 'organizations.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->select('organizations.*', 'agencies.*', 'phones.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets'))->groupBy('organizations.organization_id')->first();
 
@@ -69,12 +72,12 @@ class OrganizationController extends Controller
 
         $organization_peoples = Organization::where('organizations_id','=', $id)->leftjoin('contacts', 'organizations.contacts', 'like', DB::raw("concat('%', contacts.contact_id, '%')"))->groupBy('contacts.contact_id')->get();
 
-        $organization_expenses = Organization::where('organizations_id','=', $id)->leftjoin('agencies', 'organizations.organizations_id', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->groupBy('expenses.expenses_id')->orderBy('expenses.line_number')->get(); 
+        $organization_expenses = Organization::where('organizations_id','=', $id)->leftjoin('agencies', 'organizations.organizations_id', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->groupBy('expenses.expenses_id')->orderBy('expenses.line_number')->get();
 
         $expenses_sum = Organization::where('organizations_id','=', $id)->leftjoin('agencies', 'organizations.organizations_id', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->select(DB::raw('sum(expenses.year1_forecast) as expenses_year1'), DB::raw('sum(expenses.year2_estimate) as expenses_year2'), DB::raw('sum(expenses.year3_estimate) as expenses_year3'))->first();  
 
 
-        return view('frontend.organization', compact('services','projects','organizations','filter', 'organization','organization_services', 'organization_projects', 'organization_peoples', 'organization_map', 'organization_expenses', 'expenses_sum', 'organization_service'));
+        return view('frontend.organization', compact('services','projects','organizations','filter', 'organization', 'organization_services', 'organization_projects', 'organization_peoples',  'organization_expenses', 'organization_services_count', 'organization_projects_count', 'organization_peoples_count', 'organization_map', 'expenses_sum', 'organization_service' , 'original_organization'));
     }
 
     /**

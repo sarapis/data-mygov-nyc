@@ -7686,3 +7686,16 @@ iframe {
   background: #4c92d7;
   border-color: #428bca;
 }
+ul.nav.nav-tabs li.active a {
+  background: #a663c1;
+  background-color: #a663c1;
+  background-image: -webkit-linear-gradient(#a663c1,#9347b1);
+  background-image: linear-gradient(#a663c1,#9347b1);
+  box-shadow: inset 0 1px #c283db, 2px 0 4px rgba(0,0,0,0.1), -2px 0 4px rgba(0,0,0,0.1);
+  text-transform: uppercase;
+  border: 1px solid #8337a2;
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+  border-radius: 3px!important;
+  border-bottom: 1px solid #8337a2;
+}
