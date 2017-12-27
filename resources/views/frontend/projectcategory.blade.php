@@ -94,7 +94,7 @@
                                                             <!--<data></data>-->
                                                             <td class="td-block">
 
-                                                                <p class="title" style="font-size: 25px;"><a href="/organization_{{$project->organizations_id}}" style="color: #357ca5;">{{$project->project_projectid}}</a></p>
+                                                                <p class="title" style="font-size: 25px;"><a href="/projects_{{$project->project_recordid}}" style="color: #357ca5;">{{$project->project_projectid}}</a></p>
 
                                                                 <p class="desc" style="font-size: 16px;"><a href="#" style="color: #00aff0;"></a></p>
 
@@ -149,13 +149,6 @@
                                     <div class="portlet box">
                                         <div class="portlet-header">
                                             <div id="mymap" style="width: 100%;"></div>
-                                        </div>
-                                        <div class="portlet-body">
-                                            <p><code>Location</code></p>
-                                                
-                                            
-                                                <p><span class="badge badge-yellow"></span> </p>
-                                            
                                         </div>
                                     </div>
                                 </div>
