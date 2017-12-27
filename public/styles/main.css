@@ -7699,3 +7699,6 @@ ul.nav.nav-tabs li.active a {
   border-radius: 3px!important;
   border-bottom: 1px solid #8337a2;
 }
+h4.box-heading{
+  margin-bottom: 0;
+}

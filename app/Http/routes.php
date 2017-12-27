@@ -47,6 +47,7 @@ Route::get('/organizations_servicesdesc', 'OrganizationController@servicesdesc')
 Route::get('/organizations_servicesasc', 'OrganizationController@servicesasc');
 Route::get('/organizations_projectdesc', 'OrganizationController@projectdesc');
 Route::get('/organizations_projectasc', 'OrganizationController@projectasc');
+Route::get('/organizationcategory_{id}', 'OrganizationController@category');
 
 
 //Services
@@ -58,6 +59,7 @@ Route::get('/service_{id}', 'ServiceController@find');
 Route::get('/projects', 'ProjectController@projectview');
 Route::get('/projects_{id}', 'ProjectController@projectfind');
 Route::get('/projecttype_{id}', 'ProjectController@projecttypefind');
+Route::get('/projectcategory_{id}', 'ProjectController@category');
 
 //Peoples
 Route::get('/people', 'PeopleController@index');

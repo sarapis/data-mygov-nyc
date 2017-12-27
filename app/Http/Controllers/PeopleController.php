@@ -28,18 +28,18 @@ class PeopleController extends Controller
      */
     public function index()
     {
-        $services = Service::all();
-        $organizations = Organization::all();
-        $projects = Project::all();
+        $servicetypes = DB::table('taxonomies')->get();
+        $organizationtypes = DB::table('organizations')->distinct()->get(['type']);
+        $projecttypes = DB::table('projects')-> distinct()->get(['project_type']);
         $service_name = '&nbsp;';
         $organization_name = '&nbsp;';
         $project_name = '&nbsp;';
-        $filter = collect([$service_name, $organization_name, $project_name]);
+        $filter = collect([$organization_name, $service_name, $project_name]);
 
         $peoples = Contact::leftjoin('organizations', 'contacts.organization', '=', 'organizations.organization_id')->select('contacts.*', 'organizations.organizations_id as organizations_id', 'organizations.name as organization_name')->sortable(['name'])->paginate(25);
         $organization = Contact::leftjoin('organizations', 'contacts.organization', '=', 'organizations.organization_id')->select('organizations.name as organization_name')->distinct()->get(['organization_name']);
         $organization_type='';
-        return view('frontend.peoples', compact('services','projects','organizations', 'filter', 'peoples', 'organization', 'organization_type'));
+        return view('frontend.peoples', compact('servicetypes','projecttypes','organizationtypes', 'filter', 'peoples', 'organization', 'organization_type'));
     }
 
     /**
@@ -49,13 +49,13 @@ class PeopleController extends Controller
      */
     public function find($id)
     {
-        $services = Service::all();
-        $organizations = Organization::all();
-        $projects = Project::all();
+        $servicetypes = DB::table('taxonomies')->get();
+        $organizationtypes = DB::table('organizations')->distinct()->get(['type']);
+        $projecttypes = DB::table('projects')-> distinct()->get(['project_type']);
         $service_name = '&nbsp;';
         $organization_name = '&nbsp;';
         $project_name = '&nbsp;';
-        $filter = collect([$service_name, $organization_name, $project_name]);
+        $filter = collect([$organization_name, $service_name, $project_name]);
 
         $people = Contact::where('contact_id','=',$id)->leftjoin('organizations', 'contacts.organization', 'like', DB::raw("concat('%', organizations.organization_id, '%')"))->leftjoin('address', 'contacts.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->leftjoin('phones', 'contacts.phone', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->select('contacts.*', DB::raw('group_concat(phones.phone_number) as phone_numbers'), 'address.*', DB::raw('organizations.name as organization_name'), DB::raw('organizations.organizations_id as organizations_id'))->first();
 
@@ -63,7 +63,7 @@ class PeopleController extends Controller
 
         $people_services = Contact::where('contact_id','=', $id)->leftjoin('services', 'contacts.services', 'like', DB::raw("concat('%', services.service_id, '%')"))->select('services.*')->leftjoin('phones', 'services.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->leftjoin('taxonomies', 'services.taxonomy', '=', 'taxonomies.taxonomy_id')->select('services.*', DB::raw('group_concat(phones.phone_number) as phone_numbers'), DB::raw('taxonomies.name as taxonomy_name'))->groupBy('services.id')->get();
 
-        return view('frontend.people', compact('services','projects','organizations', 'people','filter','people_services', 'organization_map'));
+        return view('frontend.people', compact('servicetypes','projecttypes','organizationtypes', 'people','filter','people_services', 'organization_map'));
     }
 
     /**
@@ -75,18 +75,18 @@ class PeopleController extends Controller
     public function organizationtypefind($id)
     {
 
-        $services = Service::all();
-        $organizations = Organization::all();
-        $projects = Project::all();
+        $servicetypes = DB::table('taxonomies')->get();
+        $organizationtypes = DB::table('organizations')->distinct()->get(['type']);
+        $projecttypes = DB::table('projects')-> distinct()->get(['project_type']);
         $service_name = '&nbsp;';
         $organization_name = '&nbsp;';
         $project_name = '&nbsp;';
-        $filter = collect([$service_name, $organization_name, $project_name]);
+        $filter = collect([$organization_name, $service_name, $project_name]);
 
         $peoples = Contact::leftjoin('organizations', 'contacts.organization', '=', 'organizations.organization_id')->where('organizations.name', '=', $id)->select('contacts.*', 'organizations.organizations_id as organizations_id', 'organizations.name as organization_name')->sortable()->paginate(25);
         $organization = Contact::leftjoin('organizations', 'contacts.organization', '=', 'organizations.organization_id')->select('organizations.name as organization_name')->distinct()->get(['organization_name']);
         $organization_type=$id;
-        return view('frontend.peoples', compact('services','projects','organizations', 'filter', 'peoples', 'organization', 'organization_type'));
+        return view('frontend.peoples', compact('servicetypes','projecttypes','organizationtypes', 'filter', 'peoples', 'organization', 'organization_type'));
     }
 
     /**

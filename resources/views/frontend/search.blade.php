@@ -1,5 +1,5 @@
 @include('layouts.style')
-<title>All Services</title>
+<title>Find Services</title>
 
 <div>
     <!--BEGIN BACK TO TOP-->
@@ -20,7 +20,7 @@
             <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
                 <div class="page-header pull-left">
                     <div class="page-title plxxl">
-                        Find Services</div>
+                        Find Services ... "{{$find}}"</div>
                 </div>
                 <ol class="breadcrumb page-breadcrumb pull-right">
                     <li><i class="fa fa-gift"></i>&nbsp;<a href="/servive">Services</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>

@@ -11,9 +11,8 @@
             <button type="button" class="btn btn-default" style="width: 88%;overflow: hidden;">{{$filter[1]}}</button>
             <button type="button" data-toggle="dropdown" data-delay="1000" data-close-others="true" class="btn btn-primary dropdown-toggle"><i class="fa fa-angle-down"></i></button>
             <ul class="dropdown-menu scrollable-menu">
-                <li><a href="/services">All</a></li>
-                @foreach($services as $service)
-                <li><a href="/service_{{$service->service_id}}">{{$service->name}}</a></li>
+                @foreach($servicetypes as $service)
+                <li><a href="/category_{{$service->taxonomy_id}}">{{$service->name}}</a></li>
                 @endforeach
             </ul>
         </div>
@@ -22,10 +21,9 @@
             <label class="col-md-12 control-label" style="padding-left: 5px;">Organization Category</label>
             <button type="button" class="btn btn-default" style="width: 88%;overflow: hidden;">{{$filter[0]}}</button>
             <button type="button" data-toggle="dropdown" data-delay="1000" data-close-others="true" class="btn btn-primary dropdown-toggle"><i class="fa fa-angle-down"></i></button>
-            <ul class="dropdown-menu scrollable-menu">
-                <li><a href="/organizations">All</a></li>
-                @foreach($organizations as $organization)
-                <li><a href="/organization_{{$organization->organizations_id}}">{{$organization->name}}</a></li>
+            <ul class="dropdown-menu scrollable-menu" style="min-width: 250px;">
+                @foreach($organizationtypes as $organization)
+                <li><a href="/organizationcategory_{{$organization->type}}">{{$organization->type}}</a></li>
                 @endforeach
             </ul>
         </div>
@@ -35,9 +33,8 @@
             <button type="button" class="btn btn-default" style="width: 88%;overflow: hidden;">{{$filter[2]}}</button>
             <button type="button" data-toggle="dropdown" data-delay="1000" data-close-others="true" class="btn btn-primary dropdown-toggle"><i class="fa fa-angle-down"></i></button>
             <ul class="dropdown-menu scrollable-menu" style="min-width: 250px;">
-                <li><a href="/projects">All</a></li>
-                @foreach($projects as $project)
-                <li><a href="/projects_{{$project->project_recordid}}">{{$project->project_projectid}}</a></li>
+                @foreach($projecttypes as $project)
+                <li><a href="/projectcategory_{{$project->project_type}}">{{$project->project_type}}</a></li>
                 @endforeach
             </ul>
         </div>

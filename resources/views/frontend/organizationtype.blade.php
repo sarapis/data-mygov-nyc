@@ -1,5 +1,5 @@
 @include('layouts.style')
-<title>{{$taxonomy->name}} | Taxonomy</title>
+<title>{{$organization_name}} | Organization Category</title>
 
 <div>
 
@@ -21,12 +21,12 @@
             <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
                 <div class="page-header pull-left">
                     <div class="page-title plxxl">
-                        Service Category</div>
+                        Organization Category</div>
                 </div>
                 <div class="sharethis-inline-share-buttons col-md-4"></div>
                 <ol class="breadcrumb page-breadcrumb pull-right">
                     <li><i class="fa fa-edit"></i>&nbsp;<a href="/category">Categories</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-                    <li class="active">{{$taxonomy->name}}</li>
+                    <li class="active">{{$organization_name}}</li>
                 </ol>
                 <div class="clearfix">
                 </div>
@@ -54,7 +54,7 @@
                                     <div class="panel">
                                         <div class="panel-body">
                                             <div class="note note-info">
-                                                <h4 class="box-heading" style="font-size: 25px;">{{$taxonomy->name}}</h4>
+                                                <h4 class="box-heading" style="font-size: 25px;">{{$organization_name}}</h4>
                                             </div>
                                             <div id="grid-layout-table-1" class="box jplist">
                                                 <div class="jplist-ios-button"><i class="fa fa-sort"></i> Display Options</div>
@@ -88,25 +88,21 @@
                                                 <div class="box text-shadow">
                                                     <table class="demo-tbl">
                                                         <!--<item>1</item>-->
-                                                       @foreach($taxonomy_services as $taxonomy_service)
+                                                       @foreach($organizations as $organization)
                                                         <tr class="tbl-item">
                                                             
                                                             <!--<data></data>-->
                                                             <td class="td-block">
 
-                                                                <p class="title" style="font-size: 25px;"><a href="/service_{{$taxonomy_service->service_id}}" style="color: #357ca5;">{{$taxonomy_service->name}}</a></p>
+                                                                <p class="title" style="font-size: 25px;"><a href="/organization_{{$organization->organizations_id}}" style="color: #357ca5;">{{$organization->name}}</a></p>
 
                                                                 <p class="desc" style="font-size: 16px;"><a href="#" style="color: #00aff0;"></a></p>
 
                                                                 <div class="option" style="padding-left: 10px;padding-top: 5px;">
 
-                                                                    <p class="desc" style="font-size: 16px; color: #000;"><a href="organization_{{$taxonomy_service->organizations_id}}" style="color: #00aff0;">{{$taxonomy_service->organization_name}}</a></p>
+                                                                    <p class="desc" style="font-size: 16px; color: #000;"><i class="fa fa-fw fa-phone-square"></i>{{$organization->phones_number}}</p>
 
-                                                                    <p class="desc" style="font-size: 16px; color: #000;"><i class="fa fa-fw fa-sitemap"></i>{{$taxonomy->name}}</p>
-
-                                                                    <p class="desc" style="font-size: 16px; color: #000;"><i class="fa fa-fw fa-phone-square"></i>{!! $taxonomy_service->phone_numbers !!}</p>
-
-                                                                    <p class="desc" style="font-size: 16px;"><code>Description</code>{!! $taxonomy_service->description !!}</p>
+                                                                    <p class="desc" style="font-size: 16px;"><code>Description</code>{{$organization->description}}</p>
                                                                 </div>
                                                             </td>
                                                             <!--<img/>-->
@@ -156,11 +152,7 @@
                                         </div>
                                         <div class="portlet-body">
                                             <p><code>Location</code></p>
-                                                @foreach($taxonomy_map as $servicemap)
-                                                    @if($servicemap->location_id!=null)
-                                                        <p><a href="location_{{$servicemap->location_id}}">{{$servicemap->name}}</a></p>
-                                                    @endif
-                                                @endforeach
+                                                
                                             
                                                 <p><span class="badge badge-yellow"></span> </p>
                                             
@@ -192,7 +184,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
   <script type="text/javascript">
 
-    var locations = <?php print_r(json_encode($taxonomy_map)) ?>;
+    var locations = <?php print_r(json_encode($organization_map)) ?>;
 
     var mymap = new GMaps({
       el: '#mymap',

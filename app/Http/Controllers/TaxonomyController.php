@@ -87,19 +87,19 @@ class TaxonomyController extends Controller
     {
         $taxonomy = Taxonomy::where('taxonomy_id','=',$id)->first();
 
-        $services = Service::all();
-        $organizations = Organization::all();
-        $projects = Project::all();
-        $service_name = '&nbsp;';
+        $servicetypes = DB::table('taxonomies')->get();
+        $organizationtypes = DB::table('organizations')->distinct()->get(['type']);
+        $projecttypes = DB::table('projects')-> distinct()->get(['project_type']);
+        $service_name = Taxonomy::where('taxonomy_id','=',$id)->value('name');
         $organization_name = '&nbsp;';
         $project_name = '&nbsp;';
-        $filter = collect([$service_name, $organization_name, $project_name]);
+        $filter = collect([$organization_name, $service_name, $project_name]);
 
         $taxonomy_map = DB::table('taxonomies')->where('taxonomy_id','=',$id)->leftjoin('services', 'taxonomies.services', 'like', DB::raw("concat('%', services.service_id, '%')"))->leftjoin('locations', 'services.locations', 'like', DB::raw("concat('%', locations.location_id, '%')"))->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->get();
 
         $taxonomy_services = Taxonomy::where('taxonomy_id','=', $id)->leftjoin('services', 'taxonomies.services', 'like', DB::raw("concat('%', services.service_id, '%')"))->select('services.*')->leftjoin('organizations', 'services.organization', 'like', DB::raw("concat('%', organizations.organization_id, '%')"))->leftjoin('phones', 'services.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->select('services.*', DB::raw('group_concat(phones.phone_number) as phone_numbers'), DB::raw('organizations.name as organization_name'), DB::raw('organizations.organizations_id as organizations_id'))->groupBy('services.id')->get();
 
-        return view('frontend.taxonomy', compact('services','projects','organizations', 'taxonomys','service_name','service','taxonomy','filter','taxonomy_services', 'taxonomy_map'));
+        return view('frontend.taxonomy', compact('servicetypes','projecttypes','organizationtypes', 'taxonomys','service_name','service','taxonomy','filter','taxonomy_services', 'taxonomy_map'));
     }
 
 }
