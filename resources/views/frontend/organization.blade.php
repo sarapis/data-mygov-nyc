@@ -30,7 +30,6 @@ ul.nav.nav-tabs li a {
     display: block !important;
 }
 .dataTables_length, .dataTables_filter{display: none;}
-
 </style>
 <title>{{$organization->name}} | Organization</title>
 
@@ -101,7 +100,7 @@ ul.nav.nav-tabs li a {
 
                                             <div>
                                                 <!-- Nav tabs -->
-                                                <ul class="nav nav-tabs nav-justified">
+                                                <ul class="nav nav-tabs nav-justified" style="padding-right: 0;">
                                                     <li class="nav-item">
                                                         <a class="btn-blue nav-link active" data-toggle="tab" href="#panel1" role="tab">Services</a>
                                                     </li>
@@ -109,10 +108,10 @@ ul.nav.nav-tabs li a {
                                                         <a class="nav-link" data-toggle="tab" href="#panel2" role="tab">Projects</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" data-toggle="tab" href="#panel3" role="tab" >People</a>
+                                                        <a class="nav-link" data-toggle="tab" href="#panel3" role="tab">People</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" data-toggle="tab" href="#panel4" role="tab" style="margin-right: 0;">Expenses</a>
+                                                        <a class="nav-link" data-toggle="tab" href="#panel4" role="tab">Expenses</a>
                                                     </li>
                                                 </ul>
                                                 <!-- Tab panels -->
@@ -218,12 +217,12 @@ ul.nav.nav-tabs li a {
                                                     </div>
                                                     <!--/.Panel 1-->
                                                     <!--Panel 2-->
-                                                    <div class="tab-pane fade" id="panel2" role="tabpanel">
+                                                    <div class="tab-pane fade" id="panel2" role="tabpanel" style="overflow-x:auto;">
                                                         <br>
                                                         <br>
                                                         <br>
                                                         @if($organization->projects!='')
-                                                        <table id="example" class="table table-striped table-hover table-bordered" cellspacing="0" width="100%">
+                                                        <table id="example" class="table table-striped table-hover table-bordered display nowrap" cellspacing="0" width="100%">
                                                             <thead>
                                                                 <tr class="info">
                                                                     <th>Project ID</th>
@@ -249,7 +248,7 @@ ul.nav.nav-tabs li a {
                                                     </div>
                                                     <!--/.Panel 2-->
                                                     <!--Panel 3-->
-                                                    <div class="tab-pane fade" id="panel3" role="tabpanel">
+                                                    <div class="tab-pane fade" id="panel3" role="tabpanel" style="overflow-x:auto;">
                                                         <br>
                                                         <br>
                                                         <br>
@@ -278,7 +277,7 @@ ul.nav.nav-tabs li a {
                                                     </div>
                                                     <!--/.Panel 3-->
                                                     <!--Panel 4-->
-                                                    <div class="tab-pane fade" id="panel4" role="tabpanel">
+                                                    <div class="tab-pane fade" id="panel4" role="tabpanel" style="overflow-x:auto;">
                                                         <br>
                                                         <br>
                                                         <br>
@@ -407,7 +406,7 @@ ul.nav.nav-tabs li a {
 <script>
 $(document).ready(function() {
     $('#example').DataTable({
-        "pageLength": 25
+        "pageLength": 25,
     });
     $('#example1').DataTable({
         "pageLength": 25

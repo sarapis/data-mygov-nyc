@@ -3,7 +3,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <link href="../css/treeview.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+    <style>
+    div.dataTables_wrapper {
+        width: 800px;
+        margin: 0 auto;
+    }
+    </style>
 <body>
 
     <!--BEGIN BACK TO TOP-->
@@ -64,8 +70,8 @@
                         <div class="page-content">
                             <div class="panel panel-blue">
                                 <!-- /.box-header -->
-                                <div class="panel-body">
-                                    <table class="table table-striped table-hover table-bordered" cellspacing="0" width="100%">
+                                <div class="panel-body"  style="overflow-x:auto;">
+                                    <table id="example" class="table table-striped table-hover table-bordered display nowra" cellspacing="0" width="100%">
                                         <thead>
                                           <tr class="info">
                                             <th>@sortablelink('name', 'Name')</th>
@@ -109,3 +115,13 @@
     <!--END PAGE WRAPPER-->
 </body>
 @include('layouts.script')
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#example').DataTable({
+        "pageLength": 25
+        "scrollX": true
+    });
+} );
+</script>

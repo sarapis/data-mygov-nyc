@@ -63,7 +63,7 @@
                         <div class="page-content">
                             <div class="panel panel-blue">
                                 <!-- /.box-header -->
-                                <div class="panel-body">
+                                <div class="panel-body" style="overflow-x:auto;">
                                     <table class="table table-striped table-hover table-bordered" cellspacing="0" width="100%">
                                         <thead>
                                           <tr class="info">
