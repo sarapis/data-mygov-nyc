@@ -78,7 +78,7 @@
                                           @foreach ($allprojects as $project)
                                           <tr>
                                             <td><a href="/projects_{{$project->project_recordid}}"> {{$project->project_projectid}}</a></td>
-                                            <td><a href="/organization_{{$project->magency}}">{{$project->magencyname}}</a></td>
+                                            <td><a href="/organization_{{$project->magency}}">{{$project->magencyacro}}</a></td>
                                             <td>{{$project->project_description}}</td>
                                             <td>{{sizeof(explode(",", $project->project_commitments))}}</td>
                                             <td>${{number_format($project->project_totalcost)}}</td>
