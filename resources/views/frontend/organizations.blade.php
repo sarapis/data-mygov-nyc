@@ -93,7 +93,7 @@
                                         <div class="col-md-6 col-md-4">
                                           <div class="thumbnail">
                                             <div class="caption pal" id="tblData">
-                                                <a href="/organization_{{$organization->organizations_id}}" style="font-size: 20px;">{{$organization->name}}<p style="display: inline; font-size: 16px;">@if($organization->alternate_name!='')({{$organization->alternate_name}}) @endif</p></a>
+                                                <a href="/organization_{{$organization->organizations_id}}" style="font-size: 20px;">{{$organization->name}}<p style="display: inline; font-size: 16px;">@if($organization->alternate_name!='')&nbsp;&nbsp;({{$organization->alternate_name}}) @endif</p></a>
                                                 <p style="font-size: 16px;padding-top: 10px;">{{str_limit($organization->description, 200)}}</p>
                                                 <p>Services: @if($organization->services!=null)
                                                   {{sizeof(explode(",", $organization->services))}}

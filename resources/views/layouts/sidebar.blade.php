@@ -6,20 +6,8 @@
             <div class="input-icon right text-white"><a href=""><i class="fa fa-search"></i></a><input type="text" placeholder="Search here..." class="form-control text-black" name="find"/></div>
         </form>
 
-        <div class="btn-group" style="margin-top: 40px;width: 100%;padding: 3px;">
-            <label class="col-md-12 control-label" style="padding-left: 5px;">Organizations</label>
-            <button type="button" class="btn btn-default" style="width: 88%;overflow: hidden;">{{$filter[0]}}</button>
-            <button type="button" data-toggle="dropdown" data-delay="1000" data-close-others="true" class="btn btn-primary dropdown-toggle"><i class="fa fa-angle-down"></i></button>
-            <ul class="dropdown-menu scrollable-menu">
-                <li><a href="/organizations">All</a></li>
-                @foreach($organizations as $organization)
-                <li><a href="/organization_{{$organization->organizations_id}}">{{$organization->name}}</a></li>
-                @endforeach
-            </ul>
-        </div>
-
         <div class="btn-group" style="margin-top: 40px; width: 100%;padding: 5px; ">
-            <label class="col-md-12 control-label" style="padding-left: 5px;">Services</label>
+            <label class="col-md-12 control-label" style="padding-left: 5px;">Service Category</label>
             <button type="button" class="btn btn-default" style="width: 88%;overflow: hidden;">{{$filter[1]}}</button>
             <button type="button" data-toggle="dropdown" data-delay="1000" data-close-others="true" class="btn btn-primary dropdown-toggle"><i class="fa fa-angle-down"></i></button>
             <ul class="dropdown-menu scrollable-menu">
@@ -29,9 +17,21 @@
                 @endforeach
             </ul>
         </div>
+
+        <div class="btn-group" style="margin-top: 40px;width: 100%;padding: 3px;">
+            <label class="col-md-12 control-label" style="padding-left: 5px;">Organization Category</label>
+            <button type="button" class="btn btn-default" style="width: 88%;overflow: hidden;">{{$filter[0]}}</button>
+            <button type="button" data-toggle="dropdown" data-delay="1000" data-close-others="true" class="btn btn-primary dropdown-toggle"><i class="fa fa-angle-down"></i></button>
+            <ul class="dropdown-menu scrollable-menu">
+                <li><a href="/organizations">All</a></li>
+                @foreach($organizations as $organization)
+                <li><a href="/organization_{{$organization->organizations_id}}">{{$organization->name}}</a></li>
+                @endforeach
+            </ul>
+        </div>
         
         <div class="btn-group" style="margin-top: 40px; width: 100%;padding: 3px;">
-            <label class="col-md-12 control-label" style="padding-left: 0;">Projects</label>
+            <label class="col-md-12 control-label" style="padding-left: 0;">Project Category</label>
             <button type="button" class="btn btn-default" style="width: 88%;overflow: hidden;">{{$filter[2]}}</button>
             <button type="button" data-toggle="dropdown" data-delay="1000" data-close-others="true" class="btn btn-primary dropdown-toggle"><i class="fa fa-angle-down"></i></button>
             <ul class="dropdown-menu scrollable-menu" style="min-width: 250px;">
