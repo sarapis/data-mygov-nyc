@@ -4,6 +4,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link href="../css/treeview.css" rel="stylesheet">
+    <style>
+    .alert{
+        display: none;
+    }
+    </style>
 <div>
 
     <!--BEGIN BACK TO TOP-->
@@ -60,8 +65,16 @@
                                             {!! $posts->body !!}
                                         </div>                                                                  
                                     </div>
+
                                     <div class="panel">
+                                        <div class="row" style="margin:20px;">
+                                            <div class="alert alert-success alert-dismissable">
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                    You can view the budget of each organization on their profile pages under the “Budgets” tab.
+                                            </div>
+                                        </div>
                                         <div class="panel-body">
+                                            
                                             <div id="sum_box" class="row mbl">
                                                 <div class="col-sm-6 col-md-3 block-space">
                                                     <div class="panel profit db mbm">
@@ -77,7 +90,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-md-3 block-space">
-                                                    <div class="panel income db mbm">
+                                                    <div class="panel income db mbm budgets">
                                                         <div class="panel-body">
                                                             <p class="icon">
                                                                 <i class="icon icon-wallet"></i>
@@ -166,4 +179,10 @@
     <!--END PAGE WRAPPER-->
 </div>
 @include('layouts.script')
-
+<script type="text/javascript">
+$(document).ready(function(){
+    $('.budgets').click(function(){
+        $('.alert').show()
+    }) 
+});
+</script>
