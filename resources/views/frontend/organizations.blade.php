@@ -28,7 +28,7 @@
             <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
                 <div class="page-header pull-left">
                     <div class="page-title plxxl">
-                        All Organizations</div>
+                        Organizations</div>
                 </div>
                 <ol class="breadcrumb page-breadcrumb pull-right">
                     <li><i class="fa fa-desktop"></i>&nbsp;<a href="/organization">Organizations</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
