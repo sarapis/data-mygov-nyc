@@ -70,7 +70,7 @@
                                                                 <i class="icon icon-users"></i>
                                                             </p>
                                                             <p class="description">
-                                                                Agencies</p>
+                                                                Organizations</p>
                                                             <h4 class="value">
                                                                 {{number_format($quantity_organizations)}}</h4>
                                                         </div>
@@ -111,7 +111,7 @@
                                                             <p class="description">
                                                                 Projects</p>
                                                             <h4 class="value">
-                                                                {{$quantity_projects}}</h4>
+                                                                {{$quantity_project}}</h4>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -7,7 +7,7 @@
     font-size: 16px;
   }
 </style>
-<title>All Oragnizations</title>
+<title>Oragnizations</title>
 
 <div>
     <!--BEGIN BACK TO TOP-->

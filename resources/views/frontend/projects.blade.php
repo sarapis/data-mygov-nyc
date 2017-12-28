@@ -70,7 +70,7 @@
                                             <th>@sortablelink('project_projectid', 'Project ID')</th>
                                             <th>Organization</th>
                                             <th>Description</th>
-                                            <th>#Commitments</th>
+                                            <th>Commitments</th>
                                             <th>Total Cost &nbsp &nbsp&nbsp&nbsp&nbsp</th>
                                           </tr>
                                         </thead>

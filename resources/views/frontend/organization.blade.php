@@ -117,7 +117,7 @@ ul.nav.nav-tabs li a {
                                                         @else (int)(0) @endif</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" data-toggle="tab" href="#panel4" role="tab">Expenses @if($organization->expenses!=null)
+                                                        <a class="nav-link" data-toggle="tab" href="#panel4" role="tab">Budgets @if($organization->expenses!=null)
                                                         ({{sizeof(explode(",", $organization->expenses))+1}})
                                                         @else (int)(0) @endif</a>
                                                     </li>
@@ -293,27 +293,27 @@ ul.nav.nav-tabs li a {
                                                             <thead>
                                                             <tr class="info">
                                                                 <th class="text-center">Expense Budget</th>
-                                                                <th class="text-center">Year 1</th>
+                                                                <th class="text-center">Current Capital (Projects) Budget</th>
                                                                 <th class="text-center">Year 2</th>
                                                                 <th class="text-center">Year 3</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
-                                                            <tr>
-                                                                <td class="text-center">Total Dept.</td>
-                                                                <td class="text-center">${{number_format($expenses_sum->expenses_year1)}}</td>
-                                                                <td class="text-center">${{number_format($expenses_sum->expenses_year2)}}</td>
-                                                                <td class="text-center">${{number_format($expenses_sum->expenses_year3)}}</td>
-                                                            </tr>
-                                                            @foreach($organization_expenses as $organizaiton_expense)
-                                                            <tr>
-                                                                <td class="text-center">{{$organizaiton_expense->line_number_description}}</td>
-                                                                <td class="text-center">${{number_format($organizaiton_expense->year1_forecast)}}</td>
-                                                                <td class="text-center">${{number_format($organizaiton_expense->year2_estimate)}}</td>
-                                                                <td class="text-center">${{number_format($organizaiton_expense->year3_estimate)}}</td>
-                                                            </tr>
-                                                            @endforeach
-
+                                                            
+                                                                @foreach($organization_expenses as $organizaiton_expense)
+                                                                <tr>
+                                                                    <td class="text-center">{{$organizaiton_expense->line_number_description}}</td>
+                                                                    <td class="text-center">${{number_format($organizaiton_expense->year1_forecast)}}</td>
+                                                                    <td class="text-center">${{number_format($organizaiton_expense->year2_estimate)}}</td>
+                                                                    <td class="text-center">${{number_format($organizaiton_expense->year3_estimate)}}</td>
+                                                                </tr>
+                                                                @endforeach
+                                                                <tr>
+                                                                    <td class="text-center">Total Dept.</td>
+                                                                    <td class="text-center">${{number_format($expenses_sum->expenses_year1)}}</td>
+                                                                    <td class="text-center">${{number_format($expenses_sum->expenses_year2)}}</td>
+                                                                    <td class="text-center">${{number_format($expenses_sum->expenses_year3)}}</td>
+                                                                </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>
