@@ -8,6 +8,9 @@
     .alert{
         display: none;
     }
+    .panel{
+        cursor: pointer;
+    }
     </style>
 <div>
 
