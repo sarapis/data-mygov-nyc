@@ -88,7 +88,7 @@ class ServiceController extends Controller
     public function find($id)
     {
 
-        $service = Service::where('service_id','=',$id)->first();
+        $service = Service::where('service_id','=',$id)->leftjoin('organizations', 'services.organization', 'like', DB::raw("concat('%', organizations.organization_id, '%')"))->first();
         $service_organization = Service::where('service_id','=', $id)->value('organization');
         $service_program = Service::where('service_id','=', $id)->value('programs');
         $service_taxonomy = Service::where('service_id','=', $id)->value('taxonomy');

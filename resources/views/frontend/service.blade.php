@@ -55,29 +55,29 @@
                                         <div class="panel-body">
                                             <p style="font-size: 25px;color: #357ca5;">{{$service->name}}</p>
 
-                                            <p><code> Alternate Name:</code>{{$service->alternate_name}}</p>
+                                            <p><code> Alternate Name</code>{{$service->alternate_name}}</p>
 
-                                            <p><code> Organization Name:</code><a href="/organization_{{$service->organization}}" style="color: #428bca;">{{$organization}}</a></p>
+                                            <p><code> Organization</code><a href="/organization_{{$service->organizations_id}}" style="color: #428bca;">{{$organization}}</a></p>
 
-                                            <p><code> Description:</code>{!! $service->description !!}</p>
+                                            <p><code> Description</code>{!! $service->description !!}</p>
 
-                                            <p><code> Status:</code><span class="badge badge-green">{{$service->status}}</span></p>
+                                            <p><code> Status</code><span class="badge badge-green">{{$service->status}}</span></p>
 
-                                            <p><code> Service Category:</code><a href="/category_{{$taxonomy->taxonomy_id}}" style="color: #428bca;">{{$taxonomy->name}}</a></p>
+                                            <p><code> Service Category</code><a href="/category_{{$taxonomy->taxonomy_id}}" style="color: #428bca;">{{$taxonomy->name}}</a></p>
 
                                             <a class="btn-yellow btn-sm" href="{{$service->url}}" target="_blank">Goto Website</a>
 
                                             <p style="padding-top: 12px;"><code> Email:</code>{!! $service->email !!}</p>
 
-                                            <p><code> Program:</code>{{$program}}</p>
+                                            <p><code> Program</code>{{$program}}</p>
 
                                             <div class="divider">
                                                 <h2>Additional Info</h2>
-                                                <p><code> Application Process:</code>{!! $service->application_process !!}</p>
-                                                <p><code> Wait Time:</code>{{$service->wait_time}}</p>
-                                                <p><code> Fees:</code>{{$service->fees}}</p>
-                                                <p><code> Accreditations:</code>{{$service->accreditations}}</p>
-                                                <p><code> Licenses:</code>{{$service->licenses}}</p>
+                                                <p><code> Application Process</code>{!! $service->application_process !!}</p>
+                                                <p><code> Wait Time</code>{{$service->wait_time}}</p>
+                                                <p><code> Fees</code>{{$service->fees}}</p>
+                                                <p><code> Accreditations</code>{{$service->accreditations}}</p>
+                                                <p><code> Licenses</code>{{$service->licenses}}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -90,15 +90,15 @@
 
                                         </div>
                                         <div class="portlet-body">
-                                            <p><code>Address:</code></p>
+                                            <p><code>Address</code></p>
                                                 @if($service->locations!='')
                                                     @foreach($service_map as $servicemap)
                                                         <p><a href="location_{{$servicemap->location_id}}">{{$servicemap->name}}</a>: {{$servicemap->address_1}}, {{$servicemap->city}}, {{$servicemap->state_province}}, {{$servicemap->postal_code}}</p>
                                                     @endforeach
                                                 @endif
-                                            <p><code>Contact:</code>{{$contacts}}</p>
-                                            <p><code>Regular schedule:</code></p>
-                                            <p><code>holiday schedule:</code></p>
+                                            <p><code>Contact</code>{{$contacts}}</p>
+                                            <p><code>Regular schedule</code></p>
+                                            <p><code>holiday schedule</code></p>
                                             <h2>Details</h2>
                                             @foreach($service_details as $service_detail)
                                                 <p><span class="badge badge-yellow">{{$service_detail->detail_type}}</span> {!! $service_detail->value !!}</p>
