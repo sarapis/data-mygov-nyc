@@ -70,7 +70,7 @@
                                                                 <i class="icon icon-users"></i>
                                                             </p>
                                                             <p class="description">
-                                                                Organizations</p>
+                                                                Agencies</p>
                                                             <h4 class="value">
                                                                 {{number_format($quantity_organizations)}}</h4>
                                                         </div>

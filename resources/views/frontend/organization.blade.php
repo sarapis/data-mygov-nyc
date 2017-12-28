@@ -90,7 +90,7 @@ ul.nav.nav-tabs li a {
                                             <p><code> Alternate Name:</code> {{$organization->alternate_name}}</p>
                                             <p><code> Description:</code> {!! $organization->description !!}</p>
                                             <p><code> Email:</code> {{$organization->email}}</p>
-                                            <p><code> Year 1 Project Budget:</code> ${{number_format($organization->total_project_cost)}}</p>
+                                            <p><code> Current Captial (Project) Budget:</code> ${{number_format($organization->total_project_cost)}}</p>
                                             <p><code> Year 1 Expense Budget:</code> ${{number_format($organization->expenses_budgets)}}</p>
                                             <a class="btn-yellow btn-sm" href="{{$organization->website}}" target="_blank">Visit Website</a>
                                             @if($organization->checkbook!='')
@@ -117,9 +117,7 @@ ul.nav.nav-tabs li a {
                                                         @else (int)(0) @endif</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" data-toggle="tab" href="#panel4" role="tab">Budgets @if($organization->expenses!=null)
-                                                        ({{sizeof(explode(",", $organization->expenses))+1}})
-                                                        @else (int)(0) @endif</a>
+                                                        <a class="nav-link" data-toggle="tab" href="#panel4" role="tab">Budgets</a>
                                                     </li>
                                                 </ul>
                                                 <!-- Tab panels -->
@@ -293,13 +291,18 @@ ul.nav.nav-tabs li a {
                                                             <thead>
                                                             <tr class="info">
                                                                 <th class="text-center">Expense Budget</th>
-                                                                <th class="text-center">Current Capital (Projects) Budget</th>
+                                                                <th class="text-center">Year 1</th>
                                                                 <th class="text-center">Year 2</th>
                                                                 <th class="text-center">Year 3</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
-                                                            
+                                                                <tr>
+                                                                    <td class="text-center"><b>Current Capital (Projects) Budgets</b></td>
+                                                                    <td class="text-center"><b>${{number_format($organization->total_project_cost)}}<b></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
                                                                 @foreach($organization_expenses as $organizaiton_expense)
                                                                 <tr>
                                                                     <td class="text-center">{{$organizaiton_expense->line_number_description}}</td>
