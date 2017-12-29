@@ -30,6 +30,17 @@
                     <div class="page-title plxxl">
                         Organizations</div>
                 </div>
+                <div class="col-sm-4" style="padding-left: 200px;">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Type @if($organization_type!=''): {{$organization_type}}@endif
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu scrollable-menu">
+                            @foreach ($organizationtypes as $organization)
+                            <li><a href="/organizationcategory_{{$organization->type}}">{{$organization->type}}</a></li>
+                        @endforeach
+                        </ul>
+                    </div>
+                </div>
                 <ol class="breadcrumb page-breadcrumb pull-right">
                     <li><i class="fa fa-desktop"></i>&nbsp;<a href="/organization">Organizations</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
                 </ol>
@@ -128,28 +139,3 @@
     <!--END PAGE WRAPPER-->
 </div>
 @include('layouts.script')
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5XHJ6oNL9-qh0XsL0G74y1xbcxNGkSxw&callback=initMap"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
- <script type="text/javascript">
-
-    var locations = <?php print_r(json_encode($location_map)) ?>;
-
-    var mymap = new GMaps({
-      el: '#mymap',
-      lat: 40.712722,
-      lng: -74.006058,
-      zoom:10
-    });
-
-    $.each( locations, function( index, value ){
-        mymap.addMarker({
-          lat: value.latitude,
-          lng: value.longitude,
-          title: value.name,
-          infoWindow: {
-            content: ('<a href="location_'+value.location_id+'">'+value.name+'</a></br>' +value.address_1+', ' +value.city+', '+value.state_province+', '+value.postal_code)
-        }
-        });
-   });
-
-  </script>

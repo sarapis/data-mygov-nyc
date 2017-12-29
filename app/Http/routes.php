@@ -48,6 +48,7 @@ Route::get('/organizations_servicesasc', 'OrganizationController@servicesasc');
 Route::get('/organizations_projectdesc', 'OrganizationController@projectdesc');
 Route::get('/organizations_projectasc', 'OrganizationController@projectasc');
 Route::get('/organizationcategory_{id}', 'OrganizationController@category');
+Route::get('/type_{id}', 'OrganizationController@type');
 
 
 //Services

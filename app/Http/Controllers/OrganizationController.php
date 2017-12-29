@@ -37,10 +37,11 @@ class OrganizationController extends Controller
         $project_name = '&nbsp;';
         $filter = collect([$organization_name, $service_name, $project_name]);
 
+        $organization_type='';
         $organizations = Organization::leftjoin('agencies', 'organizations.organizations_id', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->select('organizations.*', 'agencies.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets'))->groupBy('organizations.id')->get();
 
         $location_map = DB::table('locations')->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->get();
-        return view('frontend.organizations', compact('servicetypes','projecttypes','organizationtypes','filter', 'location_map', 'organizations'));
+        return view('frontend.organizations', compact('servicetypes','projecttypes','organizationtypes','filter', 'location_map', 'organizations', 'organization_type'));
     }
 
     /**
@@ -245,9 +246,11 @@ class OrganizationController extends Controller
         $project_name = '&nbsp;';
         $filter = collect([$organization_name, $service_name, $project_name]);
 
-        $organizations = DB::table('organizations')->where('organizations.type', '=', $id)->leftjoin('phones', 'organizations.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->select('organizations.*', DB::raw('phones.phone_number as phones_number'))->groupBy('organizations.id')->get();
+        $organization_type = $id;
+        $organizations = Organization::where('organizations.type', '=', $id)->leftjoin('agencies', 'organizations.organizations_id', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->select('organizations.*', 'agencies.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets'))->groupBy('organizations.id')->get();
 
         $organization_map = DB::table('locations')->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->get();
-        return view('frontend.organizationtype', compact('servicetypes','projecttypes','organizationtypes','filter', 'organizations','organization_map','organization_name'));
+
+        return view('frontend.organizations', compact('servicetypes','projecttypes','organizationtypes','filter', 'organizations','organization_map','organization_name', 'organization_type'));
     }
 }
