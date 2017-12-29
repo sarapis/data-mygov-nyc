@@ -55,9 +55,11 @@ class IndexController extends Controller
         $quantity_services = DB::table('services')->count();
         $quantity_project = DB::table('projects')->count();
         $quantity_projects = $budgetclass->custom_number_format($quantity_project, 2);
+        $total_project_cost = DB::table('agencies')->sum('total_project_cost');
+        $capital=$budgetclass->custom_number_format($total_project_cost, 2);
 
         $location_map = DB::table('locations')->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->get();
-        return view('frontend.home', compact('posts','organizationtypes', 'servicetypes','projecttypes', 'filter', 'quantity_organizations', 'budgets', 'quantity_services', 'quantity_project'));
+        return view('frontend.home', compact('posts','organizationtypes', 'servicetypes','projecttypes', 'filter', 'quantity_organizations', 'budgets', 'quantity_services', 'quantity_project', 'capital'));
     }
  
 

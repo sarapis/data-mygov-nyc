@@ -80,7 +80,7 @@
                                             
                                             <div id="sum_box" class="row mbl">
                                                 <div class="col-sm-6 col-md-3 block-space">
-                                                    <div class="panel profit db mbm">
+                                                    <div class="panel profit db mbm" onclick="location.href='organizations';">
                                                         <div class="panel-body">
                                                             <p class="icon">
                                                                 <i class="icon icon-users"></i>
@@ -95,18 +95,24 @@
                                                 <div class="col-sm-6 col-md-3 block-space">
                                                     <div class="panel income db mbm budgets">
                                                         <div class="panel-body">
-                                                            <p class="icon">
-                                                                <i class="icon icon-wallet"></i>
-                                                            </p>
-                                                            <p class="description">
-                                                                Budgets</p>
-                                                            <h4 class="value">
-                                                                ${{$budgets}}</h4> 
+                                                            <div class="col-sm-6">
+                                                                <p class="description">
+                                                                    Budgets</p>
+                                                                <h4 class="value">
+                                                                    ${{$budgets}}</h4>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <p class="description">
+                                                                    Capital
+                                                                </p>
+                                                                <h4 class="value">
+                                                                    ${{$capital}}</h4>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-md-3 block-space">
-                                                    <div class="panel task db mbm">
+                                                    <div class="panel task db mbm" onclick="location.href='services';">
                                                         <div class="panel-body">
                                                             <p class="icon">
                                                                 <i class="icon icon-check"></i>
@@ -119,7 +125,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-md-3">
-                                                    <div class="panel visit db mbm">
+                                                    <div class="panel visit db mbm" onclick="location.href='projects';">
                                                         <div class="panel-body">
                                                             <p class="icon">
                                                                 <i class="icon icon-basket"></i>

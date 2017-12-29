@@ -299,9 +299,7 @@ ul.nav.nav-tabs li a {
                                                             <tbody>
                                                                 <tr>
                                                                     <td class="text-center"><b>Current Capital (Projects) Budgets</b></td>
-                                                                    <td class="text-center"><b>${{number_format($organization->total_project_cost)}}<b></td>
-                                                                    <td></td>
-                                                                    <td></td>
+                                                                    <td class="text-center" colspan="3"><b>${{number_format($organization->total_project_cost)}}<b></td>
                                                                 </tr>
                                                                 @foreach($organization_expenses as $organizaiton_expense)
                                                                 <tr>
