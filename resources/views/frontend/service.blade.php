@@ -1,5 +1,5 @@
 @include('layouts.style')
-<title>{{$service->name}} | Service</title>
+<title>{{$servicename}} | Service</title>
 
 
 <div>
