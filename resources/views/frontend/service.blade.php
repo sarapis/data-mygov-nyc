@@ -27,7 +27,7 @@
                 <div class="sharethis-inline-share-buttons col-md-4"></div>
                 <ol class="breadcrumb page-breadcrumb pull-right">
                     <li><i class="fa fa-gift"></i>&nbsp;<a href="/servive">Services</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-                    <li class="active">{{$service->name}}</li>
+                    <li class="active">{{$servicename}}</li>
                 </ol>
                 <div class="clearfix">
                 </div>
@@ -53,7 +53,7 @@
                                 <div class="col-lg-8" style="padding: 0;">
                                     <div class="panel" style="padding-top: 20px;">
                                         <div class="panel-body">
-                                            <p style="font-size: 25px;color: #357ca5;">{{$service->name}}</p>
+                                            <p style="font-size: 25px;color: #357ca5;">{{$servicename}}</p>
 
                                             <p><code> Alternate Name</code>{{$service->alternate_name}}</p>
 

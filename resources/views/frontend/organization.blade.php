@@ -90,7 +90,7 @@ ul.nav.nav-tabs li a {
                                             <p><code> Alternate Name:</code> {{$organization->alternate_name}}</p>
                                             <p><code> Description:</code> {!! $organization->description !!}</p>
                                             <p><code> Email:</code> {{$organization->email}}</p>
-                                            <p><code> Current Captial (Project) Budget:</code> ${{number_format($organization->total_project_cost)}}</p>
+                                            <p><code> Captial (Projects) Budget:</code> ${{number_format($organization->total_project_cost)}}</p>
                                             <p><code> Year 1 Expense Budget:</code> ${{number_format($organization->expenses_budgets)}}</p>
                                             <a class="btn-yellow btn-sm" href="{{$organization->website}}" target="_blank">Visit Website</a>
                                             @if($organization->checkbook!='')
@@ -233,7 +233,7 @@ ul.nav.nav-tabs li a {
                                                                 <tr class="info">
                                                                     <th>Project ID</th>
                                                                     <th>Description</th>
-                                                                    <th>#Commitments</th>
+                                                                    <th>Commitments</th>
                                                                     <th>Total Cost</th>
                                                                 </tr>
                                                             </thead>
@@ -290,17 +290,14 @@ ul.nav.nav-tabs li a {
                                                         <table class="table table-hover table-bordered">
                                                             <thead>
                                                             <tr class="info">
-                                                                <th class="text-center">Expense Budget</th>
+                                                                <th class="text-center">Budget</th>
                                                                 <th class="text-center">Year 1</th>
                                                                 <th class="text-center">Year 2</th>
                                                                 <th class="text-center">Year 3</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr>
-                                                                    <td class="text-center"><b>Current Capital (Projects) Budgets</b></td>
-                                                                    <td class="text-center" colspan="3"><b>${{number_format($organization->total_project_cost)}}<b></td>
-                                                                </tr>
+                                                                
                                                                 @foreach($organization_expenses as $organizaiton_expense)
                                                                 <tr>
                                                                     <td class="text-center">{{$organizaiton_expense->line_number_description}}</td>
@@ -310,10 +307,14 @@ ul.nav.nav-tabs li a {
                                                                 </tr>
                                                                 @endforeach
                                                                 <tr>
-                                                                    <td class="text-center">Total Dept.</td>
-                                                                    <td class="text-center">${{number_format($expenses_sum->expenses_year1)}}</td>
-                                                                    <td class="text-center">${{number_format($expenses_sum->expenses_year2)}}</td>
-                                                                    <td class="text-center">${{number_format($expenses_sum->expenses_year3)}}</td>
+                                                                    <td class="text-center"><b>Total Dept.</b></td>
+                                                                    <td class="text-center"><b>${{number_format($expenses_sum->expenses_year1)}}</b></td>
+                                                                    <td class="text-center"><b>${{number_format($expenses_sum->expenses_year2)}}</b></td>
+                                                                    <td class="text-center"><b>${{number_format($expenses_sum->expenses_year3)}}<b></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-center"><b>Current Capital (Projects) Budgets</b></td>
+                                                                    <td class="text-center" colspan="3"><b>${{number_format($organization->total_project_cost)}}<b></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>

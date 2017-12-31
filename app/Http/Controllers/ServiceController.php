@@ -89,6 +89,7 @@ class ServiceController extends Controller
     {
 
         $service = Service::where('service_id','=',$id)->leftjoin('organizations', 'services.organization', 'like', DB::raw("concat('%', organizations.organization_id, '%')"))->first();
+        $servicename = Service::where('service_id','=', $id)->value('name');
         $service_organization = Service::where('service_id','=', $id)->value('organization');
         $service_program = Service::where('service_id','=', $id)->value('programs');
         $service_taxonomy = Service::where('service_id','=', $id)->value('taxonomy');
@@ -118,7 +119,7 @@ class ServiceController extends Controller
         
         $service_details = DB::table('services')->where('service_id', '=', $id)->leftjoin('details', 'services.details', 'like', DB::raw("concat('%', details.detail_id, '%')"))->select('details.value', 'details.detail_type')->get();
  
-        return view('frontend.service', compact('servicetypes','projecttypes','organizationtypes', 'taxonomys','service_name','service','organization','program','taxonomy', 'contacts', 'service_map','filter', 'service_details'));
+        return view('frontend.service', compact('servicetypes','projecttypes','organizationtypes', 'taxonomys','service_name','service','organization','program','taxonomy', 'contacts', 'service_map','filter', 'service_details','servicename'));
     }
 
     /**

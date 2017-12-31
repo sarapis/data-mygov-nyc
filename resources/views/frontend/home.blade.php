@@ -97,7 +97,7 @@
                                                         <div class="panel-body">
                                                             <div class="col-sm-6">
                                                                 <p class="description">
-                                                                    Budgets</p>
+                                                                    Expenses</p>
                                                                 <h4 class="value">
                                                                     ${{$budgets}}</h4>
                                                             </div>
