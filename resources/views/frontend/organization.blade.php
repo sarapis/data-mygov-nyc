@@ -313,7 +313,7 @@ ul.nav.nav-tabs li a {
                                                                     <td class="text-center"><b>${{number_format($expenses_sum->expenses_year3)}}<b></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td class="text-center"><b>Current Capital (Projects) Budgets</b></td>
+                                                                    <td class="text-center"><b>Capital (Projects) Budgets</b></td>
                                                                     <td class="text-center" colspan="3"><b>${{number_format($organization->total_project_cost)}}<b></td>
                                                                 </tr>
                                                             </tbody>
