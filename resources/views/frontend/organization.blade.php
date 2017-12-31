@@ -90,7 +90,7 @@ ul.nav.nav-tabs li a {
                                             <p><code> Alternate Name:</code> {{$organization->alternate_name}}</p>
                                             <p><code> Description:</code> {!! $organization->description !!}</p>
                                             <p><code> Email:</code> {{$organization->email}}</p>
-                                            <p><code> Captial (Projects) Budget:</code> ${{number_format($organization->total_project_cost)}}</p>
+                                            <p><code> Capital (Projects) Budget:</code> ${{number_format($organization->total_project_cost)}}</p>
                                             <p><code> Year 1 Expense Budget:</code> ${{number_format($organization->expenses_budgets)}}</p>
                                             <a class="btn-yellow btn-sm" href="{{$organization->website}}" target="_blank">Visit Website</a>
                                             @if($organization->checkbook!='')
