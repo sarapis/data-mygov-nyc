@@ -31,7 +31,7 @@
                 {!! HTML::icon_link( "/dashboard", 'fa '.Lang::get('sidebar-nav.link_icon_dashboard'), "<span>".Lang::get('sidebar-nav.link_title_dashboard')."</span>", array('title' => Lang::get('sidebar-nav.link_title_dashboard'))) !!}
             </li>
             <li class="treeview">
-              <a href="">
+              <a href="/posts">
                 <i class="fa fa-files-o"></i>
                 <span>Pages</span>
                 <i class="fa fa-angle-left pull-right"></i>
@@ -44,7 +44,7 @@
             </li>
 
             <li class="treeview">
-              <a href="">
+              <a href="/datasync">
                 <i class="fa fa-database"></i>
                 <span>Data</span>
                 <i class="fa fa-angle-left pull-right"></i>
