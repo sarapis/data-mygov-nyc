@@ -54,12 +54,6 @@
                 <li><a href="/log"><i class="fa fa-history"></i> Log</a></li>
               </ul>
             </li>
-
-            <li>
-              <a href="/datasync">
-                <i class="fa fa-database"></i> <span>Data Sync</span>
-              </a>
-            </li>
             @if (Auth::user()->profile)
                 <li class="treeview">
                     {!! HTML::icon_link( "/profile/".Auth::user()->name, 'fa '.Lang::get('sidebar-nav.link_icon_profile_top'), "<span>".Lang::get('sidebar-nav.link_title_profile_top')."</span><i class='fa ".Lang::get('sidebar-nav.caret_folded')." pull-right'></i>", array('title' => Lang::get('sidebar-nav.link_title_profile_top'))) !!}
