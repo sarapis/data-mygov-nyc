@@ -138,7 +138,7 @@
 							$projects = '';
 							$commitments ='';
 							$description ='';
-
+							$commitmentdescription='';
 							foreach ( $airtable_response['records'] as $record ) {
 					
 								// Add each artist to the list, wrapped with a URL to the details page.
@@ -166,7 +166,16 @@
 								}
 								
 							}
+							$size += sizeof($airtable_response['records']);
 							$offset = $airtable_response['offset'];
+						}
+						date_default_timezone_set('UTC');
+						$date = date("Y/m/d H:i:s");
+						$sql = "UPDATE budgets_table SET total_records='". $size ."', last_synced='{$date}' WHERE table_name='Commitments'";
+						if ($conn->query($sql) === TRUE) {
+						    echo "record updated successfully";
+						} else {
+						    echo "Error: " . $sql . "<br>" . $conn->error;
 						}
 						$conn->close();
 						// Close the curl session.

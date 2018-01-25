@@ -84,7 +84,7 @@
 						curl_setopt( $ch, CURLOPT_HTTPHEADER, $http_headers );	
 						// Initialize the offset.
 						$offset = '';
-
+						$size = 0;
 						while ( ! is_null ( $offset ) ) {
 
 						$airtable_url = AIRTABLE_API_URL . AIRTABLE_APP_ID;
@@ -173,13 +173,28 @@
 								$sql = "INSERT INTO organizations (organization_id, organizations_id, alternate_name, name, dedupe, type, child_of, contacts, website, description, logo, checkbook, internalnotes, contacts_link, services, phones, locations, contact, details, program, email, legal_status, tax_status, tax_id, year_incorporated, sources, services_count)
 								VALUES ('{$record['id']}', '{$organizations_id}', '{$alternate_name}', '{$name}', '{$record['fields']['dedupe']}', '{$record['fields']['Type']}', '{$record['fields']['Child of']}', '{$contacts}', '{$record['fields']['website']}',  '{$description}', '{$logo}', '{$record['fields']['checkbook']}', '{$record['fields']['internalnotes']}', '{$record['fields']['contacts link']}', '{$services}', '{$phones}', '{$locations}', '{$contact}', '{$details}', '{$program}', '{$record['fields']['email']}', '{$record['fields']['legal_status']}', '{$record['fields']['tax_status']}', '{$record['fields']['tax_id']}', '{$record['fields']['year_incorporated']}', '{$sources}', '{$services_count}');";
 
+								
+
 								if ($conn->query($sql) === TRUE) {
 								    echo "New record created successfully";
 								} else {
 								    echo "Error: " . $sql . "<br>" . $conn->error;
 								}
+
+								
 							}
+							date_default_timezone_set('UTC');
+							$date = date("Y/m/d H:i:s");
+							$size += sizeof($airtable_response['records']);
 							$offset = $airtable_response['offset'];
+
+							
+						}
+						$sql = "UPDATE contact_table SET total_records='". $size ."', last_synced='{$date}' WHERE table_name='Organizations'";
+						if ($conn->query($sql) === TRUE) {
+						    echo "record updated successfully";
+						} else {
+						    echo "Error: " . $sql . "<br>" . $conn->error;
 						}
 						$conn->close();
 						// Close the curl session.

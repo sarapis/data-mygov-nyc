@@ -163,7 +163,16 @@
 								    echo "Error: " . $sql . "<br>" . $conn->error;
 								}
 							}
+							$size += sizeof($airtable_response['records']);
 							$offset = $airtable_response['offset'];
+						}
+						date_default_timezone_set('UTC');
+						$date = date("Y/m/d H:i:s");
+						$sql = "UPDATE budgets_table SET total_records='". $size ."', last_synced='{$date}' WHERE table_name='Organization'";
+						if ($conn->query($sql) === TRUE) {
+						    echo "record updated successfully";
+						} else {
+						    echo "Error: " . $sql . "<br>" . $conn->error;
 						}
 						$conn->close();
 						// Close the curl session.

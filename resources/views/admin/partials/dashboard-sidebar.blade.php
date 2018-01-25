@@ -30,23 +30,29 @@
             <li class="active">
                 {!! HTML::icon_link( "/dashboard", 'fa '.Lang::get('sidebar-nav.link_icon_dashboard'), "<span>".Lang::get('sidebar-nav.link_title_dashboard')."</span>", array('title' => Lang::get('sidebar-nav.link_title_dashboard'))) !!}
             </li>
-
-            <li>
-              <a href="/posts">
-                <i class="fa fa-pencil"></i> <span>Home Edit</span>
+            <li class="treeview">
+              <a href="">
+                <i class="fa fa-files-o"></i>
+                <span>Pages</span>
+                <i class="fa fa-angle-left pull-right"></i>
               </a>
+              <ul class="treeview-menu">
+                <li><a href="/posts"><i class="fa fa-pencil"></i> Home</a></li>
+                <li><a href="/abouts"><i class="fa fa-info-circle"></i> About</a></li>
+                <li><a href="/involves"><i class="fa fa-handshake-o"></i> Get Involved</a></li>
+              </ul>
             </li>
 
-            <li>
-              <a href="/abouts">
-                <i class="fa  fa-info-circle"></i> <span>About Edit</span>
+            <li class="treeview">
+              <a href="">
+                <i class="fa fa-database"></i>
+                <span>Data</span>
+                <i class="fa fa-angle-left pull-right"></i>
               </a>
-            </li>
-
-            <li>
-              <a href="/involves">
-                <i class="fa fa-handshake-o"></i> <span>Get Involved Edit</span>
-              </a>
+              <ul class="treeview-menu">
+                <li><a href="/datasync"><i class="fa fa-refresh"></i> Sync</a></li>
+                <li><a href="/log"><i class="fa fa-history"></i> Log</a></li>
+              </ul>
             </li>
 
             <li>

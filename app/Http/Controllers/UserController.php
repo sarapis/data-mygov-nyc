@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Contacts;
+use App\Models\Budgets;
 
 class UserController extends Controller
 {
@@ -52,7 +54,10 @@ class UserController extends Controller
             $access = 'Administrator';
         }
 
-        return view('admin.pages.datasync')->withUser($user)->withAccess($access);
+        $budgets = Budgets::all();
+        $contacts = Contacts::all(); 
+
+        return view('admin.pages.datasync', compact('budgets', 'contacts'))->withUser($user)->withAccess($access);
     }
 
 //OLD LTE
