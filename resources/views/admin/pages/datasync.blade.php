@@ -18,148 +18,7 @@
 
     </section>
     <section class="content">
-        <!-- <div class="row">
 
-            <div class="col-md-12">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">Multiple Airtables -> MySQL</h3>
-                    </div>
-                    <div class="box-body">
-                        <p>Please click follow button.</p>
-                        <div class="btn">
-                            <button class="btn btn-app services">
-                                <i class="fa fa-cogs"></i> Sevices
-                            </button>
-                            <p class="result1">
-                                <img class="probar title1 hidden" id="title" src="images/xpProgressBar.gif" alt="Loading..." />
-                            </p>
-                        </div>
-                        <div class="btn">
-                            <button class="btn btn-app locations">
-                                <i class="fa fa-location-arrow"></i> Locations
-                            </button>
-                            <p class="result2">
-                                <img class="probar title2 hidden" id="title" src="images/xpProgressBar.gif" alt="Loading..." />
-                            </p>
-                        </div>
-                        <div class="btn">
-                            <button class="btn btn-app organizations">
-                                <i class="fa  fa-bank"></i> Organizations
-                            </button>
-                            <p class="result3">
-                                <img class="probar title3 hidden" id="title" src="images/xpProgressBar.gif" alt="Loading..." />
-                            </p>
-                        </div>
-                        <div class="btn">
-                            <button class="btn btn-app phones">
-                                <i class="fa fa-phone"></i> Phones
-                            </button>
-                            <p class="result4">
-                                <img class="probar title4 hidden" id="title" src="images/xpProgressBar.gif" alt="Loading..." />
-                            </p>
-                        </div>
-                        <div class="btn">
-                            <button class="btn btn-app contact">
-                                <i class="fa fa-envelope"></i> Contact
-                            </button>
-                            <p class="result5">
-                                <img class="probar title5 hidden" id="title" src="images/xpProgressBar.gif" alt="Loading..." />
-                            </p>
-                        </div>
-                        <div class="btn">
-                            <button class="btn btn-app address">
-                                <i class="fa fa-address-book"></i> Address
-                            </button>
-                            <p class="result6">
-                                <img class="probar title6 hidden" id="title" src="images/xpProgressBar.gif" alt="Loading..." />
-                            </p>
-                        </div>
-                        <div class="btn">
-                            <button class="btn btn-app schedule">
-                                <i class="fa fa-calendar"></i> Schedule
-                            </button>
-                            <p class="result7">
-                                <img class="probar title7 hidden" id="title" src="images/xpProgressBar.gif" alt="Loading..." />
-                            </p>
-                        </div>
-                        <div class="btn">
-                            <button class="btn btn-app accessibility">
-                                <i class="fa fa-universal-access"></i> Accessibility
-                            </button>
-                            <p class="result9">
-                                <img class="probar title9 hidden" id="title" src="images/xpProgressBar.gif" alt="Loading..." />
-                            </p>
-                        </div>
-                        <div class="btn">
-                            <button class="btn btn-app program">
-                                <i class="fa fa-product-hunt"></i> Program
-                            </button>
-                            <p class="result10">
-                                <img class="probar title10 hidden" id="title" src="images/xpProgressBar.gif" alt="Loading..." />
-                            </p>
-                        </div>
-                        <div class="btn">
-                            <button class="btn btn-app service_area">
-                                <i class="fa fa-map-marker"></i> Sevice area
-                            </button>
-                            <p class="result11">
-                                <img class="probar title11 hidden" id="title" src="images/xpProgressBar.gif" alt="Loading..." />
-                            </p>
-                        </div>
-                        <div class="btn">
-                            <button class="btn btn-app taxonomy">
-                                <i class="fa fa-sitemap"></i> Taxonomy
-                            </button>
-                            <p class="result12">
-                                <img class="probar title12 hidden" id="title" src="images/xpProgressBar.gif" alt="Loading..." />
-                            </p>
-                        </div>
-                        <div class="btn">
-                            <button class="btn btn-app details">
-                                <i class="fa fa-list-alt"></i> Details
-                            </button>
-                            <p class="result13">
-                                <img class="probar title13 hidden" id="title" src="images/xpProgressBar.gif" alt="Loading..." />
-                            </p>
-                        </div>
-                        <div class="btn">
-                            <button class="btn btn-app agency">
-                                <i class="fa fa-calendar"></i> Agency
-                            </button>
-                            <p class="result8">
-                                <img class="probar title8 hidden" id="title" src="images/xpProgressBar.gif" alt="Loading..." />
-                            </p>
-                        </div>
-                        <div class="btn">
-                            <button class="btn btn-app project">
-                                <i class="fa fa-calendar"></i> Projects
-                            </button>
-                            <p class="result14">
-                                <img class="probar title14 hidden" id="title" src="images/xpProgressBar.gif" alt="Loading..." />
-                            </p>
-                        </div>
-                        <div class="btn">
-                            <button class="btn btn-app commitment">
-                                <i class="fa fa-calendar"></i> Commitments
-                            </button>
-                            <p class="result15">
-                                <img class="probar title15 hidden" id="title" src="images/xpProgressBar.gif" alt="Loading..." />
-                            </p>
-                        </div>
-                        <div class="btn">
-                            <button class="btn btn-app expenses">
-                                <i class="fa fa-calendar"></i> Expenses
-                            </button>
-                            <p class="result16">
-                                <img class="probar title16 hidden" id="title" src="images/xpProgressBar.gif" alt="Loading..." />
-                            </p>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div> -->
         <div class="row">
 
             <div class="col-md-12">
@@ -190,7 +49,7 @@
                                     <td class="text-center">
                                         <button class="badge bg-yellow sync_now {{$budget->table_name}}">Sync Now</button>
                                         <button class="badge bg-green"><a href="/{!! strtolower($budget->table_name) !!}.php" style="color: white;">View Log</a></button>
-                                        <button class="badge bg-blue"><a href="/dashboard" style="color: white;">View Table</a></button>
+                                        <button class="badge bg-blue"><a href="tb_{!! strtolower($budget->table_name) !!}" style="color: white;">View Table</a></button>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -232,7 +91,7 @@
                                     <td class="text-center">
                                         <button class="badge bg-yellow sync_now">Sync Now</button>
                                         <button class="badge bg-green"><a href="/{!! strtolower($contact->table_name) !!}.php" style="color: white;">View Log</a></button>
-                                        <button class="badge bg-blue"><a href="/dashboard" style="color: white;">View Table</a></button>
+                                        <button class="badge bg-blue"><a href="/tb_{!! strtolower($contact->table_name) !!}" style="color: white;">View Table</a></button>
                                     </td>
                                 </tr>
                                 @endforeach

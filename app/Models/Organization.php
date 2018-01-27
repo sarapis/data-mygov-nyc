@@ -10,4 +10,6 @@ class Organization extends Model
 	use Sortable;
     protected $table = 'organizations';
 
+    public $timestamps = false;
+
 }

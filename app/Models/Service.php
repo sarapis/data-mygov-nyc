@@ -8,4 +8,6 @@ class Service extends Model
 {
     protected $table = 'services';
 
+    public $timestamps = false;
+
 }

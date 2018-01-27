@@ -4,9 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Location extends Model
+class Schedule extends Model
 {
-    protected $table = 'locations';
+    protected $table = 'schedule';
 
     public $timestamps = false;
+
 }

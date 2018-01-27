@@ -8,7 +8,7 @@
     <title>@if (trim($__env->yieldContent('template_title')))@yield('template_title') | @endif {{ Lang::get('titles.app') }}</title>
     <meta name="description" content="">
     <meta name="author" content="Jeremy Kenedy">
-
+    <meta name="_token" content="{!! csrf_token() !!}" />
     {{-- Load Layout Head --}}
     @yield('layout-head')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

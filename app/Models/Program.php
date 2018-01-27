@@ -8,4 +8,6 @@ class Program extends Model
 {
     protected $table = 'programs';
 
+    public $timestamps = false;
+
 }

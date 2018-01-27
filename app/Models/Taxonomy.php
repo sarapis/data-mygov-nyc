@@ -18,4 +18,6 @@ class Taxonomy extends Model
     public function childs() {
         return $this->hasMany('App\Models\Taxonomy','parent_name','taxonomy_id') ;
     }
+
+    public $timestamps = false;
 }

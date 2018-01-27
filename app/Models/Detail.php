@@ -8,4 +8,6 @@ class Detail extends Model
 {
     protected $table = 'details';
 
+    public $timestamps = false;
+
 }

@@ -231,12 +231,29 @@ Route::group(['middleware' => 'administrator'], function () {
 	]);
 
 
+
 	// resource routes for posts
 	Route::resource('posts', 'PostsController');
 
 	Route::resource('abouts', 'AboutsController');
 
 	Route::resource('involves', 'InvolvesController');
+
+	//Tables
+	Route::resource('tb_projects', 'AdminProjectController');
+	Route::resource('tb_commitments', 'AdminCommitmentController');
+	Route::resource('tb_expense', 'AdminExpenseController');
+	Route::resource('tb_organization', 'AdminOrganizationController');
+	Route::resource('tb_organizations', 'AdminAgencyController');
+	Route::resource('tb_contacts', 'AdminContactController');
+	Route::resource('tb_services', 'AdminServiceController');
+	Route::resource('tb_locations', 'AdminLocationController');
+	Route::resource('tb_address', 'AdminAdressController');
+	Route::resource('tb_phones', 'AdminPhoneController');
+	Route::resource('tb_schedule', 'AdminScheduleController');
+	Route::resource('tb_programs', 'AdminProgramController');
+	Route::resource('tb_taxomomy', 'AdminTaxomomyController');
+	Route::resource('tb_details', 'AdminDetailController');
 
 });
 
