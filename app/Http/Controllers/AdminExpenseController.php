@@ -49,7 +49,8 @@ class AdminExpenseController extends Controller
      */
     public function show($id)
     {
-        //
+        $expense = Expense::where('id', '=', $id)->first();
+        return response()->json($expense);
     }
 
     /**
@@ -72,7 +73,23 @@ class AdminExpenseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $expense = Expense::find($id);
+        // $project = Project::where('id', '=', $id)->first();
+        $expense->report_sort = $request->report_sort;
+        $expense->publication_date = $request->publication_date;
+        $expense->agency_name = $request->agency_name;
+        $expense->line_number = $request->line_number;
+        $expense->line_number_description = $request->line_number_description;
+        $expense->fiscal_year1 = $request->fiscal_year1;
+        $expense->year1_forecast = $request->year1_forecast;
+        $expense->year2_estimate = $request->year2_estimate;
+        $expense->year3_estimate = $request->year3_estimate;
+        $expense->year4_estimate = $request->year4_estimate;
+        $expense->flag = 'modified';
+        $expense->save();
+        // var_dump($project);
+        // exit();
+        return response()->json($expense);
     }
 
     /**

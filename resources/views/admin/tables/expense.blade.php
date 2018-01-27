@@ -92,59 +92,80 @@
             <form class=" form-horizontal user" id="frmProducts" name="frmProducts"  novalidate="">
                 <div class="modal-body">
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-3 control-label">Budgetline</label>
+                      <label for="inputPassword3" class="col-sm-3 control-label">Report Sort</label>
 
                       <div class="col-sm-7">
-                        <input type="text" class="form-control" id="budgetline" name="budgetline" value="">
+                        <input type="text" class="form-control" id="report_sort" name="report_sort" value="">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-3 control-label">Fmsnumber</label>
+                      <label for="inputPassword3" class="col-sm-3 control-label">Publication Date</label>
 
                       <div class="col-sm-7">
-                        <input type="text" class="form-control" id="fmsnumber" name="fmsnumber" value=""></input>
+                        <input type="text" class="form-control" id="publication_date" name="publication_date" value=""></input>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-3 control-label">Description</label>
+                      <label for="inputPassword3" class="col-sm-3 control-label">Agency Name</label>
 
                       <div class="col-sm-7">
-                        <input type="text" class="form-control" id="description" name="description" value="">
+                        <input type="text" class="form-control" id="agency_name" name="agency_name" value="">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-3 control-label" style="padding-top: 0;">Commitment code</label>
+                      <label for="inputPassword3" class="col-sm-3 control-label">Line Number</label>
 
                       <div class="col-sm-7">
-                        <input type="text" class="form-control" id="commitmentcode" name="commitmentcode" value="">
+                        <input type="text" class="form-control" id="line_number" name="line_number" value="">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-3 control-label" style="padding-top: 0;">Commitment Description</label>
+                      <label for="inputPassword3" class="col-sm-3 control-label" style="padding-top: 0;">Line Number Description</label>
 
                       <div class="col-sm-7">
-                        <input type="text" class="form-control" id="commitmentdescription" name="commitmentdescription" value="">
+                        <input type="text" class="form-control" id="line_number_description" name="line_number_description" value="">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-3 control-label">Citycost</label>
+                      <label for="inputPassword3" class="col-sm-3 control-label">Fiscal Year1</label>
 
                       <div class="col-sm-7">
-                        <input type="text" class="form-control" id="citycost" name="citycost" value="">
+                        <input type="text" class="form-control" id="fiscal_year1" name="fiscal_year1" value="">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="text" class="col-sm-3 control-label">Noncitycost</label>
+                      <label for="text" class="col-sm-3 control-label">Year1 Forecast</label>
 
                       <div class="col-sm-7">
-                        <input type="text" class="form-control" id="noncitycost" name="noncitycost" value="">
+                        <input type="text" class="form-control" id="year1_forecast" name="year1_forecast" value="">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="text" class="col-sm-3 control-label">Year2 Estimate</label>
+
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control" id="year2_estimate" name="year2_estimate" value="">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="text" class="col-sm-3 control-label">Year3 Estimate</label>
+
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control" id="year3_estimate" name="year3_estimate" value="">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="text" class="col-sm-3 control-label">Year4 Estimate</label>
+
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control" id="year4_estimate" name="year4_estimate" value="">
                       </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary" id="btn-save" value="add">Save changes</button>
-                    <input type="hidden" id="commitment_id" name="commitment_id" value="0">
+                    <input type="hidden" id="expense_id" name="expense_id" value="0">
                 </div>
             </form>
         </div>
@@ -156,6 +177,6 @@
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="{{asset('js/commitment_ajaxscript.js')}}"></script>
+<script src="{{asset('js/expense_ajaxscript.js')}}"></script>
 
 
