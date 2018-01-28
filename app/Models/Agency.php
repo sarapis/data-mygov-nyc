@@ -9,8 +9,19 @@ class Agency extends Model
     protected $table = 'agencies';
     public $timestamps = false;
 
-    public function commitment()
+    public function commit()
     {
-        return $this->belongsTo('App\Models\Commitments', 'commitment_id');
+        return $this->hasMany('App\Models\Commitments', 'managingagency', 'agency_recordid');
     }
+
+    public function project()
+    {
+        return $this->hasMany('App\Models\Project', 'project_projectid', 'agency_recordid');
+    }
+
+    public function expense()
+    {
+        return $this->hasMany('App\Models\Expense', 'expenses_id', 'agency_recordid');
+    }
+
 }
