@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Address;
+use App\Models\Address;
 
 class AdminAddressController extends Controller
 {
@@ -16,8 +16,8 @@ class AdminAddressController extends Controller
      */
     public function index()
     {
-        $bodystyles = Bodystyle::all();
-        return view('admin.preferences.bodystyle')->with('bodystyles', $bodystyles);
+        $adds = Address::paginate(15);
+        return view('admin.tables.address')->with('adds', $adds);
     }
 
     /**
@@ -49,7 +49,8 @@ class AdminAddressController extends Controller
      */
     public function show($id)
     {
-        //
+        $address = Address::where('id', '=', $id)->first();
+        return response()->json($address);
     }
 
     /**
@@ -72,7 +73,18 @@ class AdminAddressController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $address = Address::find($id);
+        $address->address_1 = $request->address_1;
+        $address->city = $request->city;
+        $address->state_province = $request->state_province;
+        $address->postal_code = $request->postal_code;
+        $address->attention = $request->attention;
+        $address->region = $request->region;
+        $address->country = $request->country;
+        $address->flag = 'modified';
+        $address->save();
+
+        return response()->json($address);
     }
 
     /**

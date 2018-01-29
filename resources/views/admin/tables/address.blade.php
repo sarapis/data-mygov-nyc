@@ -13,7 +13,7 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-        Service Table
+        Address Table
         <small>Administrator Access</small>
       </h1>
 
@@ -25,7 +25,7 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Source URL: https://airtable.com/tblSOHZFJCoi85yXt/viwTEmKIhHSNbbIjL</h3>
+                        <h3 class="box-title">Source URL: https://airtable.com/tblbSlsxpN2oz40gH/viwC9NVajQ9B3Dtde</h3>
                     </div>
 
                     <div class="box-body table-responsive">
@@ -34,33 +34,35 @@
                             <thead>
                                 <tr class="info">
                                     <th class="text-center">No</th>
-                                    <th class="text-center">Name</th>
-                                    <th class="text-center">Althernate Name</th>
-                                    <th class="text-center">Description</th>
-                                    <th class="text-center">Url</th>
-                                    <th class="text-center">Email</th>
-                                    <th class="text-center">Application process</th>
+                                    <th class="text-center">Address</th>
+                                    <th class="text-center">City</th>
+                                    <th class="text-center">State Province</th>
+                                    <th class="text-center">Postal Code</th>
+                                    <th class="text-center">Attention</th>
+                                    <th class="text-center">Region</th>
+                                    <th class="text-center">Country</th>
                                     <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($services as $key => $service)
-                                <tr id="service{{$service->id}}" class="{{$service->flag}}">
-                                    <td class="text-center">{{$service->id}}</td>
-                                    <td class="text-center">{{$service->name}}</td>
-                                    <td class="text-center">{{$service->alternate_name}}</td>
-                                    <td class="text-center">{{str_limit($service->description, 20)}}</td>
-                                    <td class="text-center">{{str_limit($service->url, 20)}}</td>
-                                    <td class="text-center">{{str_limit($service->email, 30)}}</td> 
-                                    <td class="text-center">{{str_limit($service->application_process, 30)}}</td>
+                                @foreach($adds as $key => $address)
+                                <tr id="address{{$address->id}}" class="{{$address->flag}}">
+                                    <td class="text-center">{{$address->id}}</td>
+                                    <td class="text-center">{{$address->address_1}}</td>
+                                    <td class="text-center">{{$address->city}}</td>
+                                    <td class="text-center">{{$address->state_province}}</td>
+                                    <td class="text-center">{{$address->postal_code}}</td>
+                                    <td class="text-center">{{$address->attention}} 
+                                    <td class="text-center">{{$address->region}}</td>
+                                    <td class="text-center">{{$address->country}}</td>
                                     <td class="text-center">
-                                        <button class="btn btn-block btn-primary btn-sm open_modal"  value="{{$service->id}}"><i class="fa fa-fw fa-edit"></i>Edit</button>
+                                        <button class="btn btn-block btn-primary btn-sm open_modal"  value="{{$address->id}}"><i class="fa fa-fw fa-edit"></i>Edit</button>
                                     </td>
                                 </tr>
                                 @endforeach                                                  
                             </tbody>
                         </table>
-                        {!! $services->links() !!}
+                        {!! $adds->links() !!}
                     </div>
                     <!-- /.box-body -->
                 </div>
@@ -77,58 +79,64 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Contacts</h4>
+                <h4 class="modal-title">Address</h4>
             </div>
             <form class=" form-horizontal user" id="frmProducts" name="frmProducts"  novalidate="">
                 <div class="modal-body">
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-4 control-label">Name</label>
+                      <label for="inputPassword3" class="col-sm-4 control-label">Address</label>
 
                       <div class="col-sm-7">
-                        <input type="text" class="form-control" id="name" name="name" value="">
+                        <input type="text" class="form-control" id="address_1" name="address_1" value="">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-4 control-label">Alternate Name</label>
+                      <label for="inputPassword3" class="col-sm-4 control-label">City</label>
 
                       <div class="col-sm-7">
-                        <input type="text" class="form-control" id="alternate_name" name="alternate_name" value=""></input>
+                        <input type="text" class="form-control" id="city" name="city" value=""></input>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-4 control-label">Description</label>
+                      <label for="inputPassword3" class="col-sm-4 control-label">State province</label>
 
                       <div class="col-sm-7">
-                        <textarea type="text" class="form-control" id="description" name="description" value="" rows="5"></textarea>
+                        <input type="text" class="form-control" id="state_province" name="state_province" value="">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-4 control-label">Url</label>
+                      <label for="inputPassword3" class="col-sm-4 control-label">Postal code</label>
 
                       <div class="col-sm-7">
-                        <input type="text" class="form-control" id="url" name="url" value="">
+                        <input type="text" class="form-control" id="postal_code" name="postal_code" value="">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-4 control-label">Email</label>
+                      <label for="inputPassword3" class="col-sm-4 control-label">Attention</label>
 
                       <div class="col-sm-7">
-                        <textarea type="text" class="form-control" id="email" name="email" value=""  rows="5"></textarea>
+                        <input type="text" class="form-control" id="attention" name="attention" value="">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-4 control-label">Application Process</label>
+                      <label for="inputPassword3" class="col-sm-4 control-label">Region</label>
 
                       <div class="col-sm-7">
-                        <textarea type="text" class="form-control" id="application_process" name="application_process" value="" rows="5"></textarea>
+                        <input type="text" class="form-control" id="region" name="region" value="">
                       </div>
                     </div>
-                    
+                    <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-4 control-label">Country</label>
+
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control" id="country" name="country" value="">
+                      </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary" id="btn-save" value="add">Save changes</button>
-                    <input type="hidden" id="service_id" name="service_id" value="0">
+                    <input type="hidden" id="address_id" name="address_id" value="0">
                 </div>
             </form>
         </div>
@@ -140,6 +148,6 @@
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="{{asset('js/service_ajaxscript.js')}}"></script>
+<script src="{{asset('js/address_ajaxscript.js')}}"></script>
 
 

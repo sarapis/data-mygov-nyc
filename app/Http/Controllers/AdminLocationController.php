@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Location;
 use App\Http\Requests;
 
 class AdminLocationController extends Controller
@@ -15,7 +15,8 @@ class AdminLocationController extends Controller
      */
     public function index()
     {
-        //
+        $locations = Location::paginate(15);
+        return view('admin.tables.location')->with('locations', $locations);
     }
 
     /**
@@ -47,7 +48,8 @@ class AdminLocationController extends Controller
      */
     public function show($id)
     {
-        //
+        $location = Location::where('id', '=', $id)->first();
+        return response()->json($location);
     }
 
     /**
@@ -70,7 +72,17 @@ class AdminLocationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $location = Location::find($id);
+        $location->name = $request->name;
+        $location->alternate_name = $request->alternate_name;
+        $location->transportation = $request->transportation;
+        $location->latitude = $request->latitude;
+        $location->longitude = $request->longitude;
+        $location->description = $request->description;
+        $location->flag = 'modified';
+        $location->save();
+
+        return response()->json($location);
     }
 
     /**

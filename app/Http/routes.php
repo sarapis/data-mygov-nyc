@@ -248,7 +248,7 @@ Route::group(['middleware' => 'administrator'], function () {
 	Route::resource('tb_contacts', 'AdminContactController');
 	Route::resource('tb_services', 'AdminServiceController');
 	Route::resource('tb_locations', 'AdminLocationController');
-	Route::resource('tb_address', 'AdminAdressController');
+	Route::resource('tb_address', 'AdminAddressController');
 	Route::resource('tb_phones', 'AdminPhoneController');
 	Route::resource('tb_schedule', 'AdminScheduleController');
 	Route::resource('tb_programs', 'AdminProgramController');

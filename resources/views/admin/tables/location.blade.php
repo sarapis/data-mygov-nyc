@@ -13,7 +13,7 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-        Service Table
+        Location Table
         <small>Administrator Access</small>
       </h1>
 
@@ -25,7 +25,7 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Source URL: https://airtable.com/tblSOHZFJCoi85yXt/viwTEmKIhHSNbbIjL</h3>
+                        <h3 class="box-title">Source URL: https://airtable.com/tblh85vuSLb7iSqV1/viwaDASFcq1NR3iRn</h3>
                     </div>
 
                     <div class="box-body table-responsive">
@@ -37,30 +37,30 @@
                                     <th class="text-center">Name</th>
                                     <th class="text-center">Althernate Name</th>
                                     <th class="text-center">Description</th>
-                                    <th class="text-center">Url</th>
-                                    <th class="text-center">Email</th>
-                                    <th class="text-center">Application process</th>
+                                    <th class="text-center">Transportation</th>
+                                    <th class="text-center">Latitude</th>
+                                    <th class="text-center">Longitude</th>
                                     <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($services as $key => $service)
-                                <tr id="service{{$service->id}}" class="{{$service->flag}}">
-                                    <td class="text-center">{{$service->id}}</td>
-                                    <td class="text-center">{{$service->name}}</td>
-                                    <td class="text-center">{{$service->alternate_name}}</td>
-                                    <td class="text-center">{{str_limit($service->description, 20)}}</td>
-                                    <td class="text-center">{{str_limit($service->url, 20)}}</td>
-                                    <td class="text-center">{{str_limit($service->email, 30)}}</td> 
-                                    <td class="text-center">{{str_limit($service->application_process, 30)}}</td>
+                                @foreach($locations as $key => $location)
+                                <tr id="location{{$location->id}}" class="{{$location->flag}}">
+                                    <td class="text-center">{{$location->id}}</td>
+                                    <td class="text-center">{{$location->name}}</td>
+                                    <td class="text-center">{{$location->alternate_name}}</td>
+                                    <td class="text-center">{{str_limit($location->description, 20)}}</td>
+                                    <td class="text-center">{{$location->transportation}}</td>
+                                    <td class="text-center">{{$location->latitude}}</td>
+                                    <td class="text-center">{{$location->longitude}}</td>
                                     <td class="text-center">
-                                        <button class="btn btn-block btn-primary btn-sm open_modal"  value="{{$service->id}}"><i class="fa fa-fw fa-edit"></i>Edit</button>
+                                        <button class="btn btn-block btn-primary btn-sm open_modal"  value="{{$location->id}}"><i class="fa fa-fw fa-edit"></i>Edit</button>
                                     </td>
                                 </tr>
                                 @endforeach                                                  
                             </tbody>
                         </table>
-                        {!! $services->links() !!}
+                        {!! $locations->links() !!}
                     </div>
                     <!-- /.box-body -->
                 </div>
@@ -103,24 +103,24 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-4 control-label">Url</label>
+                      <label for="inputPassword3" class="col-sm-4 control-label">Transportation</label>
 
                       <div class="col-sm-7">
-                        <input type="text" class="form-control" id="url" name="url" value="">
+                        <input type="text" class="form-control" id="transportation" name="transportation" value="">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-4 control-label">Email</label>
+                      <label for="inputPassword3" class="col-sm-4 control-label">Latitude</label>
 
                       <div class="col-sm-7">
-                        <textarea type="text" class="form-control" id="email" name="email" value=""  rows="5"></textarea>
+                        <input type="text" class="form-control" id="latitude" name="latitude" value=""></textarea>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-4 control-label">Application Process</label>
+                      <label for="inputPassword3" class="col-sm-4 control-label">Longitude</label>
 
                       <div class="col-sm-7">
-                        <textarea type="text" class="form-control" id="application_process" name="application_process" value="" rows="5"></textarea>
+                        <input type="text" class="form-control" id="longitude" name="longitude">
                       </div>
                     </div>
                     
@@ -128,7 +128,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary" id="btn-save" value="add">Save changes</button>
-                    <input type="hidden" id="service_id" name="service_id" value="0">
+                    <input type="hidden" id="location_id" name="location_id" value="0">
                 </div>
             </form>
         </div>
@@ -140,6 +140,6 @@
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="{{asset('js/service_ajaxscript.js')}}"></script>
+<script src="{{asset('js/location_ajaxscript.js')}}"></script>
 
 
