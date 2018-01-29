@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Detail;
 use App\Http\Requests;
 
 class AdminDetailController extends Controller
@@ -15,7 +15,8 @@ class AdminDetailController extends Controller
      */
     public function index()
     {
-        //
+        $details = Detail::paginate(15);
+        return view('admin.tables.detail')->with('details', $details);
     }
 
     /**
@@ -47,7 +48,8 @@ class AdminDetailController extends Controller
      */
     public function show($id)
     {
-        //
+        $detail = Detail::where('id', '=', $id)->first();
+        return response()->json($detail);
     }
 
     /**
@@ -70,7 +72,13 @@ class AdminDetailController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $detail = Detail::find($id);
+        $detail->value = $request->value;
+        $detail->detail_type = $request->detail_type;
+        $detail->flag = 'modified';
+        $detail->save();
+
+        return response()->json($detail);
     }
 
     /**
