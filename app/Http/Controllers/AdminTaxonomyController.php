@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Taxonomy;
 use App\Http\Requests;
 
 class AdminTaxonomyController extends Controller
@@ -15,7 +15,8 @@ class AdminTaxonomyController extends Controller
      */
     public function index()
     {
-        //
+        $taxonomies = Taxonomy::paginate(15);
+        return view('admin.tables.taxonomy')->with('taxonomies', $taxonomies);
     }
 
     /**
@@ -47,7 +48,8 @@ class AdminTaxonomyController extends Controller
      */
     public function show($id)
     {
-        //
+        $taxonomy = Taxonomy::where('id', '=', $id)->first();
+        return response()->json($taxonomy);
     }
 
     /**
@@ -70,7 +72,13 @@ class AdminTaxonomyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $taxonomy = Taxonomy::find($id);
+        $taxonomy->name = $request->name;
+        $taxonomy->vocabulary = $request->vocabulary;
+        $taxonomy->flag = 'modified';
+        $taxonomy->save();
+
+        return response()->json($taxonomy);
     }
 
     /**

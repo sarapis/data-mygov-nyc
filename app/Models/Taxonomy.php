@@ -19,5 +19,9 @@ class Taxonomy extends Model
         return $this->hasMany('App\Models\Taxonomy','parent_name','taxonomy_id') ;
     }
 
+    public function parent() {
+        return $this->hasMany('App\Models\Taxonomy','taxonomy_id','parent_name') ;
+    }
+
     public $timestamps = false;
 }

@@ -16,7 +16,7 @@ class AdminProgramController extends Controller
     public function index()
     {
         $programs = Program::paginate(15);
-        return view('admin.tables.prgram')->with('programs', $programs);
+        return view('admin.tables.program')->with('programs', $programs);
     }
 
     /**

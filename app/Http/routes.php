@@ -252,7 +252,7 @@ Route::group(['middleware' => 'administrator'], function () {
 	Route::resource('tb_phones', 'AdminPhoneController');
 	Route::resource('tb_schedule', 'AdminScheduleController');
 	Route::resource('tb_programs', 'AdminProgramController');
-	Route::resource('tb_taxomomy', 'AdminTaxomomyController');
+	Route::resource('tb_taxonomy', 'AdminTaxonomyController');
 	Route::resource('tb_details', 'AdminDetailController');
 
 });
