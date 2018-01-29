@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Schedule;
 use App\Http\Requests;
 
 class AdminScheduleController extends Controller
@@ -15,7 +15,8 @@ class AdminScheduleController extends Controller
      */
     public function index()
     {
-        //
+        $schedules = Schedule::paginate(15);
+        return view('admin.tables.schedule')->with('schedules', $schedules);
     }
 
     /**
@@ -47,7 +48,8 @@ class AdminScheduleController extends Controller
      */
     public function show($id)
     {
-        //
+        $schedule = Schedule::where('id', '=', $id)->first();
+        return response()->json($schedule);
     }
 
     /**
@@ -70,7 +72,14 @@ class AdminScheduleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $schedule = Schedule::find($id);
+        $schedule->days = $request->days;
+        $schedule->opens_at = $request->opens_at;
+        $schedule->closes_at = $request->closes_at;
+        $schedule->flag = 'modified';
+        $schedule->save();
+
+        return response()->json($schedule);
     }
 
     /**
