@@ -12,4 +12,14 @@ class Organization extends Model
 
     public $timestamps = false;
 
+    public function phone()
+    {
+        return $this->hasMany('App\Models\Phone','organizations', 'organization_id');
+    }
+
+    public function location()
+    {
+        return $this->hasMany('App\Models\Location','organization', 'organization_id');
+    }
+
 }

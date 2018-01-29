@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Organization;
 use App\Http\Requests;
 
 class AdminOrganizationController extends Controller
@@ -15,7 +15,8 @@ class AdminOrganizationController extends Controller
      */
     public function index()
     {
-        //
+        $organizations = Organization::with('phone')->paginate(15);
+        return view('admin.tables.organization')->with('organizations', $organizations);
     }
 
     /**
@@ -47,7 +48,8 @@ class AdminOrganizationController extends Controller
      */
     public function show($id)
     {
-        //
+        $organization = Organization::where('id', '=', $id)->first();
+        return response()->json($organization);
     }
 
     /**
@@ -70,7 +72,23 @@ class AdminOrganizationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $organization = Organization::find($id);
+        $organization->organizations_id = $request->organizations_id;
+        $organization->alternate_name = $request->alternate_name;
+        $organization->name = $request->name;
+        $organization->type = $request->type;
+        $organization->website = $request->website;
+        $organization->description = $request->description;
+        $organization->logo = $request->logo;
+        $organization->checkbook = $request->checkbook;
+        $organization->internalnotes = $request->internalnotes;
+        $organization->contacts_link = $request->contacts_link;
+        $organization->dedupe = $request->dedeup;
+        $organization->flag = 'modified';
+        $organization->save();
+        // var_dump($project);
+        // exit();
+        return response()->json($organization);
     }
 
     /**

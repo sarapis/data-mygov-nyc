@@ -243,8 +243,8 @@ Route::group(['middleware' => 'administrator'], function () {
 	Route::resource('tb_projects', 'AdminProjectController');
 	Route::resource('tb_commitments', 'AdminCommitmentController');
 	Route::resource('tb_expense', 'AdminExpenseController');
-	Route::resource('tb_organizations', 'AdminOrganizationController');
 	Route::resource('tb_organization', 'AdminAgencyController');
+	Route::resource('tb_organizations', 'AdminOrganizationController');
 	Route::resource('tb_contacts', 'AdminContactController');
 	Route::resource('tb_services', 'AdminServiceController');
 	Route::resource('tb_locations', 'AdminLocationController');
