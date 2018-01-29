@@ -34,35 +34,31 @@
                             <thead>
                                 <tr class="info">
                                     <th class="text-center">No</th>
-                                    <th class="text-center">Address</th>
-                                    <th class="text-center">City</th>
-                                    <th class="text-center">State Province</th>
-                                    <th class="text-center">Postal Code</th>
-                                    <th class="text-center">Attention</th>
-                                    <th class="text-center">Region</th>
-                                    <th class="text-center">Country</th>
+                                    <th class="text-center">Number</th>
+                                    <th class="text-center">Serivce at location ID</th>
+                                    <th class="text-center">Extension</th>
+                                    <th class="text-center">Type</th>
+                                    <th class="text-center">Description</th>
                                     <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($adds as $key => $address)
-                                <tr id="address{{$address->id}}" class="{{$address->flag}}">
-                                    <td class="text-center">{{$address->id}}</td>
-                                    <td class="text-center">{{$address->address_1}}</td>
-                                    <td class="text-center">{{$address->city}}</td>
-                                    <td class="text-center">{{$address->state_province}}</td>
-                                    <td class="text-center">{{$address->postal_code}}</td>
-                                    <td class="text-center">{{$address->attention}}</td>
-                                    <td class="text-center">{{$address->region}}</td>
-                                    <td class="text-center">{{$address->country}}</td>
+                                @foreach($phones as $key => $phone)
+                                <tr id="phone{{$phone->id}}" class="{{$phone->flag}}">
+                                    <td class="text-center">{{$phone->id}}</td>
+                                    <td class="text-center">{{$phone->phone_number}}</td>
+                                    <td class="text-center">{{$phone->service_at_location_id}}</td>
+                                    <td class="text-center">{{$phone->extension}}</td>
+                                    <td class="text-center"><span class="badge bg-purple">{{$phone->type}}</span></td>
+                                    <td class="text-center">{{str_limit($phone->description, 40)}}</td>
                                     <td class="text-center">
-                                        <button class="btn btn-block btn-primary btn-sm open_modal"  value="{{$address->id}}"><i class="fa fa-fw fa-edit"></i>Edit</button>
+                                        <button class="btn btn-block btn-primary btn-sm open_modal"  value="{{$phone->id}}"><i class="fa fa-fw fa-edit"></i>Edit</button>
                                     </td>
                                 </tr>
                                 @endforeach                                                  
                             </tbody>
                         </table>
-                        {!! $adds->links() !!}
+                        {!! $phones->links() !!}
                     </div>
                     <!-- /.box-body -->
                 </div>
@@ -79,64 +75,64 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Address</h4>
+                <h4 class="modal-title">Phones</h4>
             </div>
             <form class=" form-horizontal user" id="frmProducts" name="frmProducts"  novalidate="">
                 <div class="modal-body">
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-4 control-label">Address</label>
+                      <label for="inputPassword3" class="col-sm-4 control-label">Number</label>
 
                       <div class="col-sm-7">
-                        <input type="text" class="form-control" id="address_1" name="address_1" value="">
+                        <input type="text" class="form-control" id="phone_number" name="phone_number" value="">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-4 control-label">City</label>
+                      <label for="inputPassword3" class="col-sm-4 control-label">Service at location ID</label>
 
                       <div class="col-sm-7">
-                        <input type="text" class="form-control" id="city" name="city" value=""></input>
+                        <input type="text" class="form-control" id="service_at_location_id" name="service_at_location_id" value=""></input>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-4 control-label">State province</label>
+                      <label for="inputPassword3" class="col-sm-4 control-label">Extension</label>
 
                       <div class="col-sm-7">
-                        <input type="text" class="form-control" id="state_province" name="state_province" value="">
+                        <input type="text" class="form-control" id="extension" name="extension" value="">
                       </div>
                     </div>
+
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-4 control-label">Postal code</label>
+                      <label for="inputPassword3" class="col-sm-4 control-label">Type</label>
 
                       <div class="col-sm-7">
-                        <input type="text" class="form-control" id="postal_code" name="postal_code" value="">
+                        <select class="form-control" id="type">
+                            <option></option>
+                            <option value="voice">voice</option>
+                            <option value="textphone">textphone</option>
+                            <option value="cell">cell</option>
+                            <option value="fax">fax</option>
+                            <option value="phone 1">phone 1</option>
+                            <option value="Agency Primary Phone">Agency Primary Phone</option>
+                            <option value="phone 2">phone 2</option>
+                            <option value="fax 1">fax 1</option>
+                            <option value="fax 2">fax 2</option>
+                            <option value="Division Primary Phone">Division Primary Phone</option>
+                        </select>
                       </div>
                     </div>
+
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-4 control-label">Attention</label>
+                      <label for="inputPassword3" class="col-sm-4 control-label">Description</label>
 
                       <div class="col-sm-7">
-                        <input type="text" class="form-control" id="attention" name="attention" value="">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-4 control-label">Region</label>
-
-                      <div class="col-sm-7">
-                        <input type="text" class="form-control" id="region" name="region" value="">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-4 control-label">Country</label>
-
-                      <div class="col-sm-7">
-                        <input type="text" class="form-control" id="country" name="country" value="">
+                        <textarea type="text" class="form-control" id="description" name="description" value="" rows="5"></textarea>
                       </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary" id="btn-save" value="add">Save changes</button>
-                    <input type="hidden" id="address_id" name="address_id" value="0">
+                    <input type="hidden" id="phone_id" name="phone_id" value="0">
                 </div>
             </form>
         </div>
@@ -148,6 +144,6 @@
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="{{asset('js/address_ajaxscript.js')}}"></script>
+<script src="{{asset('js/phone_ajaxscript.js')}}"></script>
 
 

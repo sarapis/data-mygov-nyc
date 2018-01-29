@@ -140,7 +140,7 @@
                       </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputPassword3" class="col-sm-3 control-label">Select</label>
+                        <label for="inputPassword3" class="col-sm-3 control-label">Project Type</label>
                         <div class="col-sm-7">
                             <select class="form-control" id="project_type">
                                 <option></option>

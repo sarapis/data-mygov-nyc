@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Phone;
 use App\Http\Requests;
 
 class AdminPhoneController extends Controller
@@ -15,7 +15,8 @@ class AdminPhoneController extends Controller
      */
     public function index()
     {
-        //
+        $phones = Phone::paginate(15);
+        return view('admin.tables.phone')->with('phones', $phones);
     }
 
     /**
@@ -47,7 +48,9 @@ class AdminPhoneController extends Controller
      */
     public function show($id)
     {
-        //
+        $phone = Phone::where('id', '=', $id)->first();
+        return response()->json($phone);
+
     }
 
     /**
@@ -70,7 +73,16 @@ class AdminPhoneController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $phone = Phone::find($id);
+        $phone->phone_number = $request->phone_number;
+        $phone->service_at_location_id = $request->service_at_location_id;
+        $phone->extension = $request->extension;
+        $phone->type = $request->type;
+        $phone->description = $request->description;
+        $phone->flag = 'modified';
+        $phone->save();
+
+        return response()->json($phone);
     }
 
     /**
