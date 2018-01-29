@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Program;
 use App\Http\Requests;
 
 class AdminProgramController extends Controller
@@ -15,7 +15,8 @@ class AdminProgramController extends Controller
      */
     public function index()
     {
-        //
+        $programs = Program::paginate(15);
+        return view('admin.tables.prgram')->with('programs', $programs);
     }
 
     /**
@@ -47,7 +48,8 @@ class AdminProgramController extends Controller
      */
     public function show($id)
     {
-        //
+        $program = Program::where('id', '=', $id)->first();
+        return response()->json($program);
     }
 
     /**
@@ -70,7 +72,13 @@ class AdminProgramController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $program = Program::find($id);
+        $program->name = $request->name;
+        $program->alternate_name = $request->alternate_name;
+        $program->flag = 'modified';
+        $program->save();
+
+        return response()->json($program);
     }
 
     /**
