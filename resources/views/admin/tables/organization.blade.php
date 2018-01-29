@@ -72,8 +72,9 @@
                                     <td class="text-center">{{str_limit($organization->description, 30)}}</td>
                                     <td class="text-center">
                                     @if($organization->logo!=null)
-                                    <img src="{{$organization->logo}}" style="width: 40px;"></td>
+                                    <img src="{{$organization->logo}}" style="width: 40px;">
                                     @endif
+                                    </td>
                                     <td class="text-center">{{str_limit($organization->checkbook, 15)}}</td>
                                     <td class="text-center">{{$organization->internalnote}}</td>
                                     <td class="text-center">{{str_limit($organization->contacts_link, 15)}}</td>

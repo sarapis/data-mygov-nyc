@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Service;
 use App\Http\Requests;
 
 class AdminServiceController extends Controller
@@ -15,7 +15,8 @@ class AdminServiceController extends Controller
      */
     public function index()
     {
-        //
+        $services = Service::paginate(15);
+        return view('admin.tables.service')->with('services', $services);
     }
 
     /**
@@ -47,7 +48,8 @@ class AdminServiceController extends Controller
      */
     public function show($id)
     {
-        //
+        $service = Service::where('id', '=', $id)->first();
+        return response()->json($service);
     }
 
     /**
@@ -70,7 +72,17 @@ class AdminServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $service = Service::find($id);
+        $service->name = $request->name;
+        $service->alternate_name = $request->alternate_name;
+        $service->description = $request->description;
+        $service->url = $request->url;
+        $service->email = $request->email;
+        $service->application_process = $request->application_process;
+        $service->flag = 'modified';
+        $service->save();
+
+        return response()->json($service);
     }
 
     /**

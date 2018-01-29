@@ -160,7 +160,7 @@
 								$holiday_schedule = implode(",", $record['fields']['holiday_schedule']);
 								$regular_schedule = implode(",", $record['fields']['regular_schedule']);
 								$service_area = implode(",", $record['fields']['service_area']);
-								$contacts = implode(",", $record['fields']['contacts']);
+								$contacts = implode(",", $record['fields']['Contacts']);
 								$details = implode(",", $record['fields']['details']);
 								$metadata = implode(",", $record['fields']['metadata']);
 
