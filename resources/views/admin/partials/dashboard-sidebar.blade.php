@@ -51,7 +51,7 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="/datasync"><i class="fa fa-refresh"></i> Sync</a></li>
-                <li><a href="/log"><i class="fa fa-history"></i> Log</a></li>
+                <li><a href="/logs" target="_blank"><i class="fa fa-history"></i> Log</a></li>
               </ul>
             </li>
 

@@ -168,6 +168,8 @@ return [
         Cornford\Googlmapper\MapperServiceProvider::class,
 
         Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
+
+        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
 	],
 
 	/*

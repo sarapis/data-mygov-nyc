@@ -255,6 +255,8 @@ Route::group(['middleware' => 'administrator'], function () {
 	Route::resource('tb_taxonomy', 'AdminTaxonomyController');
 	Route::resource('tb_details', 'AdminDetailController');
 
+	Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
 });
 
 // EDITOR ACCESS LEVEL PAGE ROUTES - RUNNING THROUGH EDITOR MIDDLEWARE
